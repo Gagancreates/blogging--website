@@ -17,11 +17,11 @@ const categories = [
 
 <Layout title="Blogs | gagan">
   <main class="container mx-auto px-4 mt-12">
-    <h1 class="font-zt text-4xl mb-8">Blogs</h1>
+    <h1 class="font-['Playfair_Display'] font-medium text-4xl mb-8">Blogs</h1>
     <div class="grid gap-8 max-w-2xl">
       {categories.map(category => (
         <article class="border-b border-gray-200 pb-8">
-          <h2 class="font-zt text-2xl mb-2">
+          <h2 class="font-['Playfair_Display'] font-medium text-2xl mb-2">
             <a href={category.url} class="hover:text-gray-600">
               {category.title}
             </a>

@@ -21,14 +21,14 @@ const projects = {
 
 <Layout title="Projects | gagan">
   <main class="container mx-auto px-4 mt-12">
-    <h1 class="font-zt text-4xl mb-12">Projects</h1>
+    <h1 class="font-playfair text-3xl mb-12 font-bold">Projects</h1>
     
     <section class="mb-16" id="main">
-      <h2 class="font-zt text-2xl mb-6">Main Projects</h2>
+      <h2 class="font-playfair text-2xl mb-6">Main Projects</h2>
       <div class="grid gap-8 max-w-2xl">
         {projects.main.map(project => (
           <article class="border-b border-gray-200 pb-8">
-            <h3 class="font-zt text-xl mb-2">
+            <h3 class="font-playfair text-xl mb-4">
               <a href={project.github} target="_blank" rel="noopener noreferrer" class="hover:text-gray-600">
                 {project.title} ↗
               </a>
@@ -40,16 +40,16 @@ const projects = {
     </section>
 
     <section id="side">
-      <h2 class="font-zt text-2xl mb-6">Side Projects</h2>
+      <h2 class="font-playfair text-2xl mb-6">Side Projects</h2>
       <div class="grid gap-8 max-w-2xl">
         {projects.side.map(project => (
           <article class="border-b border-gray-200 pb-8">
-            <h3 class="font-zt text-xl mb-2">
+            <h3 class="font-playfair text-xl mb-2">
               <a href={project.github} target="_blank" rel="noopener noreferrer" class="hover:text-gray-600">
                 {project.title} ↗
               </a>
             </h3>
-            <p class="font-helvetica font-bold text-gray-600">{project.description}</p>
+            <p class="font-playfair text-lg mb-4">{project.description}</p>
           </article>
         ))}
       </div>

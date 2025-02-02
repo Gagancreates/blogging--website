@@ -17,11 +17,7 @@ const buildBlogs = [
     description: 'Build a real-time application from scratch',
     url: '/blogs/build/react-firebase'
   },
-  {
-    title: 'Docker for Development',
-    description: 'Containerize your applications effectively',
-    url: '/blogs/build/docker-guide'
-  },
+ 
   {
     title: 'CI/CD Pipeline with GitHub Actions',
     description: 'Automate your deployment workflow',
@@ -32,16 +28,16 @@ const buildBlogs = [
         
 <Layout title="Build with Me | gagan">
   <main class="container mx-auto px-4 mt-12">
-    <h1 class="font-zt text-4xl mb-8">Build with Me</h1>
+    <h1 class="font-playfair text-3xl mb-4 font-bold">Build with Me</h1>
     <div class="grid gap-8 max-w-2xl">
       {buildBlogs.map(blog => (
         <article class="border-b border-gray-200 pb-8">
-          <h2 class="font-zt text-2xl mb-2">
+          <h2 class="font-playfair text-2xl mb-4">
             <a href={blog.url} class="hover:text-gray-600">
-              {blog.title}
+              <u>{blog.title}</u>
             </a>
           </h2>
-          <p class="font-helvetica font-bold text-gray-600">{blog.description}</p>
+          <p class="font-playfair text-lg mb-4">{blog.description}</p>
         </article>
       ))}
     </div>
