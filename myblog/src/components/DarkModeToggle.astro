@@ -1,0 +1,25 @@
+---
+const currentMode = Astro.site.data.darkMode || 'light';  // Get current mode
+---
+
+<button id="dark-mode-toggle" class="p-2 rounded bg-gray-800 text-white">
+  Switch to {currentMode === 'dark' ? 'Light' : 'Dark'} Mode
+</button>
+
+<script>
+  const toggleButton = document.getElementById('dark-mode-toggle');
+  const root = document.documentElement;
+
+  // Set initial theme based on saved preference
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  if (currentTheme === 'dark') {
+    root.classList.add('dark');
+  }
+
+  toggleButton.addEventListener('click', () => {
+    const isDarkMode = root.classList.toggle('dark');
+    // Save user preference in localStorage
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    toggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+  });
+</script>

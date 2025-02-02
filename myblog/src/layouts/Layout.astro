@@ -8,7 +8,7 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-  <head>
+  <head class="bg-light-beige">
     <meta charset="UTF-8" />
     <meta name="description" content="Gagan's personal blog" />
     <meta name="viewport" content="width=device-width" />
@@ -20,43 +20,47 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-white">
-    <nav class="border-b border-gray-200 py-4">
-      <div class="container mx-auto px-4">
-        <div class="flex justify-between items-center">
-          <a href="/" class="text-3xl font-playfair font-bold">DeepLearner</a>
-          
-          <!-- Mobile Menu Button -->
-          <button id="mobile-menu-button" class="md:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+    <body class="bg-beige">
+    <!-- Wrap everything inside the header -->
+    <header class="bg-light-beige">
+      <nav class="border-b border-gray-200 py-4">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center">
+            <a href="/" class="text-3xl font-playfair font-bold">DeepLearner</a>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
 
-          <!-- Desktop Navigation -->
-          <div class="hidden md:flex space-x-6 font-playfair font-medium">
-            <a href="/blogs" class="hover:text-gray-600 text-xl">Blogs</a>
-            <a href="/projects" class="hover:text-gray-600 text-xl">Projects</a>
-            <a href="/research" class="hover:text-gray-600 text-xl">Research</a>
-            <a href="/notes" class="hover:text-gray-600 text-xl">Notes</a>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-6 font-playfair font-medium">
+              <a href="/blogs" class="hover:text-gray-600 text-xl">Blogs</a>
+              <a href="/projects" class="hover:text-gray-600 text-xl">Projects</a>
+              <a href="/research" class="hover:text-gray-600 text-xl">Research</a>
+              <a href="/notes" class="hover:text-gray-600 text-xl">Notes</a>
+            </div>
+          </div>
+
+          <!-- Mobile Navigation -->
+          <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
+            <div class="flex flex-col space-y-4 font-playfair font-medium">
+              <a href="/blogs" class="hover:text-gray-600 text-xl">Blogs</a>
+              <a href="/projects" class="hover:text-gray-600 text-xl">Projects</a>
+              <a href="/research" class="hover:text-gray-600 text-xl">Research</a>
+              <a href="/notes" class="hover:text-gray-600 text-xl">Notes</a>
+            </div>
           </div>
         </div>
+      </nav>
+    </header>
 
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
-          <div class="flex flex-col space-y-4 font-playfair font-medium">
-            <a href="/blogs" class="hover:text-gray-600 text-xl">Blogs</a>
-            <a href="/projects" class="hover:text-gray-600 text-xl">Projects</a>
-            <a href="/research" class="hover:text-gray-600 text-xl">Research</a>
-            <a href="/notes" class="hover:text-gray-600 text-xl">Notes</a>
-          </div>
-        </div>
-      </div>
-    </nav>
 
     <slot />
 
-    <footer class="border-t border-gray-200 py-8 mt-20">
+    <footer class="border-t border-black-200 py-8 mt-20">
       <div class="container mx-auto px-4 text-center">
         <div class="flex justify-center space-x-6 font-inter font-medium">
           <a href="https://github.com/Gagancreates" class="text-gray-600 hover:text-gray-900">GitHub</a>
@@ -85,5 +89,8 @@ const { title } = Astro.props;
   }
   .font-inter {
     font-family: 'Inter', sans-serif;
+  }
+  .bg-light-beige { /* Added class for light beige background */
+    background-color:rgb(250, 250, 220); /* Light beige color */
   }
 </style>
