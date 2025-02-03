@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const posts = [
+  {
+    title: 'Sample Technical Blog',
+    description: 'A deep dive into deep learning concepts',
+    date: '2024-04-10',
+    url: '/blog/sample-technical-blog',
+    type: 'technical'
+  },
+  {
+    title: 'Getting Started with Algorithms',
+    description: 'Guide to competitive programming basics',
+    date: '2024-04-09',
+    url: 'https://notion.site/your-note',
+    type: 'guide',
+    external: true
+  }
+];
+---
+
+<Layout title="Blog | Gagan">
+  <main class="container mx-auto px-4 mt-12">
+    <h1 class="font-zodiak text-4xl mb-8">Blog</h1>
+    <div class="grid gap-8 max-w-2xl">
+      {posts.map(post => (
+        <article class="border-b border-gray-200 pb-8">
+          <h2 class="font-zodiak text-2xl mb-2">
+            {post.external ? (
+              <a href={post.url} target="_blank" rel="noopener noreferrer" class="hover:text-gray-600">
+                {post.title} ↗
+              </a>
+            ) : (
+              <a href={post.url} class="hover:text-gray-600">
+                {post.title}
+              </a>
+            )}
+          </h2>
+          <p class="text-gray-600 mb-2">{post.description}</p>
+          <div class="text-sm text-gray-500">
+            <span>{post.date}</span>
+            <span class="mx-2">•</span>
+            <span class="capitalize">{post.type}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+</Layout>
