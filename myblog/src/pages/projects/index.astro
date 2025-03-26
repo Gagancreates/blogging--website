@@ -1,0 +1,69 @@
+---
+
+const projects = {
+  serious: [
+    {
+      title: 'Bhagavad-Gita-GPT',
+      description: 'An AI-powered chatbot that responds like Lord Krishna, offering wisdom, guidance, and Bhagavad Gita verses to help with life’s challenges.',
+      github: 'https://bhagavad-gita-gpt-xi.vercel.app/'
+    },
+     {
+      title: 'YouTube to MindMap Generator',
+      description: 'Built a website that takes the URL of a YouTube video, summarises it and generates an interactive mindmap(which can be downloaded as SVG).Implemented this using YT to transcript package, Gemini-1.5-Pro API for summarising the transcript and generating Markmap code which is rendered on the screen as MindMap.',
+      github: 'https://github.com/Gagancreates/youtube-mindmap-generator'
+    }
+    
+    
+  ],
+  fun: [
+    {
+      title: 'Personal Blog',
+      description: 'My personal blog, which highlights my projects and blogs. Built with Astro',
+      github: 'https://gagan-blogs.netlify.app/'
+    },
+    {
+      title: 'Resume Generator',
+      description: 'A resume generator which takes your information and then formats it in a professional manner, and allows you to download the PDF of the resume. This project uses libraries such as html2canvas and jsPDF, which allows the users to download the PDF.',
+      github: 'https://github.com/Gagancreates/resume-generator'
+    }
+  ]
+};
+---
+
+<Layout title="Projects | Gagan">
+  <main class="container mx-auto px-4 mt-12">
+    <h1 class="font-playfair text-3xl mb-6 font-bold">Projects</h1>
+    
+    <section class="mb-16">
+      <h2 class="font-playfair text-2xl mb-2 font-bold">Main Projects</h2>
+      <div class="grid gap-8 max-w-2xl">
+        {projects.serious.map(project => (
+          <article class="border-b border-gray-200 pb-8">
+            <h3 class="font-playfair text-xl mb-2">
+              <a href={project.github} target="_blank" rel="noopener noreferrer" class="hover:text-gray-600">
+                {project.title} ↗
+              </a>
+            </h3>
+            <p class="text-gray-600">{project.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-playfair text-2xl mb-2 font-bold">Side Projects</h2>
+      <div class="grid gap-8 max-w-2xl">
+        {projects.fun.map(project => (
+          <article class="border-b border-gray-200 pb-8">
+            <h3 class="font-playfair text-xl mb-2">
+              <a href={project.github} target="_blank" rel="noopener noreferrer" class="hover:text-gray-600">
+                {project.title} ↗
+              </a>
+            </h3>
+            <p class="text-gray-600">{project.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>
