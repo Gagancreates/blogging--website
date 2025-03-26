@@ -4,22 +4,29 @@ import Layout from '../layouts/Layout.astro';
 const projects = {
   serious: [
     {
-      title: 'Deep Learning Research',
-      description: 'Research project on natural language processing',
-      github: 'https://github.com/username/project'
+      title: 'Bhagavad-Gita-GPT',
+      description: 'An AI-powered chatbot that responds like Lord Krishna, offering wisdom, guidance, and Bhagavad Gita verses to help with life’s challenges.',
+      github: 'https://bhagavad-gita-gpt-xi.vercel.app/'
+    },
+     {
+      title: 'YouTube to MindMap Generator',
+      description: 'Built a website that takes the URL of a YouTube video, summarises it and generates an interactive mindmap(which can be downloaded as SVG).Implemented this using YT to transcript package, Gemini-1.5-Pro API for summarising the transcript and generating Markmap code which is rendered on the screen as MindMap.',
+      github: 'https://github.com/Gagancreates/youtube-mindmap-generator'
     }
+    
+    
   ],
   fun: [
     {
       title: 'Personal Blog',
-      description: 'My personal blog built with Astro',
-      github: 'https://github.com/username/blog'
+      description: 'My personal blog, which highlights my projects and blogs. Built with Astro',
+      github: 'https://gagan-blogs.netlify.app/'
     }
   ]
 };
 ---
 
-<Layout title="Projects | neuralnets">
+<Layout title="Projects | Gagan">
   <main class="container mx-auto px-4 mt-12">
     <h1 class="font-playfair text-3xl mb-6 font-bold">Projects</h1>
     

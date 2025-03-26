@@ -3,14 +3,54 @@ import Layout from '../../layouts/Layout.astro';
 
 const categories = [
   {
-    title: 'Build with Me',
-    description: 'Follow along as I build and document interesting projects',
-    url: '/blogs/build'
-  },
-  {
     title: 'Machine Learning',
     description: 'Deep dives into ML concepts, implementations, and applications',
-    url: '/blogs/ml'
+    url: '/blogs/ml',
+    blogs: [
+      {
+        title: 'Gradient Descent: From Zero to Hero',
+        excerpt: 'Understanding Gradient Descent from Basics along with Mathematical Formulas and Visualisation',
+        date: '2024-02-25',
+        externalLink: 'https://sheer-castanet-7f7.notion.site/Gradient-Descent-Zero-to-Hero-1ba71143c5dc806486ebdc0f936c7c93'
+      },
+      {
+        title: 'Implementing a Recommendation System',
+        excerpt: 'Building a collaborative filtering model from scratch',
+        date: '2024-03-18',
+        externalLink: 'https://example.com/recommendation-system'
+      },
+      {
+        title: 'Natural Language Processing with Transformers',
+        excerpt: 'Exploring state-of-the-art NLP techniques and model architectures',
+        date: '2024-03-12',
+        externalLink: 'https://example.com/nlp-transformers'
+      }
+    ]
+  },
+  {
+    title: 'Build with Me',
+    description: 'Follow along as I build and document interesting projects',
+    url: '/blogs/build',
+    blogs: [
+      {
+        title: 'Building a Personal Portfolio Website',
+        excerpt: 'A step-by-step guide to creating a responsive portfolio using Astro and Tailwind CSS',
+        date: '2024-03-20',
+        externalLink: 'https://example.com/portfolio-tutorial'
+      },
+      {
+        title: 'Creating a Full-Stack Todo Application',
+        excerpt: 'Exploring modern web development with React, Node.js, and MongoDB',
+        date: '2024-03-15',
+        externalLink: 'https://example.com/todo-app-tutorial'
+      },
+      {
+        title: 'Developing a Real-Time Chat Application',
+        excerpt: 'Implementing WebSockets and building a scalable messaging platform',
+        date: '2024-03-10',
+        externalLink: 'https://example.com/chat-app-guide'
+      }
+    ]
   }
 ];
 ---
@@ -26,7 +66,25 @@ const categories = [
               {category.title}
             </a>
           </h2>
-          <p class="font-helvetica font-bold text-gray-600">{category.description}</p>
+          <p class="font-helvetica font-bold text-gray-600 mb-4">{category.description}</p>
+          <div class="space-y-4">
+            {category.blogs.map(blog => (
+              <div class="border-l-4 border-gray-300 pl-4">
+                <h3 class="font-['Playfair_Display'] font-medium text-xl">
+                  <a 
+                    href={blog.externalLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="hover:text-gray-600 hover:underline"
+                  >
+                    {blog.title}
+                  </a>
+                </h3>
+                <p class="text-gray-500 text-sm mb-1">{blog.excerpt}</p>
+                <p class="text-gray-400 text-xs">Published on {blog.date}</p>
+              </div>
+            ))}
+          </div>
         </article>
       ))}
     </div>
