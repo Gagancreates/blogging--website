@@ -5,27 +5,27 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="gagan">
   <main>
     <!-- Hero Section with Enhanced Gradient Background -->
-    <div class="bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50 relative overflow-hidden">
+    <div class="bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50 dark:from-black dark:via-zinc-950 dark:to-black relative overflow-hidden">
       <!-- Subtle pattern overlay -->
-      <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      <div class="absolute inset-0 bg-grid-pattern dark:bg-dark-grid-pattern opacity-5"></div>
       <div class="container mx-auto px-4 py-24 relative">
         <div class="max-w-2xl mx-auto text-center">
           <h1 class="font-playfair text-5xl mb-6 font-bold leading-tight tracking-tight drop-shadow-sm">
-            <span class="text-amber-950">Hey,</span> this is <span class="relative inline-block">
+            <span class="text-amber-950 dark:text-amber-100">Hey,</span> this is <span class="relative inline-block">
               gagan
-              <span class="absolute bottom-1 left-0 w-full h-1.5 bg-amber-600 opacity-70"></span>
+              <span class="absolute bottom-0 left-0 w-full h-1.5 bg-amber-600 dark:bg-amber-500 opacity-70"></span>
             </span>
           </h1>
-          <p class="font-playfair text-xl mb-10 font-normal leading-relaxed text-gray-900">
+          <p class="font-playfair text-xl mb-10 font-normal leading-relaxed text-gray-900 dark:text-zinc-300">
             I'm a freshman studying Computer Science. I love building cool stuff and making machines learn. 
             I write about machine learning, tech, and random niche topics that grab my curiosity. 
-            <span class="italic text-amber-900 font-medium">Figuring things out and sharing along the way :)</span>
+            <span class="italic text-amber-900 dark:text-amber-200 font-medium">Figuring things out and sharing along the way :)</span>
           </p>
           <div class="flex flex-wrap justify-center gap-4 mt-10">
-            <a href="/blogs" class="px-7 py-3.5 bg-amber-900 text-white font-medium rounded-lg hover:bg-amber-950 transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1">
+            <a href="/blogs" class="px-7 py-3.5 bg-amber-900 dark:bg-amber-700 text-white font-medium rounded-lg hover:bg-amber-950 dark:hover:bg-amber-600 transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1">
               Read My Blog
             </a>
-            <a href="/project" class="px-7 py-3.5 border-2 border-amber-900 text-amber-900 font-medium rounded-lg hover:bg-amber-50 transition-all duration-300 transform hover:-translate-y-1">
+            <a href="/project" class="px-7 py-3.5 border-2 border-amber-900 dark:border-amber-600 text-amber-900 dark:text-amber-200 font-medium rounded-lg hover:bg-amber-50 dark:hover:bg-zinc-900 transition-all duration-300 transform hover:-translate-y-1">
               View Projects
             </a>
           </div>
@@ -38,44 +38,44 @@ import Layout from '../layouts/Layout.astro';
       <div class="max-w-4xl mx-auto">
         <div class="grid md:grid-cols-2 gap-10">
           <!-- Projects Section -->
-          <div class="bg-white p-8 rounded-xl shadow-md border border-amber-200 transition-all duration-300 hover:shadow-lg hover:border-amber-300 group">
-            <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 relative inline-block">
+          <div class="bg-white dark:bg-black p-8 rounded-xl shadow-md border border-amber-200 dark:border-zinc-800 transition-all duration-300 hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-900 group">
+            <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 dark:text-amber-100 relative inline-block">
               Projects
-              <span class="absolute bottom-1 left-0 w-1/3 h-1.5 bg-amber-500 group-hover:w-1/2 transition-all duration-500"></span>
+              <span class="absolute bottom-0 left-0 w-1/3 h-1.5 bg-amber-500 dark:bg-amber-600 group-hover:w-1/2 transition-all duration-500"></span>
             </h2>
             <ul class="font-playfair space-y-4 pl-5">
               <li class="transition-transform duration-300 hover:translate-x-1.5">
                 <a href="/project#main" class="text-lg flex items-center group">
-                  <span class="w-2.5 h-2.5 bg-amber-600 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
-                  <span class="group-hover:text-amber-900 underline decoration-amber-300 decoration-2 underline-offset-4">Main projects</span>
+                  <span class="w-2.5 h-2.5 bg-amber-600 dark:bg-amber-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
+                  <span class="group-hover:text-amber-900 dark:text-zinc-300 dark:group-hover:text-amber-200 underline decoration-amber-300 dark:decoration-amber-900/40 decoration-2 underline-offset-8">Main projects</span>
                 </a>
               </li>
               <li class="transition-transform duration-300 hover:translate-x-1.5">
                 <a href="/project#side" class="text-lg flex items-center group">
-                  <span class="w-2.5 h-2.5 bg-amber-600 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
-                  <span class="group-hover:text-amber-900 underline decoration-amber-300 decoration-2 underline-offset-4">Side projects</span>
+                  <span class="w-2.5 h-2.5 bg-amber-600 dark:bg-amber-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
+                  <span class="group-hover:text-amber-900 dark:text-zinc-300 dark:group-hover:text-amber-200 underline decoration-amber-300 dark:decoration-amber-900/40 decoration-2 underline-offset-8">Side projects</span>
                 </a>
               </li>
             </ul>
           </div>
 
           <!-- Blogs Section -->
-          <div class="bg-white p-8 rounded-xl shadow-md border border-amber-200 transition-all duration-300 hover:shadow-lg hover:border-amber-300 group">
-            <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 relative inline-block">
+          <div class="bg-white dark:bg-black p-8 rounded-xl shadow-md border border-amber-200 dark:border-zinc-800 transition-all duration-300 hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-900 group">
+            <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 dark:text-amber-100 relative inline-block">
               Blogs
-              <span class="absolute bottom-1 left-0 w-1/3 h-1.5 bg-amber-500 group-hover:w-1/2 transition-all duration-500"></span>
+              <span class="absolute bottom-0 left-0 w-1/3 h-1.5 bg-amber-500 dark:bg-amber-600 group-hover:w-1/2 transition-all duration-500"></span>
             </h2>
             <ul class="font-playfair space-y-4 pl-5">
               <li class="transition-transform duration-300 hover:translate-x-1.5">
                 <a href="/blogs" class="text-lg flex items-center group">
-                  <span class="w-2.5 h-2.5 bg-amber-600 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
-                  <span class="group-hover:text-amber-900 underline decoration-amber-300 decoration-2 underline-offset-4">Machine learning</span>
+                  <span class="w-2.5 h-2.5 bg-amber-600 dark:bg-amber-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
+                  <span class="group-hover:text-amber-900 dark:text-zinc-300 dark:group-hover:text-amber-200 underline decoration-amber-300 dark:decoration-amber-900/40 decoration-2 underline-offset-8">Machine learning</span>
                 </a>
               </li>
               <li class="transition-transform duration-300 hover:translate-x-1.5">
                 <a href="/blogs" class="text-lg flex items-center group">
-                  <span class="w-2.5 h-2.5 bg-amber-600 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
-                  <span class="group-hover:text-amber-900 underline decoration-amber-300 decoration-2 underline-offset-4">Build with me</span>
+                  <span class="w-2.5 h-2.5 bg-amber-600 dark:bg-amber-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
+                  <span class="group-hover:text-amber-900 dark:text-zinc-300 dark:group-hover:text-amber-200 underline decoration-amber-300 dark:decoration-amber-900/40 decoration-2 underline-offset-8">Build with me</span>
                 </a>
               </li>
             </ul>
@@ -83,40 +83,40 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <!-- Ongoings Section -->
-        <div class="mt-12 bg-white p-8 rounded-xl shadow-md border border-amber-200 transition-all duration-300 hover:shadow-lg hover:border-amber-300 group">
-          <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 relative inline-block">
+        <div class="mt-12 bg-white dark:bg-black p-8 rounded-xl shadow-md border border-amber-200 dark:border-zinc-800 transition-all duration-300 hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-900 group">
+          <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 dark:text-amber-100 relative inline-block">
             Ongoings
-            <span class="absolute bottom-1 left-0 w-1/3 h-1.5 bg-amber-500 group-hover:w-1/2 transition-all duration-500"></span>
+            <span class="absolute bottom-0 left-0 w-1/3 h-1.5 bg-amber-500 dark:bg-amber-600 group-hover:w-1/2 transition-all duration-500"></span>
           </h2>
           <div class="space-y-4">
-            <p class="font-playfair text-lg leading-relaxed">
-              Currently mastering machine learning, completed supervised learning from <span class="text-amber-900 font-medium">deeplearning.ai</span>, exploring neural network architectures for computer vision tasks.
+            <p class="font-playfair text-lg leading-relaxed dark:text-zinc-300">
+              Currently mastering machine learning, completed supervised learning from <span class="text-amber-900 dark:text-amber-200 font-medium">deeplearning.ai</span>, exploring neural network architectures for computer vision tasks.
             </p>
-            <p class="font-playfair text-lg leading-relaxed">
+            <p class="font-playfair text-lg leading-relaxed dark:text-zinc-300">
               Writing a comprehensive blog series about my journey into machine learning and its applications.
             </p>
-            <p class="font-playfair text-lg leading-relaxed">
-              Mastering next.js by doing projects, check out my recent projects at the <a href="/project" class="text-amber-900 hover:text-amber-950 underline decoration-amber-300 decoration-2 underline-offset-4">projects page</a>!
+            <p class="font-playfair text-lg leading-relaxed dark:text-zinc-300">
+              Mastering next.js by doing projects, check out my recent projects at the <a href="/project" class="text-amber-900 dark:text-amber-200 hover:text-amber-950 dark:hover:text-amber-100 underline decoration-amber-300 dark:decoration-amber-900/40 decoration-2 underline-offset-8">projects page</a>!
             </p>
           </div>
         </div>
 
         <!-- Research Section -->
-        <div id="research" class="mt-12 bg-white p-8 rounded-xl shadow-md border border-amber-200 transition-all duration-300 hover:shadow-lg hover:border-amber-300 group">
-          <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 relative inline-block">
+        <div id="research" class="mt-12 bg-white dark:bg-black p-8 rounded-xl shadow-md border border-amber-200 dark:border-zinc-800 transition-all duration-300 hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-900 group">
+          <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 dark:text-amber-100 relative inline-block">
             Research
-            <span class="absolute bottom-1 left-0 w-1/3 h-1.5 bg-amber-500 group-hover:w-1/2 transition-all duration-500"></span>
+            <span class="absolute bottom-0 left-0 w-1/3 h-1.5 bg-amber-500 dark:bg-amber-600 group-hover:w-1/2 transition-all duration-500"></span>
           </h2>
-          <p class="font-playfair text-lg text-gray-500 italic">Coming soon...</p>
+          <p class="font-playfair text-lg text-gray-500 dark:text-zinc-500 italic">Coming soon...</p>
         </div>
 
         <!-- Notes Section -->
-        <div class="mt-12 bg-white p-8 rounded-xl shadow-md border border-amber-200 transition-all duration-300 hover:shadow-lg hover:border-amber-300 group">
-          <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 relative inline-block">
+        <div class="mt-12 bg-white dark:bg-black p-8 rounded-xl shadow-md border border-amber-200 dark:border-zinc-800 transition-all duration-300 hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-900 group">
+          <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 dark:text-amber-100 relative inline-block">
             Notes
-            <span class="absolute bottom-1 left-0 w-1/3 h-1.5 bg-amber-500 group-hover:w-1/2 transition-all duration-500"></span>
+            <span class="absolute bottom-0 left-0 w-1/3 h-1.5 bg-amber-500 dark:bg-amber-600 group-hover:w-1/2 transition-all duration-500"></span>
           </h2>
-          <p class="font-playfair text-lg text-gray-500 italic">Coming soon...</p>
+          <p class="font-playfair text-lg text-gray-500 dark:text-zinc-500 italic">Coming soon...</p>
         </div>
       </div>
     </div>
@@ -139,6 +139,14 @@ import Layout from '../layouts/Layout.astro';
     background-image: 
       linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  
+  /* Dark mode grid pattern */
+  .bg-dark-grid-pattern {
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 </style>
