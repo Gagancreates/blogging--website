@@ -8,24 +8,24 @@ import Layout from '../layouts/Layout.astro';
     <div class="bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50 dark:from-black dark:via-zinc-950 dark:to-black relative overflow-hidden">
       <!-- Subtle pattern overlay -->
       <div class="absolute inset-0 bg-grid-pattern dark:bg-dark-grid-pattern opacity-5"></div>
-      <div class="container mx-auto px-4 py-24 relative">
+      <div class="container mx-auto px-4 py-16 md:py-24 relative">
         <div class="max-w-2xl mx-auto text-center">
-          <h1 class="font-playfair text-5xl mb-6 font-bold leading-tight tracking-tight drop-shadow-sm">
+          <h1 class="font-playfair text-4xl md:text-5xl mb-4 md:mb-6 font-bold leading-tight tracking-tight drop-shadow-sm">
             <span class="text-amber-950 dark:text-amber-100">Hey,</span> this is <span class="relative inline-block">
               gagan
               <span class="absolute bottom-0 left-0 w-full h-1.5 bg-amber-600 dark:bg-amber-500 opacity-70"></span>
             </span>
           </h1>
-          <p class="font-playfair text-xl mb-10 font-normal leading-relaxed text-gray-900 dark:text-zinc-300">
+          <p class="font-playfair text-lg md:text-xl mb-6 md:mb-10 font-normal leading-relaxed text-gray-900 dark:text-zinc-300">
             I'm a freshman studying Computer Science. I love building cool stuff and making machines learn. 
             I write about machine learning, tech, and random niche topics that grab my curiosity. 
             <span class="italic text-amber-900 dark:text-amber-200 font-medium">Figuring things out and sharing along the way :)</span>
           </p>
-          <div class="flex flex-wrap justify-center gap-4 mt-10">
-            <a href="/blogs" class="px-7 py-3.5 bg-amber-900 dark:bg-amber-700 text-white font-medium rounded-lg hover:bg-amber-950 dark:hover:bg-amber-600 transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1">
+          <div class="flex flex-wrap justify-center gap-3 md:gap-4 mt-6 md:mt-10">
+            <a href="/blogs" class="px-5 py-2.5 md:px-7 md:py-3.5 bg-amber-900 dark:bg-amber-700 text-white font-medium rounded-lg hover:bg-amber-950 dark:hover:bg-amber-600 transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1">
               Read My Blog
             </a>
-            <a href="/project" class="px-7 py-3.5 border-2 border-amber-900 dark:border-amber-600 text-amber-900 dark:text-amber-200 font-medium rounded-lg hover:bg-amber-50 dark:hover:bg-zinc-900 transition-all duration-300 transform hover:-translate-y-1">
+            <a href="/project" class="px-5 py-2.5 md:px-7 md:py-3.5 border-2 border-amber-900 dark:border-amber-600 text-amber-900 dark:text-amber-200 font-medium rounded-lg hover:bg-amber-50 dark:hover:bg-zinc-900 transition-all duration-300 transform hover:-translate-y-1">
               View Projects
             </a>
           </div>
@@ -34,7 +34,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <!-- Content Sections -->
-    <div class="container mx-auto px-4 py-20">
+    <div class="container mx-auto px-4 py-0 md:py-20">
       <div class="max-w-4xl mx-auto">
         <div class="grid md:grid-cols-2 gap-10">
           <!-- Projects Section -->
