@@ -1,0 +1,17 @@
+---
+import DarkModeToggle from "./DarkModeToggle.astro";
+---
+
+<nav class="py-4 border-b border-gray-200 dark:border-gray-800 mb-8">
+  <div class="container mx-auto flex justify-between items-center px-4">
+    <div>
+      <a href="/" class="text-lg font-medium hover:underline">Blog</a>
+    </div>
+    
+    <div class="flex space-x-4 items-center">
+      <a href="/about" class="hover:underline">About</a>
+      <a href="/posts" class="hover:underline">Posts</a>
+      <DarkModeToggle />
+    </div>
+  </div>
+</nav> 
