@@ -64,31 +64,31 @@ const categories = [
 
 <Layout title="Blogs | gagan">
   <main class="container mx-auto px-4 mt-12">
-    <h1 class="font-['Playfair_Display'] font-medium text-4xl mb-8">Blogs</h1>
+    <h1 class="font-['Playfair_Display'] font-medium text-4xl mb-8 dark:text-white">Blogs</h1>
     <div class="grid gap-8 max-w-2xl">
       {categories.map(category => (
-        <article class="border-b border-gray-200 pb-8">
-          <h2 class="font-['Playfair_Display'] font-medium text-2xl mb-2">
-            <a href={category.url} class="hover:text-gray-600">
+        <article class="border-b border-gray-200 dark:border-zinc-800 pb-8">
+          <h2 class="font-['Playfair_Display'] font-medium text-2xl mb-2 dark:text-white">
+            <a href={category.url} class="hover:text-gray-800 dark:hover:text-gray-300">
               {category.title}
             </a>
           </h2>
-          <p class="font-helvetica font-bold text-gray-600 mb-4">{category.description}</p>
+          <p class="font-helvetica font-bold text-gray-600 dark:text-gray-400 mb-4">{category.description}</p>
           <div class="space-y-4">
             {category.blogs.map(blog => (
-              <div class="border-l-4 border-gray-300 pl-4">
-                <h3 class="font-['Playfair_Display'] font-medium text-xl">
+              <div class="border-l-4 border-gray-300 dark:border-zinc-700 pl-4 dark:shadow-silver rounded-r">
+                <h3 class="font-['Playfair_Display'] font-medium text-xl dark:text-white">
                   <a 
                     href={blog.externalLink} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    class="hover:text-gray-600 hover:underline"
+                    class="hover:text-gray-800 dark:text-white dark:hover:text-gray-300 hover:underline"
                   >
                     {blog.title}
                   </a>
                 </h3>
-                <p class="text-gray-500 text-sm mb-1">{blog.excerpt}</p>
-                <p class="text-gray-400 text-xs">Published on {blog.date}</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-1">{blog.excerpt}</p>
+                <p class="text-gray-500 dark:text-gray-500 text-xs">Published on {blog.date}</p>
               </div>
             ))}
           </div>
@@ -97,3 +97,10 @@ const categories = [
     </div>
   </main>
 </Layout>
+
+<style>
+  /* Silver glow for cards in dark mode */
+  .dark .dark\:shadow-silver {
+    box-shadow: 0 0 20px rgba(180, 180, 185, 0.2), 0 0 5px rgba(200, 200, 210, 0.15);
+  }
+</style>
