@@ -15,8 +15,8 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/zt-formom" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     
@@ -38,69 +38,77 @@ const { title } = Astro.props;
         document.documentElement.classList.remove('dark');
       }
     </script>
-    
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-    </style>
   </head>
-  <body class="bg-amber-50 dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300">
-    <!-- Header with dark mode toggle -->
-    <header class="bg-gradient-to-b from-amber-100 to-amber-50 dark:from-zinc-900 dark:to-black border-b border-amber-200 dark:border-zinc-800 shadow-sm">
-      <nav class="py-4">
-        <div class="container mx-auto px-4">
-          <div class="flex justify-between items-center">
-            <a href="/" class="text-3xl font-playfair font-bold text-amber-950 dark:text-amber-100">DeepLearner</a>
+  <body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300 min-h-screen flex flex-col">
+    <!-- Animated background pattern -->
+    <div class="fixed inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-50/50 to-transparent dark:from-gray-900/50 pointer-events-none"></div>
+    
+    <!-- Floating particles -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div class="particles-container"></div>
+    </div>
+    
+    <!-- Header -->
+    <header class="relative z-10 border-b border-gray-100 dark:border-gray-800 backdrop-blur-sm bg-white/80 dark:bg-black/80">
+      <nav class="container mx-auto px-4 py-6">
+        <div class="flex justify-between items-center">
+          <a href="/" class="group relative">
+            <span class="font-mono text-xl tracking-tight relative z-10">gagan</span>
+            <span class="font-mono text-sm opacity-50 ml-2 group-hover:opacity-100 transition-opacity relative z-10">/dev</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-lg transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+          </a>
+          
+          <div class="flex items-center space-x-6">
+            <nav class="hidden md:flex space-x-6">
+              <a href="/blogs" class="nav-link font-mono text-sm hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Blogs</a>
+              <a href="/project" class="nav-link font-mono text-sm hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Projects</a>
+              <a href="/#research" class="nav-link font-mono text-sm hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Research</a>
+            </nav>
             
-            <div class="flex items-center space-x-4">
-              <!-- Dark Mode Toggle -->
-              <button id="theme-toggle" class="p-2 rounded-full bg-amber-200/70 dark:bg-zinc-800 text-amber-900 dark:text-amber-200 hover:bg-amber-200 dark:hover:bg-zinc-700 transition-colors shadow-sm">
-                <!-- Sun icon for dark mode -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-                <!-- Moon icon for light mode -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              </button>
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors relative group">
+              <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full transform scale-0 group-hover:scale-100 transition-transform"></div>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block dark:hidden relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            </button>
 
-              <!-- Mobile Menu Button -->
-              <button id="mobile-menu-button" class="md:hidden p-2 text-amber-950 dark:text-amber-200">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
-
-              <!-- Desktop Navigation -->
-              <div class="hidden md:flex space-x-6 font-playfair font-medium">
-                <a href="/blogs" class="text-xl text-amber-900 dark:text-amber-200 hover:text-amber-950 dark:hover:text-amber-100 transition-colors">Blogs</a>
-                <a href="/project" class="text-xl text-amber-900 dark:text-amber-200 hover:text-amber-950 dark:hover:text-amber-100 transition-colors">Projects</a>
-                <a href="/#research" class="text-xl text-amber-900 dark:text-amber-200 hover:text-amber-950 dark:hover:text-amber-100 transition-colors">Research</a>
-              </div>
-            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2 relative group">
+              <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full transform scale-0 group-hover:scale-100 transition-transform"></div>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 relative z-10">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
+        </div>
 
-          <!-- Mobile Navigation -->
-          <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
-            <div class="flex flex-col space-y-4 font-playfair font-medium">
-              <a href="/blogs" class="text-xl text-amber-900 dark:text-amber-200 hover:text-amber-950 dark:hover:text-amber-100">Blogs</a>
-              <a href="/project" class="text-xl text-amber-900 dark:text-amber-200 hover:text-amber-950 dark:hover:text-amber-100">Projects</a>
-              <a href="/#research" class="text-xl text-amber-900 dark:text-amber-200 hover:text-amber-950 dark:hover:text-amber-100">Research</a>
-            </div>
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
+          <div class="flex flex-col space-y-4">
+            <a href="/blogs" class="nav-link font-mono text-sm hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Blogs</a>
+            <a href="/project" class="nav-link font-mono text-sm hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Projects</a>
+            <a href="/#research" class="nav-link font-mono text-sm hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Research</a>
           </div>
         </div>
       </nav>
     </header>
 
-    <slot />
+    <main class="flex-grow relative z-10">
+      <slot />
+    </main>
 
-    <footer class="border-t border-amber-200 dark:border-zinc-800 py-8 mt-20 bg-gradient-to-b from-amber-50 to-amber-100 dark:from-black dark:to-zinc-900">
-      <div class="container mx-auto px-4 text-center">
-        <div class="flex justify-center space-x-6 font-inter font-medium">
-          <a href="https://github.com/Gagancreates" class="text-amber-900 dark:text-amber-200 hover:text-amber-950 dark:hover:text-amber-100 transition-colors">GitHub</a>
-          <a href="https://x.com/gagan_builds" class="text-amber-900 dark:text-amber-200 hover:text-amber-950 dark:hover:text-amber-100 transition-colors">Twitter</a>
+    <footer class="relative z-10 border-t border-gray-100 dark:border-gray-800 py-8 mt-20 backdrop-blur-sm bg-white/80 dark:bg-black/80">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center">
+          <div class="font-mono text-sm opacity-50">
+            © {new Date().getFullYear()} gagan
+          </div>
+          <div class="flex space-x-6">
+            <a href="https://github.com/Gagancreates" class="social-link font-mono text-sm hover:text-gray-600 dark:hover:text-gray-300 transition-colors">GitHub</a>
+            <a href="https://x.com/gagan_builds" class="social-link font-mono text-sm hover:text-gray-600 dark:hover:text-gray-300 transition-colors">Twitter</a>
+          </div>
         </div>
       </div>
     </footer>
@@ -111,11 +119,9 @@ const { title } = Astro.props;
         const themeToggle = document.getElementById('theme-toggle');
         const htmlElement = document.documentElement;
         
-        // Toggle theme
         themeToggle?.addEventListener('click', () => {
           htmlElement.classList.toggle('dark');
           
-          // Save preference to localStorage
           if (htmlElement.classList.contains('dark')) {
             localStorage.setItem('theme', 'dark');
           } else {
@@ -131,18 +137,133 @@ const { title } = Astro.props;
       mobileMenuButton?.addEventListener('click', () => {
         mobileMenu?.classList.toggle('hidden');
       });
+
+      // Create floating particles
+      const createParticles = () => {
+        const container = document.querySelector('.particles-container');
+        if (!container) return;
+
+        const particleCount = 20;
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.top = `${Math.random() * 100}%`;
+          particle.style.animationDelay = `${Math.random() * 5}s`;
+          container.appendChild(particle);
+        }
+      };
+
+      createParticles();
     </script>
   </body>
 </html>
 
 <style is:global>
-  .font-playfair {
-    font-family: 'Playfair Display', serif;
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
   }
   .font-space {
     font-family: 'Space Grotesk', sans-serif;
   }
-  .font-inter {
-    font-family: 'Inter', sans-serif;
+  .font-zt {
+    font-family: 'Zt Formom', sans-serif;
+  }
+  
+  /* Smooth transitions */
+  * {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Floating particles animation */
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 15s infinite linear;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.1;
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.2;
+    }
+    100% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.1;
+    }
+  }
+
+  /* Navigation link hover effect */
+  .nav-link {
+    position: relative;
+    padding: 0.25rem 0;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Social link hover effect */
+  .social-link {
+    position: relative;
+    padding: 0.25rem 0;
+  }
+
+  .social-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .social-link:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 </style>

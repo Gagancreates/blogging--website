@@ -1,0 +1,121 @@
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => {
+  return data.draft !== true;
+});
+
+const sortedPosts = posts.sort((a, b) => {
+  return new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf();
+});
+
+<Layout title="Blog | gagan">
+  <main class="container mx-auto px-4 py-8 sm:py-12">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-8 sm:mb-16">
+        <h1 class="font-mono text-3xl sm:text-4xl mb-3 sm:mb-4">Blog</h1>
+        <p class="font-space text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
+          Thoughts, ideas, and insights on technology, development, and more.
+        </p>
+      </div>
+
+      <div class="space-y-8 sm:space-y-12">
+        {sortedPosts.map((post, index) => (
+          <article class="group relative">
+            <div class="absolute -inset-4 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+            <div class="relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-md">
+              <div class="w-full sm:w-64 flex-shrink-0">
+                <div class="aspect-video rounded-lg overflow-hidden bg-gradient-to-br from-purple-500/20 to-pink-500/20">
+                  {post.data.image && (
+                    <img 
+                      src={post.data.image} 
+                      alt={post.data.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  )}
+                </div>
+              </div>
+              <div class="flex-grow min-w-0">
+                <div class="flex items-center gap-2 sm:gap-3 mb-2">
+                  <time class="font-mono text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                    {new Date(post.data.pubDate).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </time>
+                  <span class="text-gray-400">•</span>
+                  <span class="font-mono text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                    {Math.ceil(post.body.length / 200)} min read
+                  </span>
+                </div>
+                <h2 class="font-mono text-lg sm:text-xl mb-2">
+                  <a 
+                    href={`/blog/${post.slug}`}
+                    class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                  >
+                    {post.data.title}
+                  </a>
+                </h2>
+                <p class="font-space text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4">
+                  {post.data.description}
+                </p>
+                <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                  {post.data.tags?.map(tag => (
+                    <span class="px-2 py-1 text-xs font-mono rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* Fade-in animation for articles */
+  article {
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Stagger the animations */
+  article:nth-child(1) { animation-delay: 0.1s; }
+  article:nth-child(2) { animation-delay: 0.2s; }
+  article:nth-child(3) { animation-delay: 0.3s; }
+  article:nth-child(4) { animation-delay: 0.4s; }
+  article:nth-child(5) { animation-delay: 0.5s; }
+
+  /* Gradient animation */
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .group:hover .absolute {
+    animation: gradient 3s ease infinite;
+    background-size: 200% 200%;
+  }
+</style> 

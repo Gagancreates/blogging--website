@@ -6,8 +6,8 @@ export default {
       extend: {
         fontFamily: {
           space: ['Space Grotesk', 'sans-serif'],
-          inter: ['Inter', 'sans-serif'],
-          playfair: ['Playfair Display', 'serif'],
+          mono: ['IBM Plex Mono', 'monospace'],
+          outfit: ['Outfit', 'sans-serif'],
         },
         colors: {
           amber: {

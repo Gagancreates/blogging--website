@@ -11,29 +11,36 @@ const { title, description, github, image } = Astro.props;
 
 <article class="project-card group">
   <a href={github} target="_blank" rel="noopener noreferrer" class="block">
-    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 bg-white dark:bg-black p-4 rounded-xl shadow-md border border-amber-200 dark:border-zinc-800 transition-all duration-300 hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-900">
+    <div class="relative flex flex-col sm:flex-row gap-4 sm:gap-6 bg-gradient-to-br from-white via-amber-50 to-amber-100/30 p-6 rounded-2xl shadow-lg border-2 border-amber-200 hover:shadow-xl hover:border-amber-300 transition-all duration-300 dark:from-black dark:via-amber-950/20 dark:to-amber-900/10 dark:border-zinc-800/50 dark:hover:border-amber-900/50">
       {image && (
-        <div class="relative w-full sm:w-72 h-48 sm:h-40 flex-shrink-0 rounded-lg overflow-hidden">
+        <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-xl overflow-hidden ring-2 ring-amber-200/50">
           <img
             src={image}
             alt={title}
-            class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+            class="object-cover w-full h-full"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
       )}
       <div class="flex-grow min-w-0">
-        <h3 class="font-playfair text-xl font-semibold text-amber-950 dark:text-amber-100 mb-2 group-hover:text-amber-900 dark:group-hover:text-amber-200 transition-colors">
-          {title}
-        </h3>
-        <p class="font-playfair text-gray-600 dark:text-zinc-300 text-sm leading-relaxed">
+        <div class="flex items-center gap-2 mb-2">
+          <h3 class="font-zt text-2xl font-bold text-amber-800 group-hover:text-amber-700 transition-colors dark:text-amber-100 dark:group-hover:text-amber-200">
+            {title}
+          </h3>
+          <span class="text-amber-600 dark:text-amber-400">→</span>
+        </div>
+        <p class="font-space text-gray-700 text-base leading-relaxed mb-4 dark:text-zinc-300">
           {description}
         </p>
-        <div class="mt-3 flex items-center text-sm text-amber-900 dark:text-amber-200 group-hover:text-amber-950 dark:group-hover:text-amber-100 transition-colors">
-          View Project
-          <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+        <div class="flex items-center gap-2 text-base text-amber-700 group-hover:text-amber-600 transition-colors dark:text-amber-200 dark:group-hover:text-amber-100">
+          <span>View Project</span>
+          <span class="text-xl">→</span>
         </div>
       </div>
+      <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-200/50 to-transparent rounded-bl-full dark:from-amber-900/30" />
+      <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-amber-100/40 to-transparent rounded-tr-full dark:from-amber-900/20" />
+      <div class="absolute top-4 right-4 w-8 h-8 bg-amber-200/30 rounded-full dark:bg-amber-900/30" />
+      <div class="absolute bottom-4 left-4 w-6 h-6 bg-amber-100/40 rounded-full dark:bg-amber-900/20" />
     </div>
   </a>
 </article>

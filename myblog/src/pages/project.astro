@@ -34,47 +34,160 @@ const projects = {
 };
 ---
 
-<Layout title="Projects | Gagan">
-  <main class="container mx-auto px-4 py-12">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="font-playfair text-4xl md:text-5xl mb-4 md:mb-6 font-bold text-center text-amber-950 dark:text-amber-100">
-        Projects
-      </h1>
+<Layout title="Projects | gagan">
+  <main class="container mx-auto px-4 py-8 sm:py-12">
+    <div class="max-w-5xl mx-auto">
+      <h1 class="font-zt text-5xl sm:text-6xl mb-8 sm:mb-12 text-center">Projects</h1>
       
-      <section class="mb-20">
-        <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 dark:text-amber-100 relative inline-block">
-          Main Projects
-          <span class="absolute bottom-0 left-0 w-1/3 h-1.5 bg-amber-500 dark:bg-amber-600"></span>
-        </h2>
-        <div class="space-y-6">
-          {projects.serious.map(project => (
-            <ProjectCard {...project} />
-          ))}
-        </div>
-      </section>
+      <div class="space-y-12 sm:space-y-16">
+        <section class="group">
+          <div class="flex items-center justify-between mb-4 sm:mb-6">
+            <h2 class="font-zt text-2xl sm:text-3xl">Main Projects</h2>
+            <span class="font-mono text-sm sm:text-base opacity-50 group-hover:opacity-100 transition-opacity">
+              {projects.serious.length} projects
+            </span>
+          </div>
+          
+          <div class="space-y-4 sm:space-y-6">
+            {projects.serious.map(project => (
+              <article class="group/project relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-6 rounded-xl bg-white/80 border border-gray-200/80 hover:border-gray-300 transition-all duration-300 hover:shadow-md dark:bg-gray-900/80 dark:border-gray-800/80 dark:hover:border-gray-700">
+                {project.image && (
+                  <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-lg overflow-hidden ring-1 ring-gray-200/50 dark:ring-gray-800/50">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      class="w-full h-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/project:opacity-100 transition-opacity duration-300" />
+                  </div>
+                )}
+                <div class="flex-grow min-w-0">
+                  <div class="flex items-center justify-between mb-6 sm:mb-8">
+                    <div class="flex items-center gap-3">
+                      <h3 class="font-outfit text-lg sm:text-xl font-bold">
+                        <a 
+                          href={project.github} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                        >
+                          {project.title}
+                        </a>
+                      </h3>
+                      <span class="font-mono text-xs sm:text-sm px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
+                        In Progress
+                      </span>
+                    </div>
+                  </div>
+                  <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project.description}</p>
+                  <a 
+                    href={project.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                  >
+                    View Project
+                    <span class="ml-2 transition-transform duration-300 group-hover/project:translate-x-1">→</span>
+                  </a>
+                </div>
+                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-gray-100/30 to-transparent rounded-bl-full dark:from-gray-800/30" />
+                <div class="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-gray-100/20 to-transparent rounded-tr-full dark:from-gray-800/20" />
+              </article>
+            ))}
+          </div>
+        </section>
 
-      <section>
-        <h2 class="font-playfair text-3xl mb-6 font-bold text-amber-950 dark:text-amber-100 relative inline-block">
-          Side Projects
-          <span class="absolute bottom-0 left-0 w-1/3 h-1.5 bg-amber-500 dark:bg-amber-600"></span>
-        </h2>
-        <div class="space-y-6">
-          {projects.fun.map(project => (
-            <ProjectCard {...project} />
-          ))}
-        </div>
-      </section>
+        <section class="group">
+          <div class="flex items-center justify-between mb-4 sm:mb-6">
+            <h2 class="font-zt text-2xl sm:text-3xl">Side Projects</h2>
+            <span class="font-mono text-sm sm:text-base opacity-50 group-hover:opacity-100 transition-opacity">
+              {projects.fun.length} projects
+            </span>
+          </div>
+          
+          <div class="space-y-4 sm:space-y-6">
+            {projects.fun.map(project => (
+              <article class="group/project relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-6 rounded-xl bg-white/80 border border-gray-200/80 hover:border-gray-300 transition-all duration-300 hover:shadow-md dark:bg-gray-900/80 dark:border-gray-800/80 dark:hover:border-gray-700">
+                {project.image && (
+                  <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-lg overflow-hidden ring-1 ring-gray-200/50 dark:ring-gray-800/50">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      class="w-full h-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/project:opacity-100 transition-opacity duration-300" />
+                  </div>
+                )}
+                <div class="flex-grow min-w-0">
+                  <div class="flex items-center justify-between mb-6 sm:mb-8">
+                    <div class="flex items-center gap-3">
+                      <h3 class="font-outfit text-lg sm:text-xl font-bold">
+                        <a 
+                          href={project.github} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                        >
+                          {project.title}
+                        </a>
+                      </h3>
+                      <span class="font-mono text-xs sm:text-sm px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
+                        Completed
+                      </span>
+                    </div>
+                  </div>
+                  <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project.description}</p>
+                  <a 
+                    href={project.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                  >
+                    View Project
+                    <span class="ml-2 transition-transform duration-300 group-hover/project:translate-x-1">→</span>
+                  </a>
+                </div>
+                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-gray-100/30 to-transparent rounded-bl-full dark:from-gray-800/30" />
+                <div class="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-gray-100/20 to-transparent rounded-tr-full dark:from-gray-800/20" />
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   </main>
 </Layout>
 
 <style>
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* Fade-in animation for articles */
+  article {
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
   }
 
-  main {
-    animation: fadeIn 0.8s ease-out;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Stagger the animations */
+  article:nth-child(1) { animation-delay: 0.1s; }
+  article:nth-child(2) { animation-delay: 0.2s; }
+  article:nth-child(3) { animation-delay: 0.3s; }
+  article:nth-child(4) { animation-delay: 0.4s; }
+  article:nth-child(5) { animation-delay: 0.5s; }
+
+  /* Line clamp for descriptions */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 </style>
