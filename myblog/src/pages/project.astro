@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+// Remove unused import if you're not using it
+// import ProjectCard from '../components/ProjectCard.astro';
 
 const projects = {
   serious: [
@@ -8,35 +9,38 @@ const projects = {
       title: 'Bhagavad-Gita-GPT',
       description: "An AI-powered chatbot that responds like Lord Krishna, offering wisdom, guidance, and Bhagavad Gita verses to help with life's challenges.",
       github: 'https://github.com/Gagancreates/bhagavad-gita-gpt',
-      image: '/images/bgitagpt.png'
+      // Change absolute paths to relative paths
+      image: './images/bgitagpt.png'
     },
     {
       title: 'YouTube to MindMap Generator',
       description: 'Built a website that takes the URL of a YouTube video, summarises it and generates an interactive mindmap(which can be downloaded as SVG).Implemented this using YT to transcript package, Gemini-1.5-Pro API for summarising the transcript and generating Markmap code which is rendered on the screen as MindMap.',
       github: 'https://github.com/Gagancreates/youtube-mindmap-generator',
-      image: '/images/ytmindmap.png'
+      // Change absolute paths to relative paths
+      image: './images/ytmindmap.png'
     }
   ],
   fun: [
     {
       title: 'Personal Blog',
       description: 'My personal blog, which highlights my projects and blogs. Built with Astro',
-      github: 'https://github.com/Gagancreates/myblog',
-      image: '/images/blog.png'
+      github: 'https://github.com/Gagancreates/blogging--website',
+      // Change absolute paths to relative paths
+      image: './images/blog.png'
     },
     {
       title: 'Resume Generator',
       description: 'A resume generator which takes your information and then formats it in a professional manner, and allows you to download the PDF of the resume. This project uses libraries such as html2canvas and jsPDF, which allows the users to download the PDF.',
       github: 'https://github.com/Gagancreates/resume-generator',
-      image: '/images/resume.png'
+      // Change absolute paths to relative paths
+      image: './images/resume.png'
     }
   ]
 };
 
-// Add error handling for projects data
-if (!projects || !projects.serious || !projects.fun) {
-  console.error('Projects data is invalid:', projects);
-}
+// Improve error handling to prevent blank pages
+const seriousProjects = projects?.serious || [];
+const funProjects = projects?.fun || [];
 ---
 
 <Layout title="Projects | gagan">
@@ -49,12 +53,12 @@ if (!projects || !projects.serious || !projects.fun) {
           <div class="flex items-center justify-between mb-4 sm:mb-6">
             <h2 class="font-zt text-2xl sm:text-3xl">Main Projects</h2>
             <span class="font-mono text-sm sm:text-base opacity-50 group-hover:opacity-100 transition-opacity">
-              {projects?.serious?.length || 0} projects
+              {seriousProjects.length} projects
             </span>
           </div>
           
           <div class="space-y-4 sm:space-y-6">
-            {projects?.serious?.map(project => (
+            {seriousProjects.map(project => (
               <article class="group/project relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-6 rounded-xl bg-white/80 border border-gray-200/80 hover:border-gray-300 transition-all duration-300 hover:shadow-md dark:bg-gray-900/80 dark:border-gray-800/80 dark:hover:border-gray-700">
                 {project?.image && (
                   <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-lg overflow-hidden ring-1 ring-gray-200/50 dark:ring-gray-800/50">
@@ -62,6 +66,7 @@ if (!projects || !projects.serious || !projects.fun) {
                       src={project.image} 
                       alt={project.title || 'Project image'}
                       class="w-full h-full object-cover"
+                      onerror="this.onerror=null;this.src='./placeholder.png';"
                     />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/project:opacity-100 transition-opacity duration-300" />
                   </div>
@@ -106,12 +111,12 @@ if (!projects || !projects.serious || !projects.fun) {
           <div class="flex items-center justify-between mb-4 sm:mb-6">
             <h2 class="font-zt text-2xl sm:text-3xl">Side Projects</h2>
             <span class="font-mono text-sm sm:text-base opacity-50 group-hover:opacity-100 transition-opacity">
-              {projects?.fun?.length || 0} projects
+              {funProjects.length} projects
             </span>
           </div>
           
           <div class="space-y-4 sm:space-y-6">
-            {projects?.fun?.map(project => (
+            {funProjects.map(project => (
               <article class="group/project relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-6 rounded-xl bg-white/80 border border-gray-200/80 hover:border-gray-300 transition-all duration-300 hover:shadow-md dark:bg-gray-900/80 dark:border-gray-800/80 dark:hover:border-gray-700">
                 {project?.image && (
                   <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-lg overflow-hidden ring-1 ring-gray-200/50 dark:ring-gray-800/50">
@@ -119,6 +124,7 @@ if (!projects || !projects.serious || !projects.fun) {
                       src={project.image} 
                       alt={project.title || 'Project image'}
                       class="w-full h-full object-cover"
+                      onerror="this.onerror=null;this.src='./placeholder.png';"
                     />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/project:opacity-100 transition-opacity duration-300" />
                   </div>
