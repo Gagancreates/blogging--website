@@ -4,7 +4,13 @@ import netlify from '@astrojs/netlify';
 
 export default defineConfig({
   integrations: [tailwind()],
-  output: 'server',
+  output: 'hybrid',
   adapter: netlify(),
-  site: 'https://gagan-blogs.netlify.app'
+  site: 'https://gagan-blogs.netlify.app',
+  build: {
+    inlineStylesheets: 'auto'
+  },
+  server: {
+    host: true
+  }
 });
