@@ -74,12 +74,12 @@ try {
       </div>
     ) : (
       <div class="max-w-5xl mx-auto">
-        <h1 class="font-bold text-5xl sm:text-6xl mb-8 sm:mb-12 text-center">Projects</h1>
+        <h1 class="font-zt text-5xl sm:text-6xl mb-8 sm:mb-12 text-center">Projects</h1>
         
         <div class="space-y-12 sm:space-y-16">
           <section class="group">
             <div class="flex items-center justify-between mb-4 sm:mb-6">
-              <h2 class="font-bold text-2xl sm:text-3xl">Main Projects</h2>
+              <h2 class="font-zt text-2xl sm:text-3xl">Main Projects</h2>
               <span class="font-mono text-sm sm:text-base opacity-50 group-hover:opacity-100 transition-opacity">
                 {seriousProjects.length} projects
               </span>
@@ -88,13 +88,12 @@ try {
             <div class="space-y-4 sm:space-y-6">
               {seriousProjects.map(project => (
                 <article class="group/project relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-6 rounded-xl bg-white/80 border border-gray-200/80 hover:border-gray-300 transition-all duration-300 hover:shadow-md dark:bg-gray-900/80 dark:border-gray-800/80 dark:hover:border-gray-700">
-                  {project?.image && (
+                  {project.image && (
                     <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-lg overflow-hidden ring-1 ring-gray-200/50 dark:ring-gray-800/50">
                       <img 
                         src={project.image} 
-                        alt={project.title || 'Project image'}
+                        alt={project.title}
                         class="w-full h-full object-cover"
-                        onerror="this.onerror=null;this.src='./placeholder.png';"
                       />
                       <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/project:opacity-100 transition-opacity duration-300" />
                     </div>
@@ -102,14 +101,14 @@ try {
                   <div class="flex-grow min-w-0">
                     <div class="flex items-center justify-between mb-6 sm:mb-8">
                       <div class="flex items-center gap-3">
-                        <h3 class="font-bold text-lg sm:text-xl">
+                        <h3 class="font-outfit text-lg sm:text-xl font-bold">
                           <a 
-                            href={project?.github} 
+                            href={project.github} 
                             target="_blank" 
                             rel="noopener noreferrer" 
                             class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                           >
-                            {project?.title || 'Untitled Project'}
+                            {project.title}
                           </a>
                         </h3>
                         <span class="font-mono text-xs sm:text-sm px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
@@ -117,9 +116,9 @@ try {
                         </span>
                       </div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project?.description || 'No description available'}</p>
+                    <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project.description}</p>
                     <a 
-                      href={project?.github} 
+                      href={project.github} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       class="inline-flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
@@ -128,8 +127,6 @@ try {
                       <span class="ml-2 transition-transform duration-300 group-hover/project:translate-x-1">→</span>
                     </a>
                   </div>
-                  <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-gray-100/30 to-transparent rounded-bl-full dark:from-gray-800/30" />
-                  <div class="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-gray-100/20 to-transparent rounded-tr-full dark:from-gray-800/20" />
                 </article>
               ))}
             </div>
@@ -137,7 +134,7 @@ try {
 
           <section class="group">
             <div class="flex items-center justify-between mb-4 sm:mb-6">
-              <h2 class="font-bold text-2xl sm:text-3xl">Side Projects</h2>
+              <h2 class="font-zt text-2xl sm:text-3xl">Side Projects</h2>
               <span class="font-mono text-sm sm:text-base opacity-50 group-hover:opacity-100 transition-opacity">
                 {funProjects.length} projects
               </span>
@@ -146,13 +143,12 @@ try {
             <div class="space-y-4 sm:space-y-6">
               {funProjects.map(project => (
                 <article class="group/project relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-6 rounded-xl bg-white/80 border border-gray-200/80 hover:border-gray-300 transition-all duration-300 hover:shadow-md dark:bg-gray-900/80 dark:border-gray-800/80 dark:hover:border-gray-700">
-                  {project?.image && (
+                  {project.image && (
                     <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-lg overflow-hidden ring-1 ring-gray-200/50 dark:ring-gray-800/50">
                       <img 
                         src={project.image} 
-                        alt={project.title || 'Project image'}
+                        alt={project.title}
                         class="w-full h-full object-cover"
-                        onerror="this.onerror=null;this.src='./placeholder.png';"
                       />
                       <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/project:opacity-100 transition-opacity duration-300" />
                     </div>
@@ -160,14 +156,14 @@ try {
                   <div class="flex-grow min-w-0">
                     <div class="flex items-center justify-between mb-6 sm:mb-8">
                       <div class="flex items-center gap-3">
-                        <h3 class="font-bold text-lg sm:text-xl">
+                        <h3 class="font-outfit text-lg sm:text-xl font-bold">
                           <a 
-                            href={project?.github} 
+                            href={project.github} 
                             target="_blank" 
                             rel="noopener noreferrer" 
                             class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                           >
-                            {project?.title || 'Untitled Project'}
+                            {project.title}
                           </a>
                         </h3>
                         <span class="font-mono text-xs sm:text-sm px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
@@ -175,9 +171,9 @@ try {
                         </span>
                       </div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project?.description || 'No description available'}</p>
+                    <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project.description}</p>
                     <a 
-                      href={project?.github} 
+                      href={project.github} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       class="inline-flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
@@ -186,8 +182,6 @@ try {
                       <span class="ml-2 transition-transform duration-300 group-hover/project:translate-x-1">→</span>
                     </a>
                   </div>
-                  <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-gray-100/30 to-transparent rounded-bl-full dark:from-gray-800/30" />
-                  <div class="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-gray-100/20 to-transparent rounded-tr-full dark:from-gray-800/20" />
                 </article>
               ))}
             </div>
@@ -225,7 +219,7 @@ try {
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
@@ -240,11 +234,26 @@ try {
   article:nth-child(4) { animation-delay: 0.4s; }
   article:nth-child(5) { animation-delay: 0.5s; }
 
-  /* Line clamp for descriptions */
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(180, 180, 185, 0.3);
+    border-radius: 4px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgba(180, 180, 185, 0.2);
+  }
+
+  /* Smooth transitions */
+  * {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
 </style>
