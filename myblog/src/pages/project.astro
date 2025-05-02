@@ -22,7 +22,7 @@ const projects: ProjectData = {
     {
       title: 'Bhagavad-Gita-GPT',
       description: "An AI-powered chatbot that responds like Lord Krishna, offering wisdom, guidance, and Bhagavad Gita verses to help with life's challenges.",
-      github: 'https://github.com/Gagancreates/bhagavad-gita-gpt',
+      github: 'https://bhagavad-gita-gpt-xi.vercel.app/',
       image: '/images/bgitagpt.png'
     },
     {
@@ -36,7 +36,7 @@ const projects: ProjectData = {
     {
       title: 'Personal Blog',
       description: 'My personal blog, which highlights my projects and blogs. Built with Astro',
-      github: 'https://github.com/Gagancreates/blogging--website',
+      github: 'https://gagan-blogs.netlify.app',
       image: '/images/blog.png'
     },
     {
@@ -87,7 +87,7 @@ try {
             
             <div class="space-y-4 sm:space-y-6">
               {seriousProjects.map(project => (
-                <article class="relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-8 rounded-2xl 
+                <article class="relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-8 rounded-2xl 
                   bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
                   shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
                   border border-rose-300
@@ -97,23 +97,18 @@ try {
                   dark:shadow-[0_15px_35px_-5px_rgb(0,0,0,0.3)]
                   transform-gpu">
                   {project.image && (
-                    <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-xl overflow-hidden
-                      shadow-[0_8px_25px_-5px_rgb(0,0,0,0.1)]
-                      outline outline-1 outline-rose-300 dark:outline-white/20
-                      ring-1 ring-rose-200 dark:ring-white/10
-                      dark:shadow-[0_8px_25px_-5px_rgb(0,0,0,0.3)]">
+                    <div class="relative w-full sm:w-80 h-40 sm:h-44 flex-shrink-0 rounded-xl overflow-hidden border border-black/30 dark:border-white/30">
                       <img 
                         src={project.image} 
                         alt={project.title}
                         class="w-full h-full object-cover"
                       />
-                      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent" />
                     </div>
                   )}
                   <div class="flex-grow min-w-0">
-                    <div class="flex items-center justify-between mb-6 sm:mb-8">
+                    <div class="flex items-center justify-between mb-3 sm:mb-8">
                       <div class="flex items-center gap-3">
-                        <h3 class="font-outfit text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-50">
+                        <h3 class="font-space font-medium  text-lg sm:text-xl text-slate-900 dark:text-slate-50">
                           <a 
                             href={project.github} 
                             target="_blank" 
@@ -123,18 +118,9 @@ try {
                             {project.title}
                           </a>
                         </h3>
-                        <span class="font-mono text-xs sm:text-sm px-3 py-1.5 
-                          bg-rose-50/80 text-rose-700
-                          dark:bg-indigo-900/40 dark:text-indigo-200 
-                          rounded-full border border-rose-100/70 
-                          dark:border-indigo-700/50 
-                          shadow-[0_2px_10px_-2px_rgb(244,63,94,0.15)]
-                          backdrop-blur-sm">
-                          In Progress
-                        </span>
                       </div>
                     </div>
-                    <p class="font-outfit text-slate-700 dark:text-slate-200 text-xs sm:text-sm mb-4 leading-relaxed">{project.description}</p>
+                    <p class="font-space text-slate-700 dark:text-slate-200/70 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">{project.description}</p>
                     <a 
                       href={project.github} 
                       target="_blank" 
@@ -145,7 +131,7 @@ try {
                         transition-colors"
                     >
                       View Project
-                      <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                      <span class="ml-2 transition-transform group-over:translate-x-1">→</span>
                     </a>
                   </div>
                 </article>
@@ -163,7 +149,7 @@ try {
             
             <div class="space-y-4 sm:space-y-6">
               {funProjects.map(project => (
-                <article class="relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-8 rounded-2xl 
+                <article class="relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-8 rounded-2xl 
                   bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
                   shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
                   border border-rose-300
@@ -173,23 +159,18 @@ try {
                   dark:shadow-[0_15px_35px_-5px_rgb(0,0,0,0.3)]
                   transform-gpu">
                   {project.image && (
-                    <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-xl overflow-hidden
-                      shadow-[0_8px_25px_-5px_rgb(0,0,0,0.1)]
-                      outline outline-1 outline-rose-300 dark:outline-white/20
-                      ring-1 ring-rose-200 dark:ring-white/10
-                      dark:shadow-[0_8px_25px_-5px_rgb(0,0,0,0.3)]">
+                    <div class="relative w-full sm:w-80 h-40 sm:h-44 flex-shrink-0 rounded-xl overflow-hidden border border-black/30 dark:border-white/30">
                       <img 
                         src={project.image} 
                         alt={project.title}
                         class="w-full h-full object-cover"
                       />
-                      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent" />
                     </div>
                   )}
                   <div class="flex-grow min-w-0">
-                    <div class="flex items-center justify-between mb-6 sm:mb-8">
+                    <div class="flex items-center justify-between mb-3 sm:mb-8">
                       <div class="flex items-center gap-3">
-                        <h3 class="font-outfit text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-50">
+                        <h3 class="font-space font-medium text-lg sm:text-xl text-slate-900 dark:text-slate-50">
                           <a 
                             href={project.github} 
                             target="_blank" 
@@ -199,18 +180,9 @@ try {
                             {project.title}
                           </a>
                         </h3>
-                        <span class="font-mono text-xs sm:text-sm px-3 py-1.5 
-                          bg-indigo-50/80 text-indigo-700
-                          dark:bg-rose-900/40 dark:text-rose-200 
-                          rounded-full border border-indigo-100/70 
-                          dark:border-rose-700/50 
-                          shadow-[0_2px_10px_-2px_rgb(99,102,241,0.15)]
-                          backdrop-blur-sm">
-                          Completed
-                        </span>
                       </div>
                     </div>
-                    <p class="font-outfit text-slate-700 dark:text-slate-200 text-xs sm:text-sm mb-4 leading-relaxed">{project.description}</p>
+                    <p class="font-space text-slate-700 dark:text-slate-200/70 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">{project.description}</p>
                     <a 
                       href={project.github} 
                       target="_blank" 
@@ -221,7 +193,7 @@ try {
                         transition-colors"
                     >
                       View Project
-                      <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                      <span class="ml-2 transition-transform group-ver:translate-x-1">→</span>
                     </a>
                   </div>
                 </article>

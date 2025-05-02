@@ -75,7 +75,7 @@ const categories = [
           <div class="space-y-4">
             {categories[0].blogs.map(blog => (
               <div class="border-l-4 border-gray-300 dark:border-zinc-700 pl-4 dark:shadow-silver rounded-r">
-                <h3 class="font-outfit text-xl dark:text-white">
+                <h3 class="font-space text-xl font-medium dark:text-white">
                   <a 
                     href={blog.externalLink} 
                     target="_blank" 
@@ -85,7 +85,7 @@ const categories = [
                     {blog.title}
                   </a>
                 </h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm mb-1">{blog.excerpt}</p>
+                <p class="font-space text-gray-600 dark:text-gray-400 text-sm mb-1">{blog.excerpt}</p>
                 <p class="text-gray-500 dark:text-gray-500 text-xs">Published on {blog.date}</p>
               </div>
             ))}
@@ -106,7 +106,7 @@ const categories = [
           <div class="space-y-4">
             {categories[1].blogs.map(blog => (
               <div class="border-l-4 border-gray-300 dark:border-zinc-700 pl-4 dark:shadow-silver rounded-r">
-                <h3 class="font-outfit text-xl dark:text-white">
+                <h3 class="font-space font-medium text-xl dark:text-white">
                   <a 
                     href={blog.externalLink} 
                     target="_blank" 
@@ -116,7 +116,7 @@ const categories = [
                     {blog.title}
                   </a>
                 </h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm mb-1">{blog.excerpt}</p>
+                <p class="font-space text-gray-600 dark:text-gray-400 text-sm mb-1">{blog.excerpt}</p>
                 <p class="text-gray-500 dark:text-gray-500 text-xs">Published on {blog.date}</p>
               </div>
             ))}

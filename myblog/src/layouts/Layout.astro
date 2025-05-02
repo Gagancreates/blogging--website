@@ -26,16 +26,13 @@ const { title } = Astro.props;
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
           return localStorage.getItem('theme');
         }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
-        }
-        return 'light';
+        return 'dark'; // Default to dark theme
       })();
       
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
+      if (theme === 'light') {
         document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
       }
     </script>
   </head>
@@ -128,6 +125,42 @@ const { title } = Astro.props;
             localStorage.setItem('theme', 'light');
           }
         });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href')?.substring(1);
+            if (!targetId) return;
+            
+            const targetElement = document.getElementById(targetId);
+            if (!targetElement) return;
+
+            // Remove animation class if it exists
+            targetElement.classList.remove('scroll-highlight');
+
+            // Calculate scroll position with offset
+            const headerOffset = 100;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            // Smooth scroll to element
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+
+            // Add animation class after a small delay
+            setTimeout(() => {
+              targetElement.classList.add('scroll-highlight');
+              
+              // Remove the class after animation completes
+              setTimeout(() => {
+                targetElement.classList.remove('scroll-highlight');
+              }, 1000);
+            }, 500);
+          });
+        });
       });
 
       // Mobile menu toggle
@@ -160,6 +193,10 @@ const { title } = Astro.props;
 </html>
 
 <style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+
   .font-mono {
     font-family: 'IBM Plex Mono', monospace;
   }
@@ -223,6 +260,7 @@ const { title } = Astro.props;
   .nav-link {
     position: relative;
     padding: 0.25rem 0;
+    cursor: pointer;
   }
 
   .nav-link::after {
@@ -265,5 +303,21 @@ const { title } = Astro.props;
   .social-link:hover::before {
     transform: scaleX(1);
     transform-origin: left;
+  }
+
+  /* Add scroll animation class */
+  .scroll-highlight {
+    animation: highlightSection 1s ease-out;
+  }
+
+  @keyframes highlightSection {
+    0% {
+      transform: translateY(20px);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 </style>
