@@ -7,7 +7,7 @@ const projects = {
     {
       title: 'Bhagavad-Gita-GPT',
       description: "An AI-powered chatbot that responds like Lord Krishna, offering wisdom, guidance, and Bhagavad Gita verses to help with life's challenges.",
-      github: 'https://bhagavad-gita-gpt-xi.vercel.app/',
+      github: 'https://github.com/Gagancreates/bhagavad-gita-gpt',
       image: '/images/bgitagpt.png'
     },
     {
@@ -21,7 +21,7 @@ const projects = {
     {
       title: 'Personal Blog',
       description: 'My personal blog, which highlights my projects and blogs. Built with Astro',
-      github: 'https://gagan-blogs.netlify.app/',
+      github: 'https://github.com/Gagancreates/myblog',
       image: '/images/blog.png'
     },
     {
@@ -32,6 +32,11 @@ const projects = {
     }
   ]
 };
+
+// Add error handling for projects data
+if (!projects || !projects.serious || !projects.fun) {
+  console.error('Projects data is invalid:', projects);
+}
 ---
 
 <Layout title="Projects | gagan">
@@ -44,18 +49,18 @@ const projects = {
           <div class="flex items-center justify-between mb-4 sm:mb-6">
             <h2 class="font-zt text-2xl sm:text-3xl">Main Projects</h2>
             <span class="font-mono text-sm sm:text-base opacity-50 group-hover:opacity-100 transition-opacity">
-              {projects.serious.length} projects
+              {projects?.serious?.length || 0} projects
             </span>
           </div>
           
           <div class="space-y-4 sm:space-y-6">
-            {projects.serious.map(project => (
+            {projects?.serious?.map(project => (
               <article class="group/project relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-6 rounded-xl bg-white/80 border border-gray-200/80 hover:border-gray-300 transition-all duration-300 hover:shadow-md dark:bg-gray-900/80 dark:border-gray-800/80 dark:hover:border-gray-700">
-                {project.image && (
+                {project?.image && (
                   <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-lg overflow-hidden ring-1 ring-gray-200/50 dark:ring-gray-800/50">
                     <img 
                       src={project.image} 
-                      alt={project.title}
+                      alt={project.title || 'Project image'}
                       class="w-full h-full object-cover"
                     />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/project:opacity-100 transition-opacity duration-300" />
@@ -66,12 +71,12 @@ const projects = {
                     <div class="flex items-center gap-3">
                       <h3 class="font-outfit text-lg sm:text-xl font-bold">
                         <a 
-                          href={project.github} 
+                          href={project?.github} 
                           target="_blank" 
                           rel="noopener noreferrer" 
                           class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                         >
-                          {project.title}
+                          {project?.title || 'Untitled Project'}
                         </a>
                       </h3>
                       <span class="font-mono text-xs sm:text-sm px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
@@ -79,9 +84,9 @@ const projects = {
                       </span>
                     </div>
                   </div>
-                  <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project.description}</p>
+                  <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project?.description || 'No description available'}</p>
                   <a 
-                    href={project.github} 
+                    href={project?.github} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     class="inline-flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
@@ -101,18 +106,18 @@ const projects = {
           <div class="flex items-center justify-between mb-4 sm:mb-6">
             <h2 class="font-zt text-2xl sm:text-3xl">Side Projects</h2>
             <span class="font-mono text-sm sm:text-base opacity-50 group-hover:opacity-100 transition-opacity">
-              {projects.fun.length} projects
+              {projects?.fun?.length || 0} projects
             </span>
           </div>
           
           <div class="space-y-4 sm:space-y-6">
-            {projects.fun.map(project => (
+            {projects?.fun?.map(project => (
               <article class="group/project relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-6 rounded-xl bg-white/80 border border-gray-200/80 hover:border-gray-300 transition-all duration-300 hover:shadow-md dark:bg-gray-900/80 dark:border-gray-800/80 dark:hover:border-gray-700">
-                {project.image && (
+                {project?.image && (
                   <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-lg overflow-hidden ring-1 ring-gray-200/50 dark:ring-gray-800/50">
                     <img 
                       src={project.image} 
-                      alt={project.title}
+                      alt={project.title || 'Project image'}
                       class="w-full h-full object-cover"
                     />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/project:opacity-100 transition-opacity duration-300" />
@@ -123,12 +128,12 @@ const projects = {
                     <div class="flex items-center gap-3">
                       <h3 class="font-outfit text-lg sm:text-xl font-bold">
                         <a 
-                          href={project.github} 
+                          href={project?.github} 
                           target="_blank" 
                           rel="noopener noreferrer" 
                           class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                         >
-                          {project.title}
+                          {project?.title || 'Untitled Project'}
                         </a>
                       </h3>
                       <span class="font-mono text-xs sm:text-sm px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
@@ -136,9 +141,9 @@ const projects = {
                       </span>
                     </div>
                   </div>
-                  <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project.description}</p>
+                  <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project?.description || 'No description available'}</p>
                   <a 
-                    href={project.github} 
+                    href={project?.github} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     class="inline-flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
