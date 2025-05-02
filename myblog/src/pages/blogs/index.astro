@@ -61,37 +61,67 @@ const categories = [
   <main class="container mx-auto px-4 py-8 sm:py-12">
     <div class="max-w-4xl mx-auto">
       <h1 class="font-zt text-5xl sm:text-6xl mb-8 sm:mb-12 text-center">Blogs</h1>
-      
-      <div class="space-y-12 sm:space-y-16">
-        {categories.map(category => (
-          <section class="group p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300">
-            <h2 class="font-zt text-3xl sm:text-4xl mb-4 text-center">
-              <a href={category.url} class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
-                {category.title}
-              </a>
-            </h2>
-            <p class="font-space text-gray-600 dark:text-gray-400 mb-6 text-center">{category.description}</p>
-            
-            <div class="space-y-4">
-              {category.blogs.map(blog => (
-                <div class="border-l-4 border-gray-300 dark:border-zinc-700 pl-4 dark:shadow-silver rounded-r">
-                  <h3 class="font-outfit text-xl dark:text-white">
-                    <a 
-                      href={blog.externalLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      class="hover:text-gray-800 dark:text-white dark:hover:text-gray-300 hover:underline"
-                    >
-                      {blog.title}
-                    </a>
-                  </h3>
-                  <p class="text-gray-600 dark:text-gray-400 text-sm mb-1">{blog.excerpt}</p>
-                  <p class="text-gray-500 dark:text-gray-500 text-xs">Published on {blog.date}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        ))}
+
+      <div class="mb-16">
+        <h2 class="font-zt text-4xl sm:text-5xl mb-8">
+          <a href={categories[0].url} class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+            {categories[0].title}
+          </a>
+        </h2>
+        
+        <section class="group p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300">
+          <p class="font-space text-gray-600 dark:text-gray-400 mb-6">{categories[0].description}</p>
+          
+          <div class="space-y-4">
+            {categories[0].blogs.map(blog => (
+              <div class="border-l-4 border-gray-300 dark:border-zinc-700 pl-4 dark:shadow-silver rounded-r">
+                <h3 class="font-outfit text-xl dark:text-white">
+                  <a 
+                    href={blog.externalLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="hover:text-gray-800 dark:text-white dark:hover:text-gray-300 hover:underline"
+                  >
+                    {blog.title}
+                  </a>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-1">{blog.excerpt}</p>
+                <p class="text-gray-500 dark:text-gray-500 text-xs">Published on {blog.date}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <div>
+        <h2 class="font-zt text-4xl sm:text-5xl mb-8">
+          <a href={categories[1].url} class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+            {categories[1].title}
+          </a>
+        </h2>
+        
+        <section class="group p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300">
+          <p class="font-space text-gray-600 dark:text-gray-400 mb-6">{categories[1].description}</p>
+          
+          <div class="space-y-4">
+            {categories[1].blogs.map(blog => (
+              <div class="border-l-4 border-gray-300 dark:border-zinc-700 pl-4 dark:shadow-silver rounded-r">
+                <h3 class="font-outfit text-xl dark:text-white">
+                  <a 
+                    href={blog.externalLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="hover:text-gray-800 dark:text-white dark:hover:text-gray-300 hover:underline"
+                  >
+                    {blog.title}
+                  </a>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-1">{blog.excerpt}</p>
+                <p class="text-gray-500 dark:text-gray-500 text-xs">Published on {blog.date}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   </main>
