@@ -9,15 +9,13 @@ const projects = {
       title: 'Bhagavad-Gita-GPT',
       description: "An AI-powered chatbot that responds like Lord Krishna, offering wisdom, guidance, and Bhagavad Gita verses to help with life's challenges.",
       github: 'https://github.com/Gagancreates/bhagavad-gita-gpt',
-      // Change absolute paths to relative paths
-      image: './images/bgitagpt.png'
+      image: '/images/bgitagpt.png'
     },
     {
       title: 'YouTube to MindMap Generator',
       description: 'Built a website that takes the URL of a YouTube video, summarises it and generates an interactive mindmap(which can be downloaded as SVG).Implemented this using YT to transcript package, Gemini-1.5-Pro API for summarising the transcript and generating Markmap code which is rendered on the screen as MindMap.',
       github: 'https://github.com/Gagancreates/youtube-mindmap-generator',
-      // Change absolute paths to relative paths
-      image: './images/ytmindmap.png'
+      image: '/images/ytmindmap.png'
     }
   ],
   fun: [
@@ -25,15 +23,13 @@ const projects = {
       title: 'Personal Blog',
       description: 'My personal blog, which highlights my projects and blogs. Built with Astro',
       github: 'https://github.com/Gagancreates/blogging--website',
-      // Change absolute paths to relative paths
-      image: './images/blog.png'
+      image: '/images/blog.png'
     },
     {
       title: 'Resume Generator',
       description: 'A resume generator which takes your information and then formats it in a professional manner, and allows you to download the PDF of the resume. This project uses libraries such as html2canvas and jsPDF, which allows the users to download the PDF.',
       github: 'https://github.com/Gagancreates/resume-generator',
-      // Change absolute paths to relative paths
-      image: './images/resume.png'
+      image: '/images/resume.png'
     }
   ]
 };
@@ -41,6 +37,15 @@ const projects = {
 // Improve error handling to prevent blank pages
 const seriousProjects = projects?.serious || [];
 const funProjects = projects?.fun || [];
+
+// Add error boundary
+try {
+  if (!seriousProjects.length && !funProjects.length) {
+    console.error('No projects found');
+  }
+} catch (error) {
+  console.error('Error in project data:', error);
+}
 ---
 
 <Layout title="Projects | gagan">
