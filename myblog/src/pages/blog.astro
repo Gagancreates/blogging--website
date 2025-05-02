@@ -1,77 +1,96 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
 
-const posts = await getCollection('blog', ({ data }) => {
-  return data.draft !== true;
-});
-
-const sortedPosts = posts.sort((a, b) => {
-  return new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf();
-});
+const categories = [
+  {
+    title: 'Machine Learning',
+    description: 'Deep dives into ML concepts, implementations, and applications',
+    url: '/blogs/ml',
+    blogs: [
+      {
+        title: 'Gradient Descent: From Zero to Hero',
+        excerpt: 'Understanding Gradient Descent from Basics along with Mathematical Formulas and Visualisation',
+        date: '2024-02-16',
+        externalLink: 'https://sheer-castanet-7f7.notion.site/Gradient-Descent-Zero-to-Hero-1ba71143c5dc806486ebdc0f936c7c93'
+      },
+      {
+        title: 'Solving the Problem of Overfitting: Regularisation',
+        excerpt: 'Understanding the problem of Overfitting, best methods for resolving and learning about Regularisation and its types',
+        date: '2025-03-22',
+        externalLink: 'https://sheer-castanet-7f7.notion.site/Solving-the-Problem-of-Overfitting-Regularisation-1c471143c5dc80bcb241c5101a4dfdd4?pvs=4'
+      },
+      {
+        title: 'Introduction to Neural Networks',
+        excerpt: 'This is an introductory blog to neural networks where I have tried to explain how a Neural Network works and how it was developed.',
+        date: '2025-04-14',
+        externalLink: 'https://sheer-castanet-7f7.notion.site/Introduction-to-Neural-Networks-1de71143c5dc80de9669dc93448c36d4?pvs=4'
+      },
+      {
+        title: 'Natural Language Processing with Transformers',
+        excerpt: 'Exploring state-of-the-art NLP techniques and model architectures',
+        date: '2024-03-12',
+        externalLink: 'https://example.com/nlp-transformers'
+      },
+      {
+        title: 'More blogs incoming....',
+        date: '2025-02-27',
+      }
+    ]
+  },
+  {
+    title: 'Build with Me',
+    description: 'Follow along as I build and document interesting projects',
+    url: '/blogs/build',
+    blogs: [
+      {
+        title: 'Building a Personal Portfolio Website',
+        excerpt: 'A step-by-step guide to creating a responsive portfolio using Astro and Tailwind CSS',
+        date: '2025-01-29',
+        externalLink: 'gagan-blogs.netlify.app'
+      },
+      {
+        title: 'More blogs incoming....',
+        date: '2025-02-27',
+      }
+    ]
+  }
+];
 ---
 
-<Layout title="Blog | gagan">
+<Layout title="Blogs | gagan">
   <main class="container mx-auto px-4 py-8 sm:py-12">
     <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-8 sm:mb-16">
-        <h1 class="font-mono text-3xl sm:text-4xl mb-3 sm:mb-4">Blog</h1>
-        <p class="font-space text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
-          Thoughts, ideas, and insights on technology, development, and more.
-        </p>
-      </div>
-
-      <div class="space-y-8 sm:space-y-12">
-        {sortedPosts.map((post, index) => (
-          <article class="group relative">
-            <div class="absolute -inset-4 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-            <div class="relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-md">
-              <div class="w-full sm:w-64 flex-shrink-0 mx-auto sm:mx-0">
-                <div class="aspect-video rounded-lg overflow-hidden bg-gradient-to-br from-purple-500/20 to-pink-500/20">
-                  {post.data.image && (
-                    <img 
-                      src={post.data.image} 
-                      alt={post.data.title}
-                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  )}
+      <h1 class="font-zt text-5xl sm:text-6xl mb-8 sm:mb-12 text-center">Blogs</h1>
+      
+      <div class="space-y-12 sm:space-y-16">
+        {categories.map(category => (
+          <section class="group p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300">
+            <h2 class="font-zt text-3xl sm:text-4xl mb-4 text-center">
+              <a href={category.url} class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                {category.title}
+              </a>
+            </h2>
+            <p class="font-space text-gray-600 dark:text-gray-400 mb-6 text-center">{category.description}</p>
+            
+            <div class="space-y-4">
+              {category.blogs.map(blog => (
+                <div class="border-l-4 border-gray-300 dark:border-zinc-700 pl-4 dark:shadow-silver rounded-r">
+                  <h3 class="font-outfit text-xl dark:text-white">
+                    <a 
+                      href={blog.externalLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      class="hover:text-gray-800 dark:text-white dark:hover:text-gray-300 hover:underline"
+                    >
+                      {blog.title}
+                    </a>
+                  </h3>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm mb-1">{blog.excerpt}</p>
+                  <p class="text-gray-500 dark:text-gray-500 text-xs">Published on {blog.date}</p>
                 </div>
-              </div>
-              <div class="flex-grow min-w-0">
-                <div class="flex items-center gap-2 sm:gap-3 mb-2">
-                  <time class="font-mono text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                    {new Date(post.data.pubDate).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </time>
-                  <span class="text-gray-400">•</span>
-                  <span class="font-mono text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                    {Math.ceil(post.body.length / 200)} min read
-                  </span>
-                </div>
-                <h2 class="font-mono text-lg sm:text-xl mb-2">
-                  <a 
-                    href={`/blog/${post.slug}`}
-                    class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                  >
-                    {post.data.title}
-                  </a>
-                </h2>
-                <p class="font-space text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4">
-                  {post.data.description}
-                </p>
-                <div class="flex flex-wrap gap-1.5 sm:gap-2">
-                  {post.data.tags?.map(tag => (
-                    <span class="px-2 py-1 text-xs font-mono rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
-          </article>
+          </section>
         ))}
       </div>
     </div>
@@ -103,21 +122,26 @@ const sortedPosts = posts.sort((a, b) => {
   article:nth-child(4) { animation-delay: 0.4s; }
   article:nth-child(5) { animation-delay: 0.5s; }
 
-  /* Gradient animation */
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
   }
 
-  .group:hover .absolute {
-    animation: gradient 3s ease infinite;
-    background-size: 200% 200%;
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(180, 180, 185, 0.3);
+    border-radius: 4px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgba(180, 180, 185, 0.2);
+  }
+
+  /* Smooth transitions */
+  * {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
 </style>

@@ -46,12 +46,12 @@ const funProjects = projects?.fun || [];
 <Layout title="Projects | gagan">
   <main class="container mx-auto px-4 py-8 sm:py-12">
     <div class="max-w-5xl mx-auto">
-      <h1 class="font-zt text-5xl sm:text-6xl mb-8 sm:mb-12 text-center">Projects</h1>
+      <h1 class="font-bold text-5xl sm:text-6xl mb-8 sm:mb-12 text-center">Projects</h1>
       
       <div class="space-y-12 sm:space-y-16">
         <section class="group">
           <div class="flex items-center justify-between mb-4 sm:mb-6">
-            <h2 class="font-zt text-2xl sm:text-3xl">Main Projects</h2>
+            <h2 class="font-bold text-2xl sm:text-3xl">Main Projects</h2>
             <span class="font-mono text-sm sm:text-base opacity-50 group-hover:opacity-100 transition-opacity">
               {seriousProjects.length} projects
             </span>
@@ -74,7 +74,7 @@ const funProjects = projects?.fun || [];
                 <div class="flex-grow min-w-0">
                   <div class="flex items-center justify-between mb-6 sm:mb-8">
                     <div class="flex items-center gap-3">
-                      <h3 class="font-outfit text-lg sm:text-xl font-bold">
+                      <h3 class="font-bold text-lg sm:text-xl">
                         <a 
                           href={project?.github} 
                           target="_blank" 
@@ -89,7 +89,7 @@ const funProjects = projects?.fun || [];
                       </span>
                     </div>
                   </div>
-                  <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project?.description || 'No description available'}</p>
+                  <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project?.description || 'No description available'}</p>
                   <a 
                     href={project?.github} 
                     target="_blank" 
@@ -109,7 +109,7 @@ const funProjects = projects?.fun || [];
 
         <section class="group">
           <div class="flex items-center justify-between mb-4 sm:mb-6">
-            <h2 class="font-zt text-2xl sm:text-3xl">Side Projects</h2>
+            <h2 class="font-bold text-2xl sm:text-3xl">Side Projects</h2>
             <span class="font-mono text-sm sm:text-base opacity-50 group-hover:opacity-100 transition-opacity">
               {funProjects.length} projects
             </span>
@@ -132,7 +132,7 @@ const funProjects = projects?.fun || [];
                 <div class="flex-grow min-w-0">
                   <div class="flex items-center justify-between mb-6 sm:mb-8">
                     <div class="flex items-center gap-3">
-                      <h3 class="font-outfit text-lg sm:text-xl font-bold">
+                      <h3 class="font-bold text-lg sm:text-xl">
                         <a 
                           href={project?.github} 
                           target="_blank" 
@@ -147,7 +147,7 @@ const funProjects = projects?.fun || [];
                       </span>
                     </div>
                   </div>
-                  <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project?.description || 'No description available'}</p>
+                  <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project?.description || 'No description available'}</p>
                   <a 
                     href={project?.github} 
                     target="_blank" 
