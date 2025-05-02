@@ -87,44 +87,65 @@ try {
             
             <div class="space-y-4 sm:space-y-6">
               {seriousProjects.map(project => (
-                <article class="group/project relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-6 rounded-xl bg-white/80 border border-gray-200/80 hover:border-gray-300 transition-all duration-300 hover:shadow-md dark:bg-gray-900/80 dark:border-gray-800/80 dark:hover:border-gray-700">
+                <article class="relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-8 rounded-2xl 
+                  bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
+                  shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
+                  border border-rose-300
+                  backdrop-blur-sm
+                  dark:from-slate-950 dark:via-slate-900 dark:to-slate-950/90 
+                  dark:border-white/20
+                  dark:shadow-[0_15px_35px_-5px_rgb(0,0,0,0.3)]
+                  transform-gpu">
                   {project.image && (
-                    <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-lg overflow-hidden ring-1 ring-gray-200/50 dark:ring-gray-800/50">
+                    <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-xl overflow-hidden
+                      shadow-[0_8px_25px_-5px_rgb(0,0,0,0.1)]
+                      outline outline-1 outline-rose-300 dark:outline-white/20
+                      ring-1 ring-rose-200 dark:ring-white/10
+                      dark:shadow-[0_8px_25px_-5px_rgb(0,0,0,0.3)]">
                       <img 
                         src={project.image} 
                         alt={project.title}
                         class="w-full h-full object-cover"
                       />
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/project:opacity-100 transition-opacity duration-300" />
+                      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent" />
                     </div>
                   )}
                   <div class="flex-grow min-w-0">
                     <div class="flex items-center justify-between mb-6 sm:mb-8">
                       <div class="flex items-center gap-3">
-                        <h3 class="font-outfit text-lg sm:text-xl font-bold">
+                        <h3 class="font-outfit text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-50">
                           <a 
                             href={project.github} 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                            class="transition-colors hover:text-rose-600 dark:hover:text-indigo-400"
                           >
                             {project.title}
                           </a>
                         </h3>
-                        <span class="font-mono text-xs sm:text-sm px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
+                        <span class="font-mono text-xs sm:text-sm px-3 py-1.5 
+                          bg-rose-50/80 text-rose-700
+                          dark:bg-indigo-900/40 dark:text-indigo-200 
+                          rounded-full border border-rose-100/70 
+                          dark:border-indigo-700/50 
+                          shadow-[0_2px_10px_-2px_rgb(244,63,94,0.15)]
+                          backdrop-blur-sm">
                           In Progress
                         </span>
                       </div>
                     </div>
-                    <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project.description}</p>
+                    <p class="font-outfit text-slate-700 dark:text-slate-200 text-xs sm:text-sm mb-4 leading-relaxed">{project.description}</p>
                     <a 
                       href={project.github} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      class="inline-flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                      class="inline-flex items-center text-xs sm:text-sm font-medium
+                        text-slate-700 dark:text-slate-200 
+                        hover:text-rose-600 dark:hover:text-indigo-400
+                        transition-colors"
                     >
                       View Project
-                      <span class="ml-2 transition-transform duration-300 group-hover/project:translate-x-1">→</span>
+                      <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
                     </a>
                   </div>
                 </article>
@@ -142,44 +163,65 @@ try {
             
             <div class="space-y-4 sm:space-y-6">
               {funProjects.map(project => (
-                <article class="group/project relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-6 rounded-xl bg-white/80 border border-gray-200/80 hover:border-gray-300 transition-all duration-300 hover:shadow-md dark:bg-gray-900/80 dark:border-gray-800/80 dark:hover:border-gray-700">
+                <article class="relative flex flex-col sm:flex-row gap-4 sm:gap-6 p-8 rounded-2xl 
+                  bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
+                  shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
+                  border border-rose-300
+                  backdrop-blur-sm
+                  dark:from-slate-950 dark:via-slate-900 dark:to-slate-950/90 
+                  dark:border-white/20
+                  dark:shadow-[0_15px_35px_-5px_rgb(0,0,0,0.3)]
+                  transform-gpu">
                   {project.image && (
-                    <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-lg overflow-hidden ring-1 ring-gray-200/50 dark:ring-gray-800/50">
+                    <div class="relative w-full sm:w-80 h-48 sm:h-44 flex-shrink-0 rounded-xl overflow-hidden
+                      shadow-[0_8px_25px_-5px_rgb(0,0,0,0.1)]
+                      outline outline-1 outline-rose-300 dark:outline-white/20
+                      ring-1 ring-rose-200 dark:ring-white/10
+                      dark:shadow-[0_8px_25px_-5px_rgb(0,0,0,0.3)]">
                       <img 
                         src={project.image} 
                         alt={project.title}
                         class="w-full h-full object-cover"
                       />
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/project:opacity-100 transition-opacity duration-300" />
+                      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent" />
                     </div>
                   )}
                   <div class="flex-grow min-w-0">
                     <div class="flex items-center justify-between mb-6 sm:mb-8">
                       <div class="flex items-center gap-3">
-                        <h3 class="font-outfit text-lg sm:text-xl font-bold">
+                        <h3 class="font-outfit text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-50">
                           <a 
                             href={project.github} 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                            class="transition-colors hover:text-indigo-600 dark:hover:text-rose-400"
                           >
                             {project.title}
                           </a>
                         </h3>
-                        <span class="font-mono text-xs sm:text-sm px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
+                        <span class="font-mono text-xs sm:text-sm px-3 py-1.5 
+                          bg-indigo-50/80 text-indigo-700
+                          dark:bg-rose-900/40 dark:text-rose-200 
+                          rounded-full border border-indigo-100/70 
+                          dark:border-rose-700/50 
+                          shadow-[0_2px_10px_-2px_rgb(99,102,241,0.15)]
+                          backdrop-blur-sm">
                           Completed
                         </span>
                       </div>
                     </div>
-                    <p class="font-outfit text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3">{project.description}</p>
+                    <p class="font-outfit text-slate-700 dark:text-slate-200 text-xs sm:text-sm mb-4 leading-relaxed">{project.description}</p>
                     <a 
                       href={project.github} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      class="inline-flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                      class="inline-flex items-center text-xs sm:text-sm font-medium
+                        text-slate-700 dark:text-slate-200 
+                        hover:text-indigo-600 dark:hover:text-rose-400
+                        transition-colors"
                     >
                       View Project
-                      <span class="ml-2 transition-transform duration-300 group-hover/project:translate-x-1">→</span>
+                      <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
                     </a>
                   </div>
                 </article>
@@ -199,8 +241,7 @@ try {
     // Optionally show a user-friendly error message
     const main = document.querySelector('main');
     if (main) {
-      main.innerHTML = `
-        <div class="max-w-5xl mx-auto text-center">
+      main.innerHTML = `        <div class="max-w-5xl mx-auto text-center">
           <h1 class="text-2xl font-bold text-red-600">Something went wrong</h1>
           <p class="mt-4 text-gray-600">Please try refreshing the page</p>
         </div>
