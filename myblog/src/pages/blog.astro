@@ -1,3 +1,4 @@
+---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
@@ -8,6 +9,7 @@ const posts = await getCollection('blog', ({ data }) => {
 const sortedPosts = posts.sort((a, b) => {
   return new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf();
 });
+---
 
 <Layout title="Blog | gagan">
   <main class="container mx-auto px-4 py-8 sm:py-12">
@@ -118,4 +120,4 @@ const sortedPosts = posts.sort((a, b) => {
     animation: gradient 3s ease infinite;
     background-size: 200% 200%;
   }
-</style> 
+</style>
