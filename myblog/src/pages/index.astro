@@ -103,6 +103,61 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Content Sections -->
       <div class="space-y-12 sm:space-y-24 w-full">
+        <!-- Experience Section -->
+        <section class="group relative p-4 sm:p-8 rounded-2xl border-2 border-gray-200/80 dark:border-gray-800/50 bg-gradient-to-br from-white to-gray-50/80 dark:from-gray-900/80 dark:to-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300">
+          <div class="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-blue-100/50 to-transparent rounded-full blur-xl dark:from-blue-900/20" />
+          <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-tr from-blue-100/50 to-transparent rounded-full blur-xl dark:from-blue-900/20" />
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-transparent dark:from-blue-900/10 rounded-2xl" />
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 sm:mb-8">
+            <div class="flex items-center gap-3">
+              <h2 class="font-zt text-2xl sm:text-3xl relative group">
+                <span class="relative z-10">Experience</span>
+                <span class="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-blue-500/30 to-transparent dark:from-blue-400/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </h2>
+              <span class="font-mono text-xs sm:text-sm px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
+                1 position
+              </span>
+            </div>
+          </div>
+          <div class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+              <div class="flex flex-row sm:flex-col items-center gap-4 sm:gap-0">
+                <div class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 border-blue-500/20 dark:border-blue-400/20">
+                  <img 
+                    src="/images/crais.jpeg" 
+                    alt="CRAIS Logo" 
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="sm:hidden">
+                  <h3 class="font-space text-lg font-medium text-gray-900 dark:text-gray-100">
+                    Summer Intern
+                  </h3>
+                  <span class="font-mono text-xs text-gray-500 dark:text-gray-400">
+                    June 2025 - August 2025
+                  </span>
+                </div>
+              </div>
+              <div class="flex-grow">
+                <div class="hidden sm:flex flex-row items-center justify-between gap-2">
+                  <h3 class="font-space text-lg sm:text-xl font-medium text-gray-900 dark:text-gray-100">
+                    Summer Intern
+                  </h3>
+                  <span class="font-mono text-sm text-gray-500 dark:text-gray-400">
+                    June 2025 - August 2025
+                  </span>
+                </div>
+                <p class="font-space text-blue-600 dark:text-blue-400">
+                  Centre of Robotics and Automation
+                </p>
+                <p class="font-space text-sm text-gray-600 dark:text-gray-400 mt-2">
+                  Implemented RL algorithms for robotic control and autonomous navigation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- Projects Section -->
         <section class="group relative p-6 sm:p-8 rounded-2xl border-2 border-gray-200/80 dark:border-gray-800/50 bg-gradient-to-br from-white to-gray-50/80 dark:from-gray-900/80 dark:to-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300">
           <div class="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-blue-100/50 to-transparent rounded-full blur-xl dark:from-blue-900/20" />
