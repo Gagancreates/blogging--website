@@ -6,7 +6,7 @@ export default defineConfig({
   integrations: [tailwind()],
   output: 'hybrid',
   adapter: netlify(),
-  site: 'https://gagan-blogs.netlify.app',
+  site: 'https://gaganp.com',
   build: {
     inlineStylesheets: 'auto'
   },
