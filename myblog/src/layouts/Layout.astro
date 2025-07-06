@@ -10,15 +10,34 @@ const { title } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Gagan's personal blog" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title} | Gagan P | ML Engineer, Building zTutor</title>
+    <meta name="description" content="Hey this is Gagan - a Computer Science undergrad building machine learning systems and building cool stuff on the web. MLE during the day and dev by the night, I ship things frequently and I build things that makes me curious. I also write tech blogs on this website" />
+    <meta name="keywords" content="Machine Learning, ML Engineer, Computer Science, Web Development, Tech Blogs, zTutor, Gagan, Gagan P" />
+    <meta name="author" content="Gagan P" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gaganp.com/" />
+    <meta property="og:title" content={`${title} | Gagan P | ML Engineer, Building zTutor`} />
+    <meta property="og:description" content="Gagan - a Computer Science undergrad building machine learning systems and building cool stuff on the web. MLE during the day and dev by the night, I ship things frequently and I build things that makes me curious." />
+    <meta property="og:image" content="https://gaganp.com/images/bhairav.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://gaganp.com/" />
+    <meta property="twitter:title" content={`${title} | Gagan P | ML Engineer, Building zTutor`} />
+    <meta property="twitter:description" content="Gagan - a Computer Science undergrad building machine learning systems and building cool stuff on the web. MLE during the day and dev by the night, I ship things frequently and I build things that makes me curious." />
+    <meta property="twitter:image" content="https://gaganp.com/images/bhairav.jpg" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/zt-formom" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
     
     <!-- Prevent flash of wrong theme -->
     <script is:inline>
