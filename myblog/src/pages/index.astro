@@ -9,20 +9,17 @@ import Layout from '../layouts/Layout.astro';
       <div class="mb-16 sm:mb-24">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
           <div class="relative flex-grow">
-            <div class="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-stone-100/30 to-transparent rounded-full blur-xl dark:from-stone-800/20" />
-            <div class="absolute -bottom-4 -right-4 w-50 h-50 bg-gradient-to-tr from-rose-100/20 to-transparent rounded-full blur-xl dark:from-rose-900/10" />
             <div class="flex items-start gap-2 mb-4">
               <h1 class="font-zt text-[2.5rem] sm:text-6xl font-black tracking-tight leading-[1.4] relative">
                 <span class="typing-text text-black dark:text-white py-2">Hey, I'm gagan</span>
               </h1>
               <div class="flex-shrink-0 sm:hidden">
-                <div class="relative w-24 h-24 rounded-full overflow-hidden border-4 border-stone-300/30 dark:border-stone-600/30 shadow-lg -mt-3 ml-1">
-                  <img 
-                    src="/images/bhairav.jpg" 
-                    alt="Gagan's profile picture" 
-                    class="w-full h-full object-cover"
-                  />
-                  <div class="absolute inset-0 bg-gradient-to-br from-stone-500/5 to-transparent dark:from-stone-400/5"></div>
+                <div class="relative w-24 h-24 rounded-full overflow-hidden border-4 border-stone-300/30 dark:border-stone-600/30 shadow-[0_0_20px_rgba(0,0,0,0.3)] dark:shadow-[0_0_20px_rgba(192,192,192,0.4)] -mt-3 ml-1">
+                    <img 
+                      src="/images/bhairav.jpg" 
+                      alt="Gagan's profile picture" 
+                      class="w-full h-full object-cover"
+                    />
                 </div>
               </div>
             </div>
@@ -89,14 +86,13 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
           <div class="flex-shrink-0 mx-auto sm:mx-0 -mt-4 sm:-mt-8 hidden sm:block">
-            <div class="relative w-24 h-24 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-stone-300/30 dark:border-stone-600/30 shadow-lg">
-              <img 
-                src="/images/bhairav.jpg" 
-                alt="Gagan's profile picture" 
-                class="w-full h-full object-cover"
-              />
-              <div class="absolute inset-0 bg-gradient-to-br from-stone-500/5 to-transparent dark:from-stone-400/5"></div>
-            </div>
+            <div class="relative w-24 h-24 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-stone-300/30 dark:border-stone-600/30 shadow-[0_0_20px_rgba(0,0,0,0.3)] dark:shadow-[0_0_20px_rgba(192,192,192,0.4)]">
+  <img 
+    src="/images/bhairav.jpg" 
+    alt="Gagan's profile picture" 
+    class="w-full h-full object-cover"
+  />
+</div>
           </div>
         </div>
       </div>
@@ -104,7 +100,14 @@ import Layout from '../layouts/Layout.astro';
       <!-- Content Sections -->
       <div class="space-y-12 sm:space-y-24 w-full">
         <!-- Experience Section -->
-        <section class="group relative p-4 sm:p-8 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500 mt-6 sm:mt-12">
+        <section class="group relative p-4 sm:p-8 rounded-2xl 
+          bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
+          shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
+          border border-rose-300
+          backdrop-blur-sm
+          dark:from-stone-900/60 dark:to-stone-800/40 
+          dark:border-stone-700/40
+          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500 mt-6 sm:mt-12">
           <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
           <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
           <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
@@ -159,7 +162,14 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- Projects Section -->
-        <section class="group relative p-6 sm:p-8 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500">
+        <section class="group relative p-6 sm:p-8 rounded-2xl 
+          bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
+          shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
+          border border-rose-300
+          backdrop-blur-sm
+          dark:from-stone-900/60 dark:to-stone-800/40 
+          dark:border-stone-700/40
+          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500">
           <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
           <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
           <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
@@ -200,7 +210,14 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- Blogs Section -->
-        <section class="group relative p-6 sm:p-8 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500">
+        <section class="group relative p-6 sm:p-8 rounded-2xl 
+          bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
+          shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
+          border border-rose-300
+          backdrop-blur-sm
+          dark:from-stone-900/60 dark:to-stone-800/40 
+          dark:border-stone-700/40
+          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500">
           <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
           <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
           <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
@@ -241,7 +258,14 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- Ongoings Section -->
-        <section class="group relative p-6 sm:p-8 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500">
+        <section class="group relative p-6 sm:p-8 rounded-2xl 
+          bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
+          shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
+          border border-rose-300
+          backdrop-blur-sm
+          dark:from-stone-900/60 dark:to-stone-800/40 
+          dark:border-stone-700/40
+          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500">
           <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
           <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
           <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
@@ -280,54 +304,68 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </section>
 
-                    <!-- Research Section -->
-            <section id="research" class="group relative p-6 sm:p-8 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500">
-                <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15"></div>
-                <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10"></div>
-                <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl"></div>
-                
-                <div class="flex items-center justify-between mb-6 sm:mb-8">
-                    <div class="flex items-center gap-3">
-                        <h2 class="font-zt text-2xl sm:text-3xl relative group">
-                            <span class="relative z-10 text-stone-900 dark:text-stone-100">Research</span>
-                            <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                        </h2>
-                        <span class="font-mono text-xs sm:text-sm px-3 py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
-                            Coming soon
-                        </span>
-                    </div>
-                    <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
-                        Academic Work
-                    </span>
-                </div>
-                
-                <p class="font-space text-stone-600 dark:text-stone-400 text-base sm:text-lg leading-relaxed italic">
-                    Coming soon...
-                </p>
-            </section>
+                   <!-- Research Section -->
+<section id="research" class="group relative p-6 sm:p-8 rounded-2xl 
+  bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
+  shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
+  border border-rose-300
+  backdrop-blur-sm
+  dark:from-stone-900/60 dark:to-stone-800/40 
+  dark:border-stone-700/40
+  hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500">
+  <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
+  <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
+  <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
+  
+  <div class="flex items-center justify-between mb-6 sm:mb-8">
+    <div class="flex items-center gap-3">
+      <h2 class="font-zt text-2xl sm:text-3xl relative group">
+        <span class="relative z-10 text-stone-900 dark:text-stone-100">Research</span>
+        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+      </h2>
+      <span class="font-mono text-xs sm:text-sm px-3 py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
+        Coming soon
+      </span>
+    </div>
+    <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
+      Academic Work
+    </span>
+  </div>
+  
+  <p class="font-space text-stone-600 dark:text-stone-400 text-base sm:text-lg leading-relaxed italic">
+    Coming soon...
+  </p>
+</section>
 
-            <!-- Notes Section -->
-            <section class="group relative p-6 sm:p-8 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500">
-                <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15"></div>
-                <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10"></div>
-                <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl"></div>
-                
-                <div class="flex items-center justify-between mb-6 sm:mb-8">
-                    <div class="flex items-center gap-3">
-                        <h2 class="font-zt text-2xl sm:text-3xl relative group">
-                            <span class="relative z-10 text-stone-900 dark:text-stone-100">Notes</span>
-                            <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                        </h2>
-                        <span class="font-mono text-xs sm:text-sm px-3 py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
-                            Coming soon
-                        </span>
-                    </div>
-                    <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
-                        Quick References
-                    </span>
-                </div>
-                
-                <p class="font-space text-stone-600 dark:text-stone-400 text-base sm:text-lg leading-relaxed italic">
-                    Coming soon...
-                </p>
-            </section>
+<!-- Notes Section -->
+<section class="group relative p-6 sm:p-8 rounded-2xl 
+  bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
+  shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
+  border border-rose-300
+  backdrop-blur-sm
+  dark:from-stone-900/60 dark:to-stone-800/40 
+  dark:border-stone-700/40
+  hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500">
+  <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
+  <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
+  <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
+  
+  <div class="flex items-center justify-between mb-6 sm:mb-8">
+    <div class="flex items-center gap-3">
+      <h2 class="font-zt text-2xl sm:text-3xl relative group">
+        <span class="relative z-10 text-stone-900 dark:text-stone-100">Notes</span>
+        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+      </h2>
+      <span class="font-mono text-xs sm:text-sm px-3 py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
+        Coming soon
+      </span>
+    </div>
+    <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
+      Quick References
+    </span>
+  </div>
+  
+  <p class="font-space text-stone-600 dark:text-stone-400 text-base sm:text-lg leading-relaxed italic">
+    Coming soon...
+  </p>
+</section>

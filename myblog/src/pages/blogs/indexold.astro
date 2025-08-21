@@ -79,33 +79,33 @@ const categories = [
 <Layout title="Blogs | gagan">
   <main class="container mx-auto px-4 py-8 sm:py-12">
     <div class="max-w-4xl mx-auto">
-      <h1 class="font-zt text-5xl sm:text-6xl mb-8 sm:mb-12 text-center text-stone-900 dark:text-stone-100">Blogs</h1>
+      <h1 class="font-zt text-5xl sm:text-6xl mb-8 sm:mb-12 text-center">Blogs</h1>
 
       <div class="mb-16">
-        <h2 class="font-zt text-3xl sm:text-4xl mb-8 text-stone-900 dark:text-stone-100">
+        <h2 class="font-zt text-3xl sm:text-4xl mb-8">
          
             {categories[0].title}
          
         </h2>
         
-        <section class="group p-4 sm:p-6 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500">
-          <p class="font-space text-stone-600 dark:text-stone-400 mb-6">{categories[0].description}</p>
+        <section class="group p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300">
+          <p class="font-space text-gray-600 dark:text-gray-400 mb-6">{categories[0].description}</p>
           
           <div class="space-y-4">
             {categories[0].blogs.map(blog => (
-              <div class="border-l-4 border-stone-300 dark:border-stone-700 pl-4 rounded-r">
-                <h3 class="font-space text-base sm:text-xl font-medium text-stone-900 dark:text-stone-100">
+              <div class="border-l-4 border-gray-300 dark:border-zinc-700 pl-4 dark:shadow-silver rounded-r">
+                <h3 class="font-space text-base sm:text-xl font-medium dark:text-white">
                   <a 
                     href={blog.externalLink} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    class="hover:text-stone-700 dark:hover:text-stone-300 hover:underline transition-colors"
+                    class="hover:text-gray-800 dark:text-white dark:hover:text-gray-300 hover:underline"
                   >
                     {blog.title}
                   </a>
                 </h3>
-                <p class="font-space text-stone-600 dark:text-stone-400 text-sm mb-1">{blog.excerpt}</p>
-                <p class="text-stone-500 dark:text-stone-500 text-xs">Published on {blog.date}</p>
+                <p class="font-space text-gray-600 dark:text-gray-400 text-sm mb-1">{blog.excerpt}</p>
+                <p class="text-gray-500 dark:text-gray-500 text-xs">Published on {blog.date}</p>
               </div>
             ))}
           </div>
@@ -113,30 +113,30 @@ const categories = [
       </div>
 
       <div>
-        <h2 class="font-zt text-3xl sm:text-4xl mb-8 text-stone-900 dark:text-stone-100">
+        <h2 class="font-zt text-3xl sm:text-4xl mb-8">
           
             {categories[1].title}
           
         </h2>
         
-        <section class="group p-4 sm:p-6 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500">
-          <p class="font-space text-stone-600 dark:text-stone-400 mb-6">{categories[1].description}</p>
+        <section class="group p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300">
+          <p class="font-space text-gray-600 dark:text-gray-400 mb-6">{categories[1].description}</p>
           
           <div class="space-y-4">
             {categories[1].blogs.map(blog => (
-              <div class="border-l-4 border-stone-300 dark:border-stone-700 pl-4 rounded-r">
-                <h3 class="font-space font-medium text-base sm:text-xl text-stone-900 dark:text-stone-100">
+              <div class="border-l-4 border-gray-300 dark:border-zinc-700 pl-4 dark:shadow-silver rounded-r">
+                <h3 class="font-space font-medium text-base sm:text-xl dark:text-white">
                   <a 
                     href={blog.externalLink} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    class="hover:text-stone-700 dark:hover:text-stone-300 hover:underline transition-colors"
+                    class="hover:text-gray-800 dark:text-white dark:hover:text-gray-300 hover:underline"
                   >
                     {blog.title}
                   </a>
                 </h3>
-                <p class="font-space text-stone-600 dark:text-stone-400 text-sm mb-1">{blog.excerpt}</p>
-                <p class="text-stone-500 dark:text-stone-500 text-xs">Published on {blog.date}</p>
+                <p class="font-space text-gray-600 dark:text-gray-400 text-sm mb-1">{blog.excerpt}</p>
+                <p class="text-gray-500 dark:text-gray-500 text-xs">Published on {blog.date}</p>
               </div>
             ))}
           </div>
