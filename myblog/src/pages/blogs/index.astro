@@ -74,6 +74,13 @@ const categories = [
     ]
   }
 ];
+
+// Function to format date
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = { day: '2-digit', month: 'long', year: 'numeric' };
+  return date.toLocaleDateString('en-US', options);
+}
 ---
 
 <Layout title="Blogs | gagan">
@@ -89,7 +96,7 @@ const categories = [
         </h2>
         
         <section class="group p-4 sm:p-6 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500">
-          <p class="font-space text-stone-600 dark:text-stone-400 mb-6">{categories[0].description}</p>
+          <p class="font-space text-stone-600 dark:text-stone-400 mb-6 hidden sm:block">{categories[0].description}</p>
           
           <div class="space-y-4">
             {categories[0].blogs.map(blog => (
@@ -104,8 +111,8 @@ const categories = [
                     {blog.title}
                   </a>
                 </h3>
-                <p class="font-space text-stone-600 dark:text-stone-400 text-sm mb-1">{blog.excerpt}</p>
-                <p class="text-stone-500 dark:text-stone-500 text-xs">Published on {blog.date}</p>
+                <p class="font-space text-stone-600 dark:text-stone-400 text-sm mb-1 hidden sm:block">{blog.excerpt}</p>
+                <p class="text-stone-500 dark:text-stone-500 text-xs">{formatDate(blog.date)}</p>
               </div>
             ))}
           </div>
@@ -120,7 +127,7 @@ const categories = [
         </h2>
         
         <section class="group p-4 sm:p-6 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500">
-          <p class="font-space text-stone-600 dark:text-stone-400 mb-6">{categories[1].description}</p>
+          <p class="font-space text-stone-600 dark:text-stone-400 mb-6 hidden sm:block">{categories[1].description}</p>
           
           <div class="space-y-4">
             {categories[1].blogs.map(blog => (
@@ -135,8 +142,8 @@ const categories = [
                     {blog.title}
                   </a>
                 </h3>
-                <p class="font-space text-stone-600 dark:text-stone-400 text-sm mb-1">{blog.excerpt}</p>
-                <p class="text-stone-500 dark:text-stone-500 text-xs">Published on {blog.date}</p>
+                <p class="font-space text-stone-600 dark:text-stone-400 text-sm mb-1 hidden sm:block">{blog.excerpt}</p>
+                <p class="text-stone-500 dark:text-stone-500 text-xs">{formatDate(blog.date)}</p>
               </div>
             ))}
           </div>
