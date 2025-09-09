@@ -130,6 +130,9 @@ import Analytics from '@vercel/analytics/astro';
       </div>
     </footer>
 
+    <!-- ✅ Vercel Analytics -->
+    <Analytics />
+
     <script>
       // Theme toggle functionality
       document.addEventListener('DOMContentLoaded', () => {
@@ -156,25 +159,18 @@ import Analytics from '@vercel/analytics/astro';
             const targetElement = document.getElementById(targetId);
             if (!targetElement) return;
 
-            // Remove animation class if it exists
             targetElement.classList.remove('scroll-highlight');
-
-            // Calculate scroll position with offset
             const headerOffset = 100;
             const elementPosition = targetElement.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-            // Smooth scroll to element
             window.scrollTo({
               top: offsetPosition,
               behavior: 'smooth'
             });
 
-            // Add animation class after a small delay
             setTimeout(() => {
               targetElement.classList.add('scroll-highlight');
-              
-              // Remove the class after animation completes
               setTimeout(() => {
                 targetElement.classList.remove('scroll-highlight');
               }, 1000);
@@ -186,7 +182,6 @@ import Analytics from '@vercel/analytics/astro';
       // Mobile menu toggle
       const mobileMenuButton = document.getElementById('mobile-menu-button');
       const mobileMenu = document.getElementById('mobile-menu');
-
       mobileMenuButton?.addEventListener('click', () => {
         mobileMenu?.classList.toggle('hidden');
       });
@@ -213,131 +208,51 @@ import Analytics from '@vercel/analytics/astro';
 </html>
 
 <style is:global>
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; }
+  .font-space { font-family: 'Space Grotesk', sans-serif; }
+  .font-zt { font-family: 'Zt Formom', sans-serif; }
 
-  .font-mono {
-    font-family: 'IBM Plex Mono', monospace;
-  }
-  .font-space {
-    font-family: 'Space Grotesk', sans-serif;
-  }
-  .font-zt {
-    font-family: 'Zt Formom', sans-serif;
-  }
-  
-  /* Smooth transitions */
-  * {
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  }
+  * { transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease; }
 
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.1); border-radius: 4px; }
+  .dark ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); }
 
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-  }
-
-  .dark ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  /* Floating particles animation */
   .particle {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: currentColor;
-    border-radius: 50%;
-    opacity: 0.1;
-    animation: float 15s infinite linear;
+    position: absolute; width: 2px; height: 2px;
+    background: currentColor; border-radius: 50%;
+    opacity: 0.1; animation: float 15s infinite linear;
   }
 
   @keyframes float {
-    0% {
-      transform: translateY(0) translateX(0);
-      opacity: 0.1;
-    }
-    50% {
-      transform: translateY(-20px) translateX(10px);
-      opacity: 0.2;
-    }
-    100% {
-      transform: translateY(0) translateX(0);
-      opacity: 0.1;
-    }
+    0% { transform: translateY(0) translateX(0); opacity: 0.1; }
+    50% { transform: translateY(-20px) translateX(10px); opacity: 0.2; }
+    100% { transform: translateY(0) translateX(0); opacity: 0.1; }
   }
 
-  /* Navigation link hover effect */
-  .nav-link {
-    position: relative;
-    padding: 0.25rem 0;
-    cursor: pointer;
-  }
-
+  .nav-link { position: relative; padding: 0.25rem 0; cursor: pointer; }
   .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: right;
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 1px; background: currentColor;
+    transform: scaleX(0); transform-origin: right;
     transition: transform 0.3s ease;
   }
+  .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
 
-  .nav-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-
-  /* Social link hover effect */
-  .social-link {
-    position: relative;
-    padding: 0.25rem 0;
-  }
-
+  .social-link { position: relative; padding: 0.25rem 0; }
   .social-link::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: right;
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 1px; background: currentColor;
+    transform: scaleX(0); transform-origin: right;
     transition: transform 0.3s ease;
   }
+  .social-link:hover::before { transform: scaleX(1); transform-origin: left; }
 
-  .social-link:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-
-  /* Add scroll animation class */
-  .scroll-highlight {
-    animation: highlightSection 1s ease-out;
-  }
-
+  .scroll-highlight { animation: highlightSection 1s ease-out; }
   @keyframes highlightSection {
-    0% {
-      transform: translateY(20px);
-      opacity: 0.5;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
+    0% { transform: translateY(20px); opacity: 0.5; }
+    100% { transform: translateY(0); opacity: 1; }
   }
 </style>

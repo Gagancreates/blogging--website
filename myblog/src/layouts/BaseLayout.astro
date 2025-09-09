@@ -13,6 +13,9 @@ import Analytics from '@vercel/analytics/astro';
     <DarkModeToggle />
     <main>
       <!-- Your content goes here -->
+      <slot /> <!-- ✅ allows child pages/content to render -->
     </main>
+
+    <Analytics /> <!-- ✅ Vercel Analytics added here -->
   </body>
 </html>
