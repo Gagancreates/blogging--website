@@ -1,3 +1,4 @@
+
 ---
 interface Props {
   title: string;
@@ -15,7 +16,7 @@ import Analytics from '@vercel/analytics/astro';
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     
     <!-- SEO Meta Tags -->
-    <title>Gagan P | ML Engineer, Building zTutor</title>
+    <title>{title}</title>
     <meta name="description" content="Hey this is Gagan - a Computer Science undergrad building machine learning systems and building cool stuff on the web. MLE during the day and dev by the night, I ship things frequently and I build things that makes me curious. I also write tech blogs on this website" />
     <meta name="keywords" content="Machine Learning, ML Engineer, Computer Science, Web Development, Tech Blogs, zTutor, Gagan, Gagan P" />
     <meta name="author" content="Gagan P" />
@@ -23,14 +24,14 @@ import Analytics from '@vercel/analytics/astro';
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://gaganp.com/" />
-    <meta property="og:title" content={`Gagan P | ML Engineer, Building zTutor`} />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content="Gagan - a Computer Science undergrad building machine learning systems and building cool stuff on the web. MLE during the day and dev by the night, I ship things frequently and I build things that makes me curious." />
     <meta property="og:image" content="https://gaganp.com/images/bhairav.jpg" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://gaganp.com/" />
-    <meta property="twitter:title" content={`${title} | Gagan P | ML Engineer, Building zTutor`} />
+    <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content="Gagan - a Computer Science undergrad building machine learning systems and building cool stuff on the web. MLE during the day and dev by the night, I ship things frequently and I build things that makes me curious." />
     <meta property="twitter:image" content="https://gaganp.com/images/bhairav.jpg" />
     
@@ -40,6 +41,7 @@ import Analytics from '@vercel/analytics/astro';
     <link href="https://fonts.cdnfonts.com/css/zt-formom" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
     
+    <!-- Rest of your head content remains the same -->
     <!-- Prevent flash of wrong theme -->
     <script is:inline>
       const theme = (() => {
