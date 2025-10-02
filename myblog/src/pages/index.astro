@@ -106,8 +106,8 @@ import Layout from '../layouts/Layout.astro';
           border border-rose-300
           backdrop-blur-sm
           dark:from-stone-900/60 dark:to-stone-800/40 
-          dark:border-stone-700/40
-          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500 mt-4 sm:mt-12">
+          dark:border-stone-500/60
+          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500 mt-4 sm:mt-12">
           <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
           <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
           <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
@@ -117,48 +117,83 @@ import Layout from '../layouts/Layout.astro';
                 <span class="relative z-10 text-stone-900 dark:text-stone-100">Experience</span>
                 <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </h2>
-              <span class="font-mono text-xs px-2 sm:px-3 py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
-                1 position
-              </span>
             </div>
           </div>
-          <div class="space-y-3 sm:space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
-              <div class="flex flex-row sm:flex-col items-center gap-3 sm:gap-0">
-                <div class="flex-shrink-0 w-10 h-10 sm:w-14 sm:h-14 rounded-lg overflow-hidden border border-stone-200/50 dark:border-stone-700/50">
-                  <img 
-                    src="/images/crais.jpeg" 
-                    alt="CRAIS Logo" 
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-                <div class="sm:hidden flex-1">
-                  <h3 class="font-space text-base font-medium text-stone-900 dark:text-stone-100">
-                    Summer Intern
-                  </h3>
-                  <span class="font-mono text-xs text-stone-500 dark:text-stone-400">
-                    June 2025 - August 2025
-                  </span>
-                </div>
+          <div class="space-y-6 sm:space-y-8">
+          <!-- Experience Card 1 -->
+          <div class="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
+            <div class="flex flex-row sm:flex-col items-center gap-3 sm:gap-0">
+              <div class="flex-shrink-0 w-10 h-10 sm:w-14 sm:h-14 rounded-lg overflow-hidden border border-stone-200/50 dark:border-stone-700/50">
+                <img 
+                  src="/images/pesuio.png" 
+                  alt="PESUIO Logo" 
+                  class="w-full h-full object-cover"
+                />
               </div>
-              <div class="flex-grow">
-                <div class="hidden sm:flex flex-row items-center justify-between gap-2">
-                  <h3 class="font-space text-lg sm:text-xl font-medium text-stone-900 dark:text-stone-100">
-                    Summer Intern
-                  </h3>
-                  <span class="font-mono text-sm text-stone-500 dark:text-stone-400">
-                    June 2025 - August 2025
-                  </span>
-                </div>
-                <p class="font-space text-sm sm:text-base text-stone-700 dark:text-stone-300 font-medium">
-                  Center for Robotics, Automation and Intelligent Systems
-                </p>
-                <p class="font-space text-sm sm:text-sm text-stone-600 dark:text-stone-400 mt-1 sm:mt-2">
-                  Implemented RL algorithms for robotic control and autonomous navigation.
-                </p>
+              <div class="sm:hidden flex-1">
+                <h3 class="font-space text-base font-medium text-stone-900 dark:text-stone-100">
+                  Subject Matter Expert
+                </h3>
+                <span class="font-mono text-xs text-stone-500 dark:text-stone-400">
+                  September 2025 - Present
+                </span>
               </div>
             </div>
+            <div class="flex-grow">
+              <div class="hidden sm:flex flex-row items-center justify-between gap-2 mb-1">
+                <h3 class="font-space text-lg sm:text-xl font-medium text-stone-900 dark:text-stone-100">
+                  Subject Matter Expert
+                </h3>
+                <span class="font-mono text-sm text-stone-500 dark:text-stone-400 whitespace-nowrap">
+                  September 2025 - Present
+                </span>
+              </div>
+              <p class="font-space text-sm sm:text-base text-stone-700 dark:text-stone-300 font-medium mt-1 sm:mt-0">
+                PESU I/O: A Peer-to-Peer Learning Platform
+              </p>
+              <p class="font-space text-sm text-stone-600 dark:text-stone-400 mt-1 sm:mt-2">
+                Designed and Teaching "Foundations of Neural Networks and Deep Learning" to 50+ students
+              </p>
+            </div>
           </div>
+
+          <!-- Experience Card 2 -->
+          <div class="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
+            <div class="flex flex-row sm:flex-col items-center gap-3 sm:gap-0">
+              <div class="flex-shrink-0 w-10 h-10 sm:w-14 sm:h-14 rounded-lg overflow-hidden border border-stone-200/50 dark:border-stone-700/50">
+                <img 
+                  src="/images/crais.jpeg" 
+                  alt="CRAIS Logo" 
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="sm:hidden flex-1">
+                <h3 class="font-space text-base font-medium text-stone-900 dark:text-stone-100">
+                  Summer Intern
+                </h3>
+                <span class="font-mono text-xs text-stone-500 dark:text-stone-400">
+                  June 2025 - August 2025
+                </span>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <div class="hidden sm:flex flex-row items-center justify-between gap-2 mb-1">
+                <h3 class="font-space text-lg sm:text-xl font-medium text-stone-900 dark:text-stone-100">
+                  Summer Intern
+                </h3>
+                <span class="font-mono text-sm text-stone-500 dark:text-stone-400 whitespace-nowrap">
+                  June 2025 - August 2025
+                </span>
+              </div>
+              <p class="font-space text-sm sm:text-base text-stone-700 dark:text-stone-300 font-medium mt-1 sm:mt-0">
+                Center for Robotics, Automation and Intelligent Systems
+              </p>
+              <p class="font-space text-sm text-stone-600 dark:text-stone-400 mt-1 sm:mt-2">
+                Implemented RL algorithms for robotic control and autonomous navigation.
+              </p>
+            </div>
+          </div>
+        </div>
         </section>
 
 
@@ -169,8 +204,8 @@ import Layout from '../layouts/Layout.astro';
           border border-rose-300
           backdrop-blur-sm
           dark:from-stone-900/60 dark:to-stone-800/40 
-          dark:border-stone-700/40
-          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500">
+          dark:border-stone-500/60
+          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500">
           <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
           <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
           <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
@@ -180,9 +215,6 @@ import Layout from '../layouts/Layout.astro';
                 <span class="relative z-10 text-stone-900 dark:text-stone-100">Projects</span>
                 <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </h2>
-              <span class="font-mono text-xs sm:text-sm px-3 py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
-                7 projects
-              </span>
             </div>
             <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
               Featured Work
@@ -216,8 +248,8 @@ import Layout from '../layouts/Layout.astro';
           border border-rose-300
           backdrop-blur-sm
           dark:from-stone-900/60 dark:to-stone-800/40 
-          dark:border-stone-700/40
-          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500">
+          dark:border-stone-500/60
+          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500">
           <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
           <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
           <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
@@ -227,9 +259,6 @@ import Layout from '../layouts/Layout.astro';
                 <span class="relative z-10 text-stone-900 dark:text-stone-100">Blogs</span>
                 <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </h2>
-              <span class="font-mono text-xs sm:text-sm px-3 py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
-                2 categories
-              </span>
             </div>
             <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
               Latest Insights
@@ -264,8 +293,8 @@ import Layout from '../layouts/Layout.astro';
           border border-rose-300
           backdrop-blur-sm
           dark:from-stone-900/60 dark:to-stone-800/40 
-          dark:border-stone-700/40
-          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500">
+          dark:border-stone-500/60
+          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500">
           <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
           <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
           <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
@@ -275,7 +304,7 @@ import Layout from '../layouts/Layout.astro';
                 <span class="relative z-10 text-stone-900 dark:text-stone-100">Ongoings</span>
                 <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </h2>
-              <span class="font-mono text-xs sm:text-sm px-3 py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
+              <span class="font-mono  hidden sm:inline text-xs sm:text-sm px-3 py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
                 3 updates
               </span>
             </div>
@@ -311,8 +340,8 @@ import Layout from '../layouts/Layout.astro';
   border border-rose-300
   backdrop-blur-sm
   dark:from-stone-900/60 dark:to-stone-800/40 
-  dark:border-stone-700/40
-  hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500">
+  dark:border-stone-500/60
+  hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500">
   <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
   <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
   <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
@@ -323,9 +352,6 @@ import Layout from '../layouts/Layout.astro';
         <span class="relative z-10 text-stone-900 dark:text-stone-100">Research</span>
         <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
       </h2>
-      <span class="font-mono text-xs sm:text-sm px-3 hidden sm:inline py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
-        Coming soon
-      </span>
     </div>
     <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
       Academic Work
@@ -344,8 +370,8 @@ import Layout from '../layouts/Layout.astro';
   border border-rose-300
   backdrop-blur-sm
   dark:from-stone-900/60 dark:to-stone-800/40 
-  dark:border-stone-700/40
-  hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-600/50 transition-all duration-500">
+  dark:border-stone-500/60
+  hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500">
   <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
   <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
   <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
@@ -356,9 +382,6 @@ import Layout from '../layouts/Layout.astro';
         <span class="relative z-10 text-stone-900 dark:text-stone-100">Notes</span>
         <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
       </h2>
-      <span class="font-mono text-xs hidden sm:inline sm:text-sm px-3 py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
-        Coming soon
-      </span>
     </div>
     <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
       Quick References
