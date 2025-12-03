@@ -60,14 +60,14 @@ const categories = [
   },
   {
     title: 'Writings',
-    description: 'Follow along as I build and document interesting projects',
+    description: 'Things which I feel needs to be written down',
     url: '/blogs/build',
     blogs: [
       {
-        title: 'Building a Personal Portfolio Website',
-        excerpt: 'A step-by-step guide to creating a responsive portfolio using Astro and Tailwind CSS',
-        date: '2025-01-29',
-        externalLink: 'gagan-blogs.netlify.app'
+        title: 'Education needs a change',
+        excerpt: 'Why I\'m building zTutor and the current scenario of modern education',
+        date: '2025-12-03',
+        externalLink: '/blogs/education-needs-change'
       },
       {
         title: 'More blogs incoming....',
@@ -106,8 +106,8 @@ function formatDate(dateString) {
                 <h3 class="font-space text-base sm:text-xl font-medium text-stone-900 dark:text-stone-100">
                   <a 
                     href={blog.externalLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                    target={blog.externalLink?.startsWith('http') ? '_blank' : '_self'}
+                    rel={blog.externalLink?.startsWith('http') ? 'noopener noreferrer' : undefined}
                     class="hover:text-stone-700 dark:hover:text-stone-300 hover:underline transition-colors"
                   >
                     {blog.title}
@@ -137,8 +137,8 @@ function formatDate(dateString) {
                 <h3 class="font-space font-medium text-base sm:text-xl text-stone-900 dark:text-stone-100">
                   <a 
                     href={blog.externalLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                    target={blog.externalLink?.startsWith('http') ? '_blank' : '_self'}
+                    rel={blog.externalLink?.startsWith('http') ? 'noopener noreferrer' : undefined}
                     class="hover:text-stone-700 dark:hover:text-stone-300 hover:underline transition-colors"
                   >
                     {blog.title}

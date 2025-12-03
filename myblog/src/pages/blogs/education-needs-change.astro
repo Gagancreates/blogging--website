@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Education needs a change | Gagan P">
+  <main class="container mx-auto px-4 py-8 sm:py-12">
+    <div class="max-w-3xl mx-auto">
+      <article class="prose prose-stone dark:prose-invert max-w-none">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
+          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100">
+            Why I Am Building zTutor
+          </h1>
+          
+          <a 
+            href="/blogs" 
+            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            /blogs
+          </a>
+        </div>
+        
+        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
+          03 December, 2025
+        </p>
+
+        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
+          <p>
+            I am currently building <a href="https://ztutor.app" target="_blank" rel="noopener noreferrer" class="font-semibold text-stone-900 dark:text-stone-100 hover:underline">zTutor</a>, which is an AI native educational video generator app that creates custom video lessons and tutorials for students and for anyone who is curious to learn.
+          </p>
+
+          <p>
+            I started building zTutor around 5 months ago, and the reason I started building it was because I used AI heavily to learn and educate myself. But I noticed that even though AI is very smart, I still preferred to learn a concept or solve a problem through a tutor, whether online or offline. Everyone uses ChatGPT and other AI tools to aid their learning, but they are still not as effective as real life tutors because they lack visual explanation. This is exactly the problem I am solving through zTutor.
+          </p>
+
+          <p>
+            I still remember the times when I used to prepare for JEE. Whenever I had a doubt in a concept or a problem, I always used to go to my math professor, who would explain the problem or concept at any time of the day, even if I asked through WhatsApp. This experience is what made me build zTutor, because not everyone has access to tutors like I had, and I want everybody to have a tutor in their hands.
+          </p>
+
+          <p>
+            What makes zTutor unique is that anyone can learn any concept visually, just like a tutor explaining it through a video lesson, and this can be done with just a simple prompt about what the student wants to learn. zTutor is not just limited to concept explanations. Students can even use it to generate tutorial and solution videos for problems from SAT, Olympiads, and more. With advanced animations, students can master important topics like calculus, trigonometry, and others and understand them visually.
+          </p>
+
+          <p>
+            zTutor can also be used at the enterprise level by educators to create educational videos without worrying about animations or graphics and focus solely on their content. Another impressive fact is that our video generation pipeline is one of a kind and is 10 times less expensive than other video generation models like Google Veo 3, Kling, and others.
+          </p>
+
+          <p>
+            All these things make zTutor one of a kind, and challenges the traditional way of learning. This is just a small part of my final vision to revolutionize the current education system. If you ever felt drained after your school/uni, it was never your fault, education has been stagnant for a long while, but not anymore. 
+          </p>
+
+          <p class="font-semibold">
+            Thank you.
+          </p>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
+          <a 
+            href="/blogs" 
+            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Back to all blogs
+          </a>
+        </div>
+      </article>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  article {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
