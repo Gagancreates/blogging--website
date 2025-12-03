@@ -37,8 +37,9 @@ import Analytics from '@vercel/analytics/astro';
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/zt-formom" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/zt-formom?display=swap" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
     
     <!-- Rest of your head content remains the same -->
@@ -213,7 +214,11 @@ import Analytics from '@vercel/analytics/astro';
   html { scroll-behavior: smooth; }
   .font-mono { font-family: 'IBM Plex Mono', monospace; }
   .font-space { font-family: 'Space Grotesk', sans-serif; }
-  .font-zt { font-family: 'Zt Formom', sans-serif; }
+  .font-zt { 
+    font-family: 'Zt Formom', sans-serif; 
+  }
+  
+
 
   * { transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease; }
 
