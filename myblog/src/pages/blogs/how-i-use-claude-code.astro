@@ -1,0 +1,152 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="How I Use Claude Code | Gagan P">
+  <main class="container mx-auto px-4 py-8 sm:py-12">
+    <div class="max-w-3xl mx-auto">
+      <article class="prose prose-stone dark:prose-invert max-w-none">
+        <!-- Header Section -->
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
+          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 mb-0">
+            How I Use Claude Code
+          </h1>
+          
+          <a 
+            href="/blogs" 
+            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Back to all blogs
+          </a>
+        </div>
+        
+        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
+          10 December, 2025
+        </p>
+
+        <!-- Main Content -->
+        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
+          <p>
+            I use Claude Code a lot, especially when I'm moving fast and shipping features. It's insanely powerful, but if you're not careful, it can also turn your codebase into a complete mess. After breaking things enough times, I found one workflow that consistently keeps things clean and under control.
+          </p>
+
+          <h2 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            The Three-Phase Workflow
+          </h2>
+
+          <p>
+            The single most important tip that has helped me escape the massive code mess it sometimes creates is this: for every feature I want to implement, I follow three phases.
+          </p>
+
+          <h3 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Phase 1: Discussion & Design
+          </h3>
+
+          <p>
+            In the first phase, I describe my idea and what I want Claude to execute, ask it to skim through the relevant sections of the codebase, and then have a deep discussion about implementing the feature and ask for its POV. After that, I finally decide on the exact feature.
+          </p>
+
+          <p>
+            <strong>This step alone filters out a lot of bad design decisions before they ever touch the code.</strong>
+          </p>
+
+          <h3 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Phase 2: Documentation & Planning
+          </h3>
+
+          <p>
+            Then I ask Claude to generate a <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">#feature_plan.md</code> file which contains detailed documentation of the feature. I use a prompt like:
+          </p>
+
+          <blockquote class="border-l-4 border-stone-300 dark:border-stone-600 pl-4 italic my-6">
+            "Now we are going to implement the feature as discussed, write a detailed documentation for my AI engineer, divide the plan into phases and add a test at the end of each phase. Also include relevant files and code snippets that have to be created or updated."
+          </blockquote>
+
+          <p>
+            In this manner, there is a well-documented feature plan that can be executed manually or agentically because all the code snippets and files are present. You also get way more control over what is happening, and everything gets verified by tests.
+          </p>
+
+          <p>
+            At this point, you have complete control over what is happening and you can make changes whenever the AI goes out of track or loses context.
+          </p>
+
+          <h3 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Phase 3: Implementation & Testing
+          </h3>
+
+          <p>
+            The third phase is simply following the doc and asking Claude to implement Phase 1 from the <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">#feature_plan.md</code> and test it with the test case.
+          </p>
+
+          <p>
+            I don't really like to use the agent mode, because the manual way of accepting changes on the go allows me to review the code changes/updates for each file and believe me—this has saved me a lot of time spent on refactoring unnecessary code additions/deletions.
+          </p>
+
+          <h2 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Final Thoughts
+          </h2>
+
+          <p class="font-semibold">
+            That's it. These are the 3 phases that I follow and felt need to be shared. And yeah, don't forget to use version control as and when you feel the updates are as you desired and all the tests have been passed.
+          </p>
+
+          <p class="font-semibold">
+           Happy Coding!
+          </p>
+        </div>
+
+        <!-- Mobile Back Button -->
+        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
+          <a 
+            href="/blogs" 
+            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Back to all blogs
+          </a>
+        </div>
+      </article>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  article {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Ensure proper spacing for headings */
+  article h2 {
+    scroll-margin-top: 2rem;
+  }
+
+  article h3 {
+    scroll-margin-top: 2rem;
+  }
+
+  /* Style for inline code */
+  article code {
+    font-weight: 500;
+  }
+
+  /* Remove underline from navigation links */
+  article a.no-underline {
+    text-decoration: none;
+  }
+</style>
