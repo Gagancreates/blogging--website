@@ -366,18 +366,18 @@ import Layout from '../layouts/Layout.astro';
 </section>
 
 <!-- Notes Section -->
-<section class="group relative p-6 sm:p-8 rounded-2xl 
+<section class="group relative p-6 sm:p-8 rounded-2xl
   bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
   shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
   border border-rose-300
   backdrop-blur-sm
-  dark:from-stone-900/60 dark:to-stone-800/40 
+  dark:from-stone-900/60 dark:to-stone-800/40
   dark:border-stone-500/60
   hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500">
   <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
   <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
   <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
-  
+
   <div class="flex items-center justify-between mb-6 sm:mb-8">
     <div class="flex items-center gap-3">
       <h2 class="font-zt text-2xl sm:text-3xl relative group">
@@ -389,8 +389,16 @@ import Layout from '../layouts/Layout.astro';
       Quick References
     </span>
   </div>
-  
-  <p class="font-space text-stone-600 dark:text-stone-400 text-base sm:text-lg leading-relaxed italic">
-    Coming soon...
-  </p>
+
+  <ul class="space-y-4 sm:space-y-5">
+    <li class="relative pl-5 sm:pl-6 before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-stone-400 dark:before:bg-stone-500 before:rounded-full hover:before:bg-stone-600 dark:hover:before:bg-stone-400 transition-colors">
+      <a
+        href="/notes"
+        class="font-space text-base sm:text-lg text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors relative group"
+      >
+        3rd Semester
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-600 dark:bg-stone-400 group-hover:w-full transition-all duration-300"></span>
+      </a>
+    </li>
+  </ul>
 </section>

@@ -1,0 +1,758 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+---
+
+<Layout title="DSA Unit 3 - Graphs and Trees | Gagan P">
+  <main class="container mx-auto px-4 py-8 sm:py-12">
+    <div class="max-w-3xl mx-auto">
+      <article class="prose prose-stone dark:prose-invert max-w-none">
+        <!-- Header Section -->
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
+          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 mb-0">
+            DSA Unit 3
+          </h1>
+
+          <a
+            href="/notes"
+            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            /notes
+          </a>
+        </div>
+
+        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
+         Graphs and Trees
+        </p>
+
+        <!-- Main Content -->
+        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Binary Search Tree (BST)
+          </h2>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Using Linked List (Malloc)
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">struct Node* createNode(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode-&gt;data = value;
+    newNode-&gt;left = NULL;
+    newNode-&gt;right = NULL;
+    return newNode;
+}
+
+struct Node* insert(struct Node* root, int value) {
+    if (root == NULL) {
+        return createNode(value);
+    }
+
+    if (value &gt; root-&gt;data) {
+        root-&gt;right = insert(root-&gt;right, value);
+    }
+    else if (value &lt; root-&gt;data) {
+        root-&gt;left = insert(root-&gt;left, value);
+    }
+    return root;
+}
+
+// Deletion
+struct Node* findMin(struct Node* node) {
+    struct Node* current = node;
+    while (current && current-&gt;left != NULL) {
+        current = current-&gt;left;
+    }
+    return current;
+}
+
+struct Node* deleteNode(struct Node* root, int value) {
+    if (root == NULL) return root;
+
+    if (value &lt; root-&gt;data) {
+        root-&gt;left = deleteNode(root-&gt;left, value);
+    }
+    else if (value &gt; root-&gt;data) {
+        root-&gt;right = deleteNode(root-&gt;right, value);
+    }
+    else {
+        // Case 1 & 2: One Child or No Child
+        if (root-&gt;left == NULL) {
+            struct Node* temp = root-&gt;right;
+            free(root);
+            return temp;
+        }
+        else if (root-&gt;right == NULL) {
+            struct Node* temp = root-&gt;left;
+            free(root);
+            return temp;
+        }
+
+        // Case 3: Two Children
+        struct Node* temp = findMin(root-&gt;right);
+        root-&gt;data = temp-&gt;data;
+        root-&gt;right = deleteNode(root-&gt;right, temp-&gt;data);
+    }
+    return root;
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            BST Using Array
+          </h3>
+
+          <p>
+            In Zero-Based Indexing (Root at 0): For parent node at <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">i</code>, left child at <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">2i + 1</code> and right child at <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">2i + 2</code>. Parent of node at <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">i</code> is <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">[(i-1)/2]</code>.
+          </p>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define MAX_SIZE 20
+
+int tree[MAX_SIZE];
+
+void initTree() {
+    for (int i = 0; i &lt; MAX_SIZE; i++) {
+        tree[i] = 0;
+    }
+}
+
+void insert(int value) {
+    int currentIndex = 0;
+
+    while (currentIndex &lt; MAX_SIZE) {
+        if (tree[currentIndex] == 0) {
+            tree[currentIndex] = value;
+            printf("Inserted %d at index %d\n", value, currentIndex);
+            return;
+        }
+
+        if (value &lt; tree[currentIndex]) {
+            currentIndex = 2 * currentIndex + 1;
+        } else {
+            currentIndex = 2 * currentIndex + 2;
+        }
+    }
+    printf("Error: Tree is full, cannot insert %d\n", value);
+}
+
+void inorder(int index) {
+    if (index &gt;= MAX_SIZE || tree[index] == 0) {
+        return;
+    }
+    inorder(2 * index + 1);
+    printf("%d ", tree[index]);
+    inorder(2 * index + 2);
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Binary Expression Trees
+          </h2>
+
+          <p>
+            Binary expression trees represent mathematical expressions where operands are leaves and operators are internal nodes. We can construct them from postfix expressions.
+          </p>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+struct Node {
+    char data;
+    struct Node *left, *right;
+};
+
+#define MAX_STACK_SIZE 100
+struct Node* stack[MAX_STACK_SIZE];
+int top = -1;
+
+void push(struct Node* node) {
+    if (top &lt; MAX_STACK_SIZE - 1) {
+        stack[++top] = node;
+    }
+}
+
+struct Node* pop() {
+    if (top &gt;= 0) {
+        return stack[top--];
+    }
+    return NULL;
+}
+
+struct Node* newNode(char val) {
+    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+    temp-&gt;data = val;
+    temp-&gt;left = temp-&gt;right = NULL;
+    return temp;
+}
+
+int isOperand(char c) {
+    return (c &gt;= 'a' && c &lt;= 'z') || (c &gt;= '0' && c &lt;= '9');
+}
+
+struct Node* buildExpressionTree(char* postfix) {
+    int i = 0;
+
+    while (postfix[i] != '\0') {
+        char symbol = postfix[i];
+
+        if (isOperand(symbol)) {
+            push(newNode(symbol));
+        } else {
+            struct Node* operatorNode = newNode(symbol);
+
+            operatorNode-&gt;right = pop();
+            operatorNode-&gt;left = pop();
+
+            push(operatorNode);
+        }
+        i++;
+    }
+    return pop();
+}
+
+void inorder(struct Node* root) {
+    if (root) {
+        if (!isOperand(root-&gt;data)) printf("(");
+
+        inorder(root-&gt;left);
+        printf("%c", root-&gt;data);
+        inorder(root-&gt;right);
+
+        if (!isOperand(root-&gt;data)) printf(")");
+    }
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Threaded Binary Trees
+          </h2>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Full Threaded Binary Tree (Inorder)
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+    int lthread;
+    int rthread;
+};
+
+struct Node* leftmost(struct Node* node) {
+    if (node == NULL) return NULL;
+
+    while (node-&gt;lthread == 0) {
+        node = node-&gt;left;
+    }
+    return node;
+}
+
+struct Node* InorderSuccessor(struct Node* ptr) {
+    if (ptr-&gt;rthread == 1) {
+        return ptr-&gt;right;
+    }
+
+    ptr = ptr-&gt;right;
+
+    while (ptr != NULL && ptr-&gt;lthread == 0) {
+        ptr = ptr-&gt;left;
+    }
+    return ptr;
+}
+
+void inorderTraversal(struct Node* root) {
+    if (root == NULL) {
+        printf("Tree is empty.\n");
+        return;
+    }
+
+    struct Node* ptr = leftmost(root);
+
+    while (ptr != NULL) {
+        printf("%d ", ptr-&gt;data);
+        ptr = InorderSuccessor(ptr);
+    }
+    printf("\n");
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Right Threaded Binary Tree (Inorder)
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">struct Node {
+    int data;
+    struct Node *left;
+    struct Node *right;
+    int rthread;
+};
+
+struct Node* leftmost(struct Node* node) {
+    if (node == NULL) return NULL;
+
+    while (node-&gt;left != NULL) {
+        node = node-&gt;left;
+    }
+    return node;
+}
+
+struct Node* InorderSuccessor(struct Node* ptr) {
+    if (ptr-&gt;rthread == 1) {
+        return ptr-&gt;right;
+    }
+
+    ptr = ptr-&gt;right;
+
+    while (ptr != NULL && ptr-&gt;left != NULL) {
+        ptr = ptr-&gt;left;
+    }
+    return ptr;
+}
+
+void inorderTraversal(struct Node* root) {
+    if (root == NULL) {
+        printf("Tree is empty.\n");
+        return;
+    }
+
+    struct Node* ptr = leftmost(root);
+
+    while (ptr != NULL) {
+        printf("%d ", ptr-&gt;data);
+        ptr = InorderSuccessor(ptr);
+    }
+    printf("\n");
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Heaps
+          </h2>
+
+          <p>
+            Heaps are special binary trees with two key properties:
+          </p>
+
+          <ul>
+            <li><strong>Structural Property:</strong> Must be a complete binary tree (except last level may not be full)</li>
+            <li><strong>Heap Property:</strong> Parent value should be greater than (max heap) or less than (min heap) both children</li>
+            <li>No rule that left &gt; right</li>
+            <li>If there are n nodes, height is ⌊log₂n⌋</li>
+            <li>First n/2 elements are parents, last n/2 are children</li>
+          </ul>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Max Heap - Bottom-Up Heapification
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void heapBottomUp(int H[], int n) {
+    for (int i = n / 2; i &gt;= 1; i--) {
+
+        int k = i;
+        int v = H[k];
+        int heap = 0;
+
+        while (heap == 0 && 2 * k &lt;= n) {
+
+            int j = 2 * k;
+
+            if (j &lt; n) {
+                if (H[j] &lt; H[j + 1]) {
+                    j = j + 1;
+                }
+            }
+
+            if (v &gt;= H[j]) {
+                heap = 1;
+            } else {
+                H[k] = H[j];
+                k = j;
+            }
+        }
+        H[k] = v;
+    }
+}
+
+int main() {
+    int arr[10] = {0, 4, 1, 3, 2, 16, 9, 10, 14, 8};
+    int N = 9;
+
+    printf("Original array (1-indexed): ");
+    for (int i = 1; i &lt;= N; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    heapBottomUp(arr, N);
+
+    printf("Max Heap array (1-indexed): ");
+    for (int i = 1; i &lt;= N; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Max Heap - Top-Down Approach + Heap Sort
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#define MAX 50
+
+int main() {
+    int a[MAX];
+    int i, c, p, n, elt;
+
+    printf("Enter the number of elements (max %d):\n", MAX);
+    if (scanf("%d", &n) != 1 || n &lt;= 0 || n &gt; MAX) {
+        printf("Invalid number of elements.\n");
+        return 1;
+    }
+
+    printf("Enter the elements:\n");
+    for (i = 0; i &lt; n; i++) {
+        if (scanf("%d", &a[i]) != 1) {
+            printf("Error reading element.\n");
+            return 1;
+        }
+    }
+
+    // HEAPIFY: BUILD MAX HEAP (Top-Down / Sift-Up)
+    for (i = 1; i &lt; n; i++) {
+        elt = a[i];
+        c = i;
+        p = (c - 1) / 2;
+
+        while (c &gt; 0 && a[p] &lt; elt) {
+            a[c] = a[p];
+            c = p;
+            p = (c - 1) / 2;
+        }
+        a[c] = elt;
+    }
+
+    printf("\nElements of Max Heap:\n");
+    for (i = 0; i &lt; n; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+
+    // HEAP SORT
+    for (i = n - 1; i &gt; 0; i--) {
+        elt = a[i];
+        a[i] = a[0];
+        a[0] = elt;
+
+        elt = a[0];
+        p = 0;
+
+        while (2 * p + 1 &lt; i) {
+            c = 2 * p + 1;
+
+            if (c + 1 &lt; i && a[c] &lt; a[c + 1]) {
+                c = c + 1;
+            }
+
+            if (elt &gt;= a[c]) {
+                break;
+            }
+
+            a[p] = a[c];
+            p = c;
+        }
+        a[p] = elt;
+    }
+
+    printf("\nSorted elements (Heap sort):\n");
+    for (i = 0; i &lt; n; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+
+    return 0;
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Min Heap - Bottom-Up
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void heapBottomUpMin(int H[], int n) {
+
+    for (int i = n / 2; i &gt;= 1; i--) {
+
+        int k = i;
+        int v = H[k];
+        int heap = 0;
+
+        while (heap == 0 && 2 * k &lt;= n) {
+            int j = 2 * k;
+
+            if (j &lt; n) {
+                if (H[j] &gt; H[j + 1]) {
+                    j = j + 1;
+                }
+            }
+
+            if (v &lt;= H[j]) {
+                heap = 1;
+            } else {
+                H[k] = H[j];
+                k = j;
+            }
+        }
+        H[k] = v;
+    }
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Min Heap - Top-Down
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">// HEAPIFY: BUILD MIN HEAP (Top-Down / Sift-Up)
+for (i = 1; i &lt; n; i++) {
+    elt = a[i];
+    c = i;
+    p = (c - 1) / 2;
+
+    while (c &gt; 0 && a[p] &gt; elt) {
+        a[c] = a[p];
+        c = p;
+        p = (c - 1) / 2;
+    }
+    a[c] = elt;
+}
+
+// MIN HEAP SORT
+for (i = n - 1; i &gt; 0; i--) {
+    elt = a[i];
+    a[i] = a[0];
+    a[0] = elt;
+
+    elt = a[0];
+    p = 0;
+
+    while (2 * p + 1 &lt; i) {
+        c = 2 * p + 1;
+
+        if (c + 1 &lt; i && a[c] &gt; a[c + 1]) {
+            c = c + 1;
+        }
+
+        if (elt &lt;= a[c]) {
+            break;
+        }
+
+        a[p] = a[c];
+        p = c;
+    }
+    a[p] = elt;
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Priority Queues Using Heaps
+          </h2>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Descending Priority Queue (Max Heap)
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAX 50
+
+typedef struct priq {
+    int pq[MAX];
+    int n;
+} PQ;
+
+void init(PQ *pt) {
+    pt-&gt;n = 0;
+}
+
+void disp(PQ *pt) {
+    int i;
+    printf("Queue elements: ");
+    for (i = 0; i &lt; pt-&gt;n; i++) {
+        printf("%d ", pt-&gt;pq[i]);
+    }
+    printf("\n");
+}
+
+int enqueue(PQ *pt, int e) {
+    int p, c;
+    if (pt-&gt;n &gt;= MAX) return 0;
+
+    c = pt-&gt;n;
+    p = (c - 1) / 2;
+
+    while (c &gt; 0 && pt-&gt;pq[p] &lt; e) {
+        pt-&gt;pq[c] = pt-&gt;pq[p];
+        c = p;
+        p = (c - 1) / 2;
+    }
+
+    pt-&gt;pq[c] = e;
+    pt-&gt;n = pt-&gt;n + 1;
+    return 1;
+}
+
+int dequeue(PQ *pt, int *ele) {
+    int p, c;
+    if (pt-&gt;n == 0) return 0;
+
+    *ele = pt-&gt;pq[0];
+    int elt = pt-&gt;pq[pt-&gt;n - 1];
+    pt-&gt;n = pt-&gt;n - 1;
+
+    p = 0;
+
+    c = 2 * p + 1;
+    if (c + 1 &lt; pt-&gt;n && pt-&gt;pq[c] &lt; pt-&gt;pq[c + 1]) {
+        c = c + 1;
+    }
+    if (c &gt;= pt-&gt;n) {
+        c = -1;
+    }
+
+    while (c &gt;= 0 && elt &lt; pt-&gt;pq[c]) {
+        pt-&gt;pq[p] = pt-&gt;pq[c];
+        p = c;
+        c = 2 * p + 1;
+
+        if (c + 1 &lt; pt-&gt;n && pt-&gt;pq[c + 1] &gt; pt-&gt;pq[c]) {
+            c = c + 1;
+        }
+
+        if (c &gt;= pt-&gt;n) c = -1;
+    }
+
+    pt-&gt;pq[p] = elt;
+    return 1;
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Ascending Priority Queue (Min Heap)
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">int enqueue_min(PQ *pt, int e) {
+    int p, c;
+    if (pt-&gt;n &gt;= MAX) return 0;
+
+    c = pt-&gt;n;
+    p = (c - 1) / 2;
+
+    while (c &gt; 0 && pt-&gt;pq[p] &gt; e) {
+        pt-&gt;pq[c] = pt-&gt;pq[p];
+        c = p;
+        p = (c - 1) / 2;
+    }
+
+    pt-&gt;pq[c] = e;
+    pt-&gt;n = pt-&gt;n + 1;
+    return 1;
+}
+
+int dequeue_min(PQ *pt, int *ele) {
+    int p, c;
+    if (pt-&gt;n == 0) return 0;
+
+    *ele = pt-&gt;pq[0];
+    int elt = pt-&gt;pq[pt-&gt;n - 1];
+    pt-&gt;n = pt-&gt;n - 1;
+
+    p = 0;
+
+    c = 2 * p + 1;
+    if (c + 1 &lt; pt-&gt;n && pt-&gt;pq[c] &gt; pt-&gt;pq[c + 1]) {
+        c = c + 1;
+    }
+    if (c &gt;= pt-&gt;n) {
+        c = -1;
+    }
+
+    while (c &gt;= 0 && elt &gt; pt-&gt;pq[c]) {
+        pt-&gt;pq[p] = pt-&gt;pq[c];
+        p = c;
+        c = 2 * p + 1;
+
+        if (c + 1 &lt; pt-&gt;n && pt-&gt;pq[c + 1] &lt; pt-&gt;pq[c]) {
+            c = c + 1;
+        }
+
+        if (c &gt;= pt-&gt;n) c = -1;
+    }
+
+    pt-&gt;pq[p] = elt;
+    return 1;
+}</code></pre>
+
+        </div>
+
+        <!-- Mobile Back Button -->
+        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
+          <a
+            href="/notes"
+            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            /notes
+          </a>
+        </div>
+      </article>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  article {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  article h2 {
+    scroll-margin-top: 2rem;
+  }
+
+  article h3 {
+    scroll-margin-top: 2rem;
+  }
+
+  article code {
+    font-weight: 500;
+  }
+
+  article a.no-underline {
+    text-decoration: none;
+  }
+
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  code {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+</style>

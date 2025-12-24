@@ -1,0 +1,1149 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+---
+
+<Layout title="DSA Unit 1 - Linked Lists & Stacks | Gagan P">
+  <main class="container mx-auto px-4 py-8 sm:py-12">
+    <div class="max-w-3xl mx-auto">
+      <article class="prose prose-stone dark:prose-invert max-w-none">
+        <!-- Header Section -->
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
+          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 mb-0">
+            DSA Unit 1
+          </h1>
+
+          <a
+            href="/notes"
+            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            /notes
+          </a>
+        </div>
+
+        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
+          Linked Lists & Stacks
+        </p>
+
+        <!-- Main Content -->
+        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Singly Linked List - Full Code
+          </h2>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+//0. Creating a new node
+struct Node* create(){
+    struct Node* newnode=(struct Node*)malloc(sizeof(struct Node));
+    return newnode;
+}
+
+// 1. Traversal
+void traverse(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// 2. Insertion
+void insertBeginning(struct Node** head, int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+void insertEnd(struct Node** head, int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = NULL;
+
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    struct Node* temp = *head;
+    while (temp->next != NULL) temp = temp->next;
+    temp->next = newNode;
+}
+
+void insertAtPos(struct Node** head, int value, int pos) {
+    if (pos &lt; 1) return;
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+
+    if (pos == 1) {
+        newNode->next = *head;
+        *head = newNode;
+        return;
+    }
+    struct Node* temp = *head;
+    for (int i = 1; temp != NULL && i &lt; pos - 1; i++)
+        temp = temp->next;
+
+    if (temp == NULL) return; // invalid pos
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
+// 3. Deletion
+void deleteBeginning(struct Node** head) {
+    if (*head == NULL) return;
+    struct Node* temp = *head;
+    *head = (*head)->next;
+    free(temp);
+}
+
+void deleteEnd(struct Node** head) {
+    if (*head == NULL) return;
+    if ((*head)->next == NULL) {
+        free(*head);
+        *head = NULL;
+        return;
+    }
+    struct Node* temp = *head;
+    while (temp->next->next != NULL) temp = temp->next;
+    free(temp->next);
+    temp->next = NULL;
+}
+
+void deleteAtPos(struct Node** head, int pos) {
+    if (*head == NULL || pos &lt; 1) return;
+    struct Node* temp = *head;
+
+    if (pos == 1) {
+        *head = temp->next;
+        free(temp);
+        return;
+    }
+    for (int i = 1; temp != NULL && i &lt; pos - 1; i++)
+        temp = temp->next;
+
+    if (temp == NULL || temp->next == NULL) return;
+    struct Node* del = temp->next;
+    temp->next = temp->next->next;
+    free(del);
+}
+
+void deleteByKey(struct Node** head, int key) {
+    struct Node* temp = *head, *prev = NULL;
+    if (temp != NULL && temp->data == key) {
+        *head = temp->next;
+        free(temp);
+        return;
+    }
+    while (temp != NULL && temp->data != key) {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp == NULL) return;
+    prev->next = temp->next;
+    free(temp);
+}
+
+// 4. Searching
+int search(struct Node* head, int key) {
+    int pos = 1;
+    while (head != NULL) {
+        if (head->data == key) return pos;
+        head = head->next;
+        pos++;
+    }
+    return -1;
+}
+
+// 5. Reversal
+void reverse(struct Node** head) {
+    struct Node *prev = NULL, *curr = *head, *next = NULL;
+    while (curr != NULL) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    *head = prev;
+}
+
+//Reversal by recursion
+struct Node* reverseRecursive(struct Node* head) {
+    if (head == NULL || head->next == NULL)
+        return head;
+
+    struct Node* newHead = reverseRecursive(head->next);
+
+    head->next->next = head;
+    head->next = NULL;
+
+    return newHead;
+}
+
+// 6. Length
+int length(struct Node* head) {
+    int count = 0;
+    while (head != NULL) {
+        count++;
+        head = head->next;
+    }
+    return count;
+}
+
+// 7. Update
+void update(struct Node* head, int oldVal, int newVal) {
+    while (head != NULL) {
+        if (head->data == oldVal) {
+            head->data = newVal;
+            return;
+        }
+        head = head->next;
+    }
+}
+
+// --- Driver for Testing ---
+int main() {
+    struct Node* head = NULL;
+
+    insertEnd(&head, 10);
+    insertEnd(&head, 20);
+    insertEnd(&head, 30);
+    traverse(head);
+
+    insertBeginning(&head, 5);
+    traverse(head);
+
+    insertAtPos(&head, 15, 3);
+    traverse(head);
+
+    deleteByKey(&head, 20);
+    traverse(head);
+
+    printf("Found 15 at pos: %d\n", search(head, 15));
+
+    reverse(&head);
+    traverse(head);
+
+    printf("Length: %d\n", length(head));
+
+    update(head, 15, 99);
+    traverse(head);
+
+    return 0;
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Doubly Linked List
+          </h2>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct Node {
+    int data;
+    struct Node* next;
+    struct Node* prev;
+};
+
+// --- Traversal ---
+void traverse(struct Node* head) {
+    struct Node* temp = head;
+    printf("NULL &lt;- ");
+    while (temp != NULL) {
+        printf("%d", temp->data);
+        if (temp->next) printf(" &lt;-&gt; ");
+        temp = temp->next;
+    }
+    printf(" -&gt; NULL\n");
+}
+
+// --- Insertion ---
+void insertBeginning(struct Node** head, int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = *head;
+    newNode->prev = NULL;
+    if (*head != NULL) (*head)->prev = newNode;
+    *head = newNode;
+}
+
+void insertEnd(struct Node** head, int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = NULL;
+
+    if (*head == NULL) {
+        newNode->prev = NULL;
+        *head = newNode;
+        return;
+    }
+    struct Node* temp = *head;
+    while (temp->next != NULL) temp = temp->next;
+    temp->next = newNode;
+    newNode->prev = temp;
+}
+
+void insertAtPos(struct Node** head, int value, int pos) {
+    if (pos &lt; 1) return;
+    if (pos == 1) { insertBeginning(head, value); return; }
+
+    struct Node* temp = *head;
+    for (int i = 1; temp != NULL && i &lt; pos - 1; i++) temp = temp->next;
+    if (temp == NULL) return;
+
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = temp->next;
+    newNode->prev = temp;
+    if (temp->next != NULL) temp->next->prev = newNode;
+    temp->next = newNode;
+}
+
+// --- Deletion ---
+void deleteBeginning(struct Node** head) {
+    if (*head == NULL) return;
+    struct Node* temp = *head;
+    *head = temp->next;
+    if (*head != NULL) (*head)->prev = NULL;
+    free(temp);
+}
+
+void deleteEnd(struct Node** head) {
+    if (*head == NULL) return;
+    struct Node* temp = *head;
+    while (temp->next != NULL) temp = temp->next;
+    if (temp->prev != NULL) temp->prev->next = NULL;
+    else *head = NULL;
+    free(temp);
+}
+
+void deleteAtPos(struct Node** head, int pos) {
+    if (*head == NULL || pos &lt; 1) return;
+    struct Node* temp = *head;
+    for (int i = 1; temp != NULL && i &lt; pos; i++) temp = temp->next;
+    if (temp == NULL) return;
+
+    if (temp->prev != NULL) temp->prev->next = temp->next;
+    else *head = temp->next;
+
+    if (temp->next != NULL) temp->next->prev = temp->prev;
+    free(temp);
+}
+
+void deleteByKey(struct Node** head, int key) {
+    struct Node* temp = *head;
+    while (temp != NULL && temp->data != key) temp = temp->next;
+    if (temp == NULL) return;
+
+    if (temp->prev != NULL) temp->prev->next = temp->next;
+    else *head = temp->next;
+
+    if (temp->next != NULL) temp->next->prev = temp->prev;
+    free(temp);
+}
+
+// --- Searching ---
+int search(struct Node* head, int key) {
+    int pos = 1;
+    while (head != NULL) {
+        if (head->data == key) return pos;
+        head = head->next;
+        pos++;
+    }
+    return -1;
+}
+
+// --- Reversal ---
+void reverse(struct Node** head) {
+    struct Node* temp = NULL;
+    struct Node* curr = *head;
+    while (curr != NULL) {
+        temp = curr->prev;
+        curr->prev = curr->next;
+        curr->next = temp;
+        curr = curr->prev;
+    }
+    if (temp != NULL) *head = temp->prev;
+}
+
+// --- Length ---
+int length(struct Node* head) {
+    int count = 0;
+    while (head != NULL) {
+        count++;
+        head = head->next;
+    }
+    return count;
+}
+
+// --- Update ---
+void update(struct Node* head, int oldVal, int newVal) {
+    while (head != NULL) {
+        if (head->data == oldVal) { head->data = newVal; return; }
+        head = head->next;
+    }
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Circular Linked List (Singly)
+          </h2>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// --- Traversal ---
+void traverse(struct Node* head) {
+    if (head == NULL) return;
+    struct Node* temp = head;
+    do {
+        printf("%d -&gt; ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(head)\n");
+}
+
+// --- Insertion ---
+void insertBeginning(struct Node** head, int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    if (*head == NULL) {
+        newNode->next = newNode;
+        *head = newNode;
+        return;
+    }
+    struct Node* temp = *head;
+    while (temp->next != *head) temp = temp->next;
+    newNode->next = *head;
+    temp->next = newNode;
+    *head = newNode;
+}
+
+void insertEnd(struct Node** head, int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    if (*head == NULL) {
+        newNode->next = newNode;
+        *head = newNode;
+        return;
+    }
+    struct Node* temp = *head;
+    while (temp->next != *head) temp = temp->next;
+    temp->next = newNode;
+    newNode->next = *head;
+}
+
+void insertAtPos(struct Node** head, int value, int pos) {
+    if (pos &lt; 1) return;
+    if (pos == 1) { insertBeginning(head, value); return; }
+
+    struct Node* temp = *head;
+    int i = 1;
+    while (i &lt; pos - 1 && temp->next != *head) { temp = temp->next; i++; }
+
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = temp->next;
+    temp->next=newNode;
+}
+
+// --- Deletion ---
+void deleteBeginning(struct Node** head) {
+    if (*head == NULL) return;
+    if ((*head)->next == *head) { free(*head); *head = NULL; return; }
+
+    struct Node* temp = *head;
+    struct Node* last = *head;
+    while (last->next != *head) last = last->next;
+    *head = (*head)->next;
+    last->next = *head;
+    free(temp);
+}
+
+void deleteEnd(struct Node** head) {
+    if (*head == NULL) return;
+    if ((*head)->next == *head) { free(*head); *head = NULL; return; }
+
+    struct Node* temp = *head;
+    while (temp->next->next != *head) temp = temp->next;
+    free(temp->next);
+    temp->next = *head;
+}
+
+void deleteAtPos(struct Node** head, int pos) {
+    if (*head == NULL || pos &lt; 1) return;
+    if (pos == 1) { deleteBeginning(head); return; }
+
+    struct Node* temp = *head;
+    int i = 1;
+    while (i &lt; pos - 1 && temp->next != *head) { temp = temp->next; i++; }
+
+    struct Node* del = temp->next;
+    temp->next = del->next;
+    free(del);
+}
+
+void deleteByKey(struct Node** head, int key) {
+    if (*head == NULL) return;
+
+    struct Node* curr = *head, *prev = NULL;
+
+    // Head node
+    if ((*head)->data == key) { deleteBeginning(head); return; }
+
+    do {
+        prev = curr;
+        curr = curr->next;
+        if (curr->data == key) {
+            prev->next = curr->next;
+            free(curr);
+            return;
+        }
+    } while (curr != *head);
+}
+
+// --- Searching ---
+int search(struct Node* head, int key) {
+    if (head == NULL) return -1;
+    struct Node* temp = head;
+    int pos = 1;
+    do {
+        if (temp->data == key) return pos;
+        temp = temp->next;
+        pos++;
+    } while (temp != head);
+    return -1;
+}
+
+// --- Length ---
+int length(struct Node* head) {
+    if (head == NULL) return 0;
+    int count = 0;
+    struct Node* temp = head;
+    do { count++; temp = temp->next; } while (temp != head);
+    return count;
+}
+
+// --- Update ---
+void update(struct Node* head, int oldVal, int newVal) {
+    if (head == NULL) return;
+    struct Node* temp = head;
+    do {
+        if (temp->data == oldVal) { temp->data = newVal; return; }
+        temp = temp->next;
+    } while (temp != head);
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Circular Doubly Linked List
+          </h2>
+
+          <p>
+            A circular doubly linked list combines features of both circular and doubly linked lists. Each node has pointers to both next and previous nodes, and the last node points back to the head.
+          </p>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct Node {
+    int data;
+    struct Node* next;
+    struct Node* prev;
+} Node;
+
+/* ------------------ Helpers ------------------ */
+Node* createNode(int value) {
+    Node* n = (Node*)malloc(sizeof(Node));
+    if (!n) { perror("malloc"); exit(EXIT_FAILURE); }
+    n->data = value;
+    n->next = n->prev = NULL;
+    return n;
+}
+
+/* ------------------ Traversal ------------------ */
+void traverseForward(Node* head) {
+    if (!head) { printf("List is empty\n"); return; }
+    Node* temp = head;
+    do {
+        printf("%d -&gt; ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(head)\n");
+}
+
+void traverseBackward(Node* head) {
+    if (!head) { printf("List is empty\n"); return; }
+    Node* tail = head->prev;
+    Node* temp = tail;
+    do {
+        printf("%d -&gt; ", temp->data);
+        temp = temp->prev;
+    } while (temp != tail);
+    printf("(tail)\n");
+}
+
+/* ------------------ Length & Search ------------------ */
+int length(Node* head) {
+    if (!head) return 0;
+    int cnt = 0;
+    Node* temp = head;
+    do { cnt++; temp = temp->next; } while (temp != head);
+    return cnt;
+}
+
+int search(Node* head, int key) {
+    if (!head) return -1;
+    Node* temp = head;
+    int pos = 1;
+    do {
+        if (temp->data == key) return pos;
+        temp = temp->next; pos++;
+    } while (temp != head);
+    return -1;
+}
+
+/* ------------------ Insertions ------------------ */
+void insertBeginning(Node** head, int value) {
+    Node* nn = createNode(value);
+    if (*head == NULL) {
+        nn->next = nn->prev = nn;
+        *head = nn;
+        return;
+    }
+    Node* tail = (*head)->prev;
+    nn->next = *head;
+    nn->prev = tail;
+    tail->next = nn;
+    (*head)->prev = nn;
+    *head = nn;
+}
+
+void insertEnd(Node** head, int value) {
+    Node* nn = createNode(value);
+    if (*head == NULL) {
+        nn->next = nn->prev = nn;
+        *head = nn;
+        return;
+    }
+    Node* tail = (*head)->prev;
+    tail->next = nn;
+    nn->prev = tail;
+    nn->next = *head;
+    (*head)->prev = nn;
+}
+
+void insertAtPos(Node** head, int value, int pos) {
+    if (pos &lt;= 1 || *head == NULL) {
+        insertBeginning(head, value);
+        return;
+    }
+    int n = length(*head);
+    if (pos &gt; n + 1) pos = n + 1;
+
+    Node* cur = *head;
+    for (int i = 1; i &lt; pos - 1; ++i) cur = cur->next;
+
+    Node* nn = createNode(value);
+    Node* nxt = cur->next;
+    cur->next = nn;
+    nn->prev = cur;
+    nn->next = nxt;
+    nxt->prev = nn;
+}
+
+/* ------------------ Deletions ------------------ */
+void deleteBeginning(Node** head) {
+    if (*head == NULL) return;
+    if ((*head)->next == *head) {
+        free(*head);
+        *head = NULL;
+        return;
+    }
+    Node* tail = (*head)->prev;
+    Node* toDel = *head;
+    Node* newHead = toDel->next;
+    tail->next = newHead;
+    newHead->prev = tail;
+    free(toDel);
+    *head = newHead;
+}
+
+void deleteEnd(Node** head) {
+    if (*head == NULL) return;
+    if ((*head)->next == *head) {
+        free(*head);
+        *head = NULL;
+        return;
+    }
+    Node* tail = (*head)->prev;
+    Node* prev = tail->prev;
+    prev->next = *head;
+    (*head)->prev = prev;
+    free(tail);
+}
+
+void deleteAtPos(Node** head, int pos) {
+    if (*head == NULL || pos &lt; 1) return;
+    int n = length(*head);
+    if (pos &gt; n) return;
+    if (pos == 1) { deleteBeginning(head); return; }
+
+    Node* cur = *head;
+    for (int i = 1; i &lt; pos; ++i) cur = cur->next;
+    Node* p = cur->prev;
+    Node* nx = cur->next;
+    p->next = nx;
+    nx->prev = p;
+    free(cur);
+}
+
+void deleteByKey(Node** head, int key) {
+    if (*head == NULL) return;
+    Node* cur = *head;
+    do {
+        if (cur->data == key) {
+            if (cur == *head) {
+                deleteBeginning(head);
+                return;
+            } else {
+                Node* p = cur->prev;
+                Node* nx = cur->next;
+                p->next = nx;
+                nx->prev = p;
+                free(cur);
+                return;
+            }
+        }
+        cur = cur->next;
+    } while (cur != *head);
+}
+
+/* ------------------ Update ------------------ */
+void update(Node* head, int oldVal, int newVal) {
+    if (!head) return;
+    Node* cur = head;
+    do {
+        if (cur->data == oldVal) { cur->data = newVal; return; }
+        cur = cur->next;
+    } while (cur != head);
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Stacks (Array & Linked List)
+          </h2>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Array-Based Stack Operations
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+
+// Function to push an element onto the stack
+int push(int* s, int* t, int size, int x) {
+    if (*t == size - 1) {
+        printf("Stack overflow..cannot insert\n");
+        return -1;
+    }
+    (*t)++;
+    s[*t] = x;
+    return 1;
+}
+
+// Function to pop an element from the stack
+int pop(int* s, int* t) {
+    int x;
+    if (*t == -1) {
+        printf("Stack underflow..cannot delete..\n");
+        return -1;
+    }
+    x = s[*t];
+    (*t)--;
+    return x;
+}
+
+// Function to display the contents of the stack
+void display(int* s, int t) {
+    int i;
+    if (t == -1)
+        printf("Empty stack..\n");
+    else {
+        printf("Stack elements: ");
+        for (i = t; i &gt;= 0; i--)
+            printf("%d  ", s[i]);
+        printf("\n");
+    }
+}
+
+int main() {
+    int top, size, ch, k, x;
+    int *s;
+
+    printf("Enter the size of the stack..\n");
+    scanf("%d", &size);
+
+    s = (int*)malloc(sizeof(int) * size);
+    top = -1;
+
+    while (1) {
+        display(s, top);
+        printf("\n1..push\n");
+        printf("2..pop\n");
+        printf("3..display\n");
+        printf("4..Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &ch);
+
+        switch (ch) {
+            case 1:
+                printf("Enter the data\n");
+                scanf("%d", &x);
+                k = push(s, &top, size, x);
+                if (k &gt; 0)
+                    printf("Element pushed successfully\n");
+                break;
+            case 2:
+                k = pop(s, &top);
+                if (k &gt; 0)
+                    printf("\nElement popped=%d\n", k);
+                break;
+            case 3:
+                display(s, top);
+                break;
+            case 4:
+                free(s);
+                exit(0);
+            default:
+                printf("Invalid choice, please try again.\n");
+        }
+    }
+    return 0;
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Linked List Implementation
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+
+struct node {
+    int data;
+    struct node* next;
+};
+
+struct node* top = NULL;
+
+void push_ll(int x) {
+    struct node* newNode = (struct node*)malloc(sizeof(struct node));
+    if (newNode == NULL) {
+        printf("Memory allocation failed (Stack Overflow)\n");
+        return;
+    }
+    newNode->data = x;
+    newNode->next = top;
+    top = newNode;
+    printf("%d pushed to stack.\n", x);
+}
+
+int pop_ll() {
+    if (top == NULL) {
+        printf("Stack Underflow (Stack is empty)\n");
+        return -1;
+    }
+    struct node* temp = top;
+    int popped_data = temp->data;
+    top = top->next;
+    free(temp);
+    return popped_data;
+}
+
+void display_ll() {
+    if (top == NULL) {
+        printf("Stack is EMPTY!!!\n");
+        return;
+    }
+    struct node* current = top;
+    printf("Stack elements (Top to Bottom): ");
+    while (current != NULL) {
+        printf("%d -&gt; ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Stack Applications
+          </h2>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Reverse a Stack Using Recursion
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#define MAX 100
+
+int stack[MAX];
+int top = -1;
+
+void push(int x) {
+    if (top == MAX - 1) {
+        printf("Stack Overflow!\n");
+        return;
+    }
+    stack[++top] = x;
+}
+
+int pop() {
+    if (top == -1) {
+        printf("Stack Underflow!\n");
+        return -1;
+    }
+    return stack[top--];
+}
+
+void printStack() {
+    printf("Stack (top → bottom): ");
+    for (int i = top; i &gt;= 0; i--) printf("%d ", stack[i]);
+    printf("\n");
+}
+
+void insertAtBottom(int x) {
+    if (top == -1) {
+        push(x);
+        return;
+    }
+    int temp = pop();
+    insertAtBottom(x);
+    push(temp);
+}
+
+void reverseStack() {
+    if (top == -1) return;
+    int temp = pop();
+    reverseStack();
+    insertAtBottom(temp);
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Infix to Postfix Conversion
+          </h3>
+
+          <p>
+            Precedence (Higher to lower): <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">()</code> → <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">^</code> → <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">* / %</code> → <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">+ -</code>
+          </p>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;string.h&gt;
+
+#define MAX 100
+
+char stack[MAX];
+int top = -1;
+
+void push(char c) {
+    stack[++top] = c;
+}
+
+char pop() {
+    if (top == -1) return -1;
+    return stack[top--];
+}
+
+int precedence(char c) {
+    if (c == '^') return 3;
+    if (c == '*' || c == '/') return 2;
+    if (c == '+' || c == '-') return 1;
+    return -1;
+}
+
+void infixToPostfix(char* infix) {
+    char postfix[MAX];
+    int k = 0;
+    for (int i = 0; i &lt; strlen(infix); i++) {
+        char c = infix[i];
+
+        if (isalnum(c)) {
+            postfix[k++] = c;
+        }
+        else if (c == '(') {
+            push(c);
+        }
+        else if (c == ')') {
+            while (top != -1 && stack[top] != '(') {
+                postfix[k++] = pop();
+            }
+            pop();
+        }
+        else {
+            while (top != -1 && precedence(stack[top]) &gt;= precedence(c)) {
+                postfix[k++] = pop();
+            }
+            push(c);
+        }
+    }
+    while (top != -1) {
+        postfix[k++] = pop();
+    }
+    postfix[k] = '\0';
+
+    printf("Postfix: %s\n", postfix);
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Postfix Evaluation
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;ctype.h&gt;
+
+#define MAX 100
+int stack[MAX];
+int top = -1;
+
+void push(int x) {
+    stack[++top] = x;
+}
+
+int pop() {
+    return stack[top--];
+}
+
+int evaluatePostfix(char* expr) {
+    for (int i = 0; expr[i] != '\0'; i++) {
+        char c = expr[i];
+
+        if (isdigit(c)) {
+            push(c - '0');
+        }
+        else {
+            int val2 = pop();
+            int val1 = pop();
+            switch (c) {
+                case '+': push(val1 + val2); break;
+                case '-': push(val1 - val2); break;
+                case '*': push(val1 * val2); break;
+                case '/': push(val1 / val2); break;
+            }
+        }
+    }
+    return pop();
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Parenthesis Matching
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define MAX 100
+char stack[MAX];
+int top = -1;
+
+void push(char c) {
+    stack[++top] = c;
+}
+
+char pop() {
+    if (top == -1) return -1;
+    return stack[top--];
+}
+
+int isMatchingPair(char open, char close) {
+    return (open == '(' && close == ')') ||
+           (open == '{' && close == '}') ||
+           (open == '[' && close == ']');
+}
+
+int isBalanced(char* expr) {
+    for (int i = 0; expr[i] != '\0'; i++) {
+        char c = expr[i];
+        if (c == '(' || c == '{' || c == '[') {
+            push(c);
+        } else if (c == ')' || c == '}' || c == ']') {
+            if (top == -1) return 0;
+            char open = pop();
+            if (!isMatchingPair(open, c)) return 0;
+        }
+    }
+    return (top == -1);
+}</code></pre>
+
+        </div>
+
+        <!-- Mobile Back Button -->
+        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
+          <a
+            href="/notes"
+            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            /notes
+          </a>
+        </div>
+      </article>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  article {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  article h2 {
+    scroll-margin-top: 2rem;
+  }
+
+  article h3 {
+    scroll-margin-top: 2rem;
+  }
+
+  article code {
+    font-weight: 500;
+  }
+
+  article a.no-underline {
+    text-decoration: none;
+  }
+
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  code {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+</style>

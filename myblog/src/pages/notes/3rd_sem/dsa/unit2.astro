@@ -1,0 +1,963 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+---
+
+<Layout title="DSA Unit 2 - Queues & Trees | Gagan P">
+  <main class="container mx-auto px-4 py-8 sm:py-12">
+    <div class="max-w-3xl mx-auto">
+      <article class="prose prose-stone dark:prose-invert max-w-none">
+        <!-- Header Section -->
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
+          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 mb-0">
+            DSA Unit 2
+          </h1>
+
+          <a
+            href="/notes"
+            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            /notes
+          </a>
+        </div>
+
+        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
+          Queues & Binary Trees
+        </p>
+
+        <!-- Main Content -->
+        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            What is a Queue?
+          </h2>
+
+          <p>
+            A <strong>Queue</strong> is a <strong>linear data structure</strong> that follows the FIFO (First In, First Out) principle.
+          </p>
+
+          <p>
+            The element inserted <strong>first</strong> is the one removed <strong>first</strong>. Think of it like people standing in line at a ticket counter.
+          </p>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Queue Terminology
+          </h3>
+
+          <ul>
+            <li><strong>Front (Head):</strong> The index or pointer where deletion happens</li>
+            <li><strong>Rear (Tail):</strong> The index or pointer where insertion happens</li>
+            <li><strong>Enqueue (Insertion):</strong> Adding an element at the rear</li>
+            <li><strong>Dequeue (Deletion):</strong> Removing an element from the front</li>
+            <li><strong>Peek/Front:</strong> Get the element at the front without removing it</li>
+            <li><strong>isEmpty:</strong> Check if queue has no elements</li>
+            <li><strong>isFull (for array):</strong> Check if queue cannot insert more elements</li>
+          </ul>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Types of Queues
+          </h3>
+
+          <ul>
+            <li><strong>Simple Queue:</strong> Basic FIFO</li>
+            <li><strong>Circular Queue:</strong> Fixes wasted space in array queue</li>
+            <li><strong>Double-Ended Queue (Deque):</strong> Insert/delete at both ends</li>
+            <li><strong>Priority Queue:</strong> Each element has priority</li>
+          </ul>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Queue Implementation Using Array
+          </h2>
+
+          <p>
+            Here, we use a fixed-size array. After several enqueues and dequeues, even if space is available in the beginning of the array, it can't be reused (Solution: <strong>Circular Queue</strong>).
+          </p>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define SIZE 5
+
+struct Queue {
+    int items[SIZE];
+    int front, rear;
+};
+
+void initQueue(struct Queue* q) {
+    q-&gt;front = -1;
+    q-&gt;rear = -1;
+}
+
+int isFull(struct Queue* q) {
+    return q-&gt;rear == SIZE - 1;
+}
+
+int isEmpty(struct Queue* q) {
+    return q-&gt;front == -1 || q-&gt;front &gt; q-&gt;rear;
+}
+
+void enqueue(struct Queue* q, int value) {
+    if (isFull(q)) {
+        printf("Queue is Full\n");
+        return;
+    }
+    if (q-&gt;front == -1) q-&gt;front = 0;
+    q-&gt;items[++q-&gt;rear] = value;
+    printf("%d enqueued\n", value);
+}
+
+int dequeue(struct Queue* q) {
+    if (isEmpty(q)) {
+        printf("Queue is Empty\n");
+        return -1;
+    }
+    int val = q-&gt;items[q-&gt;front++];
+    if (q-&gt;front &gt; q-&gt;rear) {
+        q-&gt;front = q-&gt;rear = -1;
+    }
+    return val;
+}
+
+int peek(struct Queue* q) {
+    if (isEmpty(q)) {
+        printf("Queue is Empty\n");
+        return -1;
+    }
+    return q-&gt;items[q-&gt;front];
+}
+
+void display(struct Queue* q) {
+    if (isEmpty(q)) {
+        printf("Queue is Empty\n");
+        return;
+    }
+    printf("Queue: ");
+    for (int i = q-&gt;front; i &lt;= q-&gt;rear; i++) {
+        printf("%d ", q-&gt;items[i]);
+    }
+    printf("\n");
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Queue Implementation Using Linked List
+          </h2>
+
+          <p>
+            Here, we dynamically allocate nodes. No fixed size like array.
+          </p>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Queue {
+    struct Node *front, *rear;
+};
+
+void initQueue(struct Queue* q) {
+    q-&gt;front = q-&gt;rear = NULL;
+}
+
+int isEmpty(struct Queue* q) {
+    return q-&gt;front == NULL;
+}
+
+void enqueue(struct Queue* q, int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode-&gt;data = value;
+    newNode-&gt;next = NULL;
+
+    if (q-&gt;rear == NULL) {
+        q-&gt;front = q-&gt;rear = newNode;
+    } else {
+        q-&gt;rear-&gt;next = newNode;
+        q-&gt;rear = newNode;
+    }
+    printf("%d enqueued\n", value);
+}
+
+int dequeue(struct Queue* q) {
+    if (isEmpty(q)) {
+        printf("Queue is Empty\n");
+        return -1;
+    }
+    struct Node* temp = q-&gt;front;
+    int val = temp-&gt;data;
+    q-&gt;front = q-&gt;front-&gt;next;
+
+    if (q-&gt;front == NULL) q-&gt;rear = NULL;
+
+    free(temp);
+    return val;
+}
+
+int peek(struct Queue* q) {
+    if (isEmpty(q)) {
+        printf("Queue is Empty\n");
+        return -1;
+    }
+    return q-&gt;front-&gt;data;
+}
+
+void display(struct Queue* q) {
+    if (isEmpty(q)) {
+        printf("Queue is Empty\n");
+        return;
+    }
+    struct Node* temp = q-&gt;front;
+    printf("Queue: ");
+    while (temp != NULL) {
+        printf("%d ", temp-&gt;data);
+        temp = temp-&gt;next;
+    }
+    printf("\n");
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Circular Queue
+          </h2>
+
+          <p>
+            In a Simple Queue (array), once rear reaches the end, no more insertions, even if space is freed at front. Circular Queue connects last position back to the first using modulo arithmetic. Used in CPU scheduling and memory buffers.
+          </p>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Array Implementation
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define SIZE 5
+
+struct queue {
+    int items[SIZE];
+    int front, rear;
+};
+
+void init(struct queue* q) {
+    q-&gt;front = -1;
+    q-&gt;rear = -1;
+}
+
+int isEmpty(struct queue* q) {
+    return q-&gt;front == -1;
+}
+
+int isFull(struct queue* q) {
+    return (q-&gt;rear + 1) % SIZE == q-&gt;front;
+}
+
+int qinsert(struct queue* q, int x) {
+    if (isFull(q)) {
+        printf("Queue Overflow..\n");
+        return -1;
+    }
+    q-&gt;rear = (q-&gt;rear + 1) % SIZE;
+    q-&gt;items[q-&gt;rear] = x;
+    if (q-&gt;front == -1)
+        q-&gt;front = 0;
+    printf("Enqueued %d\n", x);
+    return 1;
+}
+
+int removeq(struct queue* q) {
+    if (isEmpty(q)) {
+        printf("Queue Empty..\n");
+        return -1;
+    }
+    int x = q-&gt;items[q-&gt;front];
+    if (q-&gt;front == q-&gt;rear) {
+        q-&gt;front = q-&gt;rear = -1;
+    } else {
+        q-&gt;front = (q-&gt;front + 1) % SIZE;
+    }
+    return x;
+}
+
+void display(struct queue* q) {
+    if (isEmpty(q)) {
+        printf("Queue is empty..\n");
+        return;
+    }
+    printf("Queue elements: ");
+    int i = q-&gt;front;
+    while (1) {
+        printf("%d ", q-&gt;items[i]);
+        if (i == q-&gt;rear) break;
+        i = (i + 1) % SIZE;
+    }
+    printf("\n");
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Linked List Implementation
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+
+struct Node{
+    int data;
+    struct Node* next;
+};
+
+struct cqu{
+    struct Node *front, *rear;
+};
+
+void init(struct cqu* q){
+    q-&gt;front = NULL;
+    q-&gt;rear = NULL;
+}
+
+int isEmpty(struct cqu* q){
+    return q-&gt;front == NULL;
+}
+
+void enqueue(struct cqu* q, int value){
+    struct Node* newnode = (struct Node*)malloc(sizeof(struct Node));
+    newnode-&gt;data = value;
+    if(isEmpty(q)){
+        q-&gt;front = q-&gt;rear = newnode;
+        newnode-&gt;next = newnode;
+    } else {
+        newnode-&gt;next = q-&gt;front;
+        q-&gt;rear-&gt;next = newnode;
+        q-&gt;rear = newnode;
+    }
+    printf("Enqueued %d\n", value);
+}
+
+int dequeue(struct cqu* q){
+    if(isEmpty(q)){
+        printf("Queue is empty\n");
+        return -1;
+    }
+    int x = q-&gt;front-&gt;data;
+    if(q-&gt;front == q-&gt;rear){
+        free(q-&gt;front);
+        q-&gt;front = q-&gt;rear = NULL;
+    } else {
+        struct Node* temp = q-&gt;front;
+        q-&gt;front = q-&gt;front-&gt;next;
+        q-&gt;rear-&gt;next = q-&gt;front;
+        free(temp);
+    }
+    return x;
+}
+
+void display(struct cqu* q){
+    if(isEmpty(q)){
+        printf("Queue is empty\n");
+        return;
+    }
+    printf("Queue elements: ");
+    struct Node* temp = q-&gt;front;
+    do{
+        printf("%d ", temp-&gt;data);
+        temp = temp-&gt;next;
+    } while(temp != q-&gt;front);
+    printf("\n");
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Double Ended Queue (Deque)
+          </h2>
+
+          <p>
+            Deque allows insertions and deletions at both front and rear. Used in palindrome checking and sliding window problems.
+          </p>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Circular Deque Using Array
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define SIZE 5
+
+struct Deque {
+    int items[SIZE];
+    int front, rear;
+};
+
+void initDeque(struct Deque* dq) {
+    dq-&gt;front = dq-&gt;rear = -1;
+}
+
+int isFull(struct Deque* dq) {
+    return (dq-&gt;rear + 1) % SIZE == dq-&gt;front;
+}
+
+int isEmpty(struct Deque* dq) {
+    return dq-&gt;front == -1;
+}
+
+void insertFront(struct Deque* dq, int value) {
+    if (isFull(dq)) {
+        printf("Deque Full\n");
+        return;
+    }
+    if (dq-&gt;front == -1) {
+        dq-&gt;front = dq-&gt;rear = 0;
+    } else if (dq-&gt;front == 0) {
+        dq-&gt;front = SIZE - 1;
+    } else {
+        dq-&gt;front--;
+    }
+    dq-&gt;items[dq-&gt;front] = value;
+    printf("%d inserted at front\n", value);
+}
+
+void insertRear(struct Deque* dq, int value) {
+    if (isFull(dq)) {
+        printf("Deque Full\n");
+        return;
+    }
+    if (dq-&gt;front == -1) {
+        dq-&gt;front = dq-&gt;rear = 0;
+    } else if (dq-&gt;rear == SIZE - 1) {
+        dq-&gt;rear = 0;
+    } else {
+        dq-&gt;rear++;
+    }
+    dq-&gt;items[dq-&gt;rear] = value;
+    printf("%d inserted at rear\n", value);
+}
+
+int deleteFront(struct Deque* dq) {
+    if (isEmpty(dq)) {
+        printf("Deque Empty\n");
+        return -1;
+    }
+    int val = dq-&gt;items[dq-&gt;front];
+    if (dq-&gt;front == dq-&gt;rear) {
+        dq-&gt;front = dq-&gt;rear = -1;
+    } else if (dq-&gt;front == SIZE - 1) {
+        dq-&gt;front = 0;
+    } else {
+        dq-&gt;front++;
+    }
+    return val;
+}
+
+int deleteRear(struct Deque* dq) {
+    if (isEmpty(dq)) {
+        printf("Deque Empty\n");
+        return -1;
+    }
+    int val = dq-&gt;items[dq-&gt;rear];
+    if (dq-&gt;front == dq-&gt;rear) {
+        dq-&gt;front = dq-&gt;rear = -1;
+    } else if (dq-&gt;rear == 0) {
+        dq-&gt;rear = SIZE - 1;
+    } else {
+        dq-&gt;rear--;
+    }
+    return val;
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Deque Using Linked List
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct Node {
+    int data;
+    struct Node* prev;
+    struct Node* next;
+};
+
+struct Node *front = NULL, *rear = NULL;
+
+void insertFront(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode-&gt;data = value;
+    newNode-&gt;prev = NULL;
+    newNode-&gt;next = front;
+
+    if (front == NULL) rear = newNode;
+    else front-&gt;prev = newNode;
+    front = newNode;
+
+    printf("%d inserted at front\n", value);
+}
+
+void insertRear(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode-&gt;data = value;
+    newNode-&gt;next = NULL;
+    newNode-&gt;prev = rear;
+
+    if (rear == NULL) front = newNode;
+    else rear-&gt;next = newNode;
+    rear = newNode;
+
+    printf("%d inserted at rear\n", value);
+}
+
+int deleteFront() {
+    if (front == NULL) {
+        printf("Deque Empty\n");
+        return -1;
+    }
+    int val = front-&gt;data;
+    struct Node* temp = front;
+    front = front-&gt;next;
+    if (front) front-&gt;prev = NULL;
+    else rear = NULL;
+    free(temp);
+    return val;
+}
+
+int deleteRear() {
+    if (rear == NULL) {
+        printf("Deque Empty\n");
+        return -1;
+    }
+    int val = rear-&gt;data;
+    struct Node* temp = rear;
+    rear = rear-&gt;prev;
+    if (rear) rear-&gt;next = NULL;
+    else front = NULL;
+    free(temp);
+    return val;
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Priority Queue
+          </h2>
+
+          <p>
+            Each element has a priority. Deletion always removes the highest/lowest priority element, not FIFO order. Used in OS scheduling, Dijkstra's shortest path, and Huffman coding.
+          </p>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Ordered Insert - Descending Priority Queue
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define SIZE 10
+
+struct PQueue {
+    int data;
+    int pty;
+};
+
+struct PQueue pq[SIZE];
+int count = 0;
+
+void init() {
+    count = 0;
+}
+
+int isFull() {
+    return count == SIZE;
+}
+
+int isEmpty() {
+    return count == 0;
+}
+
+void enq(int x, int p) {
+    if (isFull()) {
+        printf("Priority Queue Full..\n");
+        return;
+    }
+    struct PQueue key;
+    key.data = x;
+    key.pty  = p;
+
+    int j = count - 1;
+    while (j &gt;= 0 && pq[j].pty &lt; key.pty) {
+        pq[j + 1] = pq[j];
+        j--;
+    }
+
+    pq[j + 1] = key;
+    count++;
+    printf("%d inserted with priority %d\n", x, p);
+}
+
+struct PQueue deq() {
+    struct PQueue item;
+    if (isEmpty()) {
+        printf("Priority Queue Empty..\n");
+        item.data = 0;
+        item.pty  = -1;
+        return item;
+    }
+    item = pq[0];
+    for (int i = 1; i &lt; count; i++) {
+        pq[i - 1] = pq[i];
+    }
+    count--;
+    return item;
+}
+
+void display() {
+    if (isEmpty()) {
+        printf("Priority Queue Empty..\n");
+        return;
+    }
+    printf("Priority Queue (data:priority): ");
+    for (int i = 0; i &lt; count; i++) {
+        printf("[%d:%d] ", pq[i].data, pq[i].pty);
+    }
+    printf("\n");
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Josephus Problem
+          </h2>
+
+          <p>
+            The Josephus problem is a theoretical problem where people stand in a circle and every nth person is eliminated until only one survives.
+          </p>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Using Circular Linked List
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">struct Node* insert(struct Node* head, char name[]) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    strcpy(newNode-&gt;name, name);
+
+    if (head == NULL) {
+        newNode-&gt;next = newNode;
+        head = newNode;
+        return head;
+    }
+
+    struct Node* temp = head;
+    while (temp-&gt;next != head)
+        temp = temp-&gt;next;
+
+    temp-&gt;next = newNode;
+    newNode-&gt;next = head;
+
+    return head;
+}
+
+void josephus(struct Node** head, int n) {
+    struct Node* p = *head;
+    struct Node* q = NULL;
+
+    while (p-&gt;next != p) {
+        for (int i = 0; i &lt; n - 1; i++) {
+            q = p;
+            p = p-&gt;next;
+        }
+
+        printf("%s has been killed.\n", p-&gt;name);
+        q-&gt;next = p-&gt;next;
+        free(p);
+        p = q-&gt;next;
+    }
+
+    printf("%s survives!\n", p-&gt;name);
+    *head = p;
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Using Circular Queue
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#define SIZE 50
+
+struct Queue {
+    char items[SIZE][50];
+    int front, rear;
+};
+
+void init(struct Queue* q) {
+    q-&gt;front = q-&gt;rear = -1;
+}
+
+int isFull(struct Queue* q) {
+    return (q-&gt;rear + 1) % SIZE == q-&gt;front;
+}
+
+int isEmpty(struct Queue* q) {
+    return q-&gt;front == -1;
+}
+
+void enq(struct Queue* q, char name[]) {
+    if (isFull(q)) {
+        printf("Queue Full\n");
+        return;
+    }
+    if (q-&gt;front == -1) q-&gt;front = 0;
+
+    q-&gt;rear = (q-&gt;rear + 1) % SIZE;
+    strcpy(q-&gt;items[q-&gt;rear], name);
+}
+
+void deq(struct Queue* q, char name[]) {
+    if (isEmpty(q)) {
+        printf("Queue Empty\n");
+        return;
+    }
+    strcpy(name, q-&gt;items[q-&gt;front]);
+    if (q-&gt;front == q-&gt;rear) {
+        q-&gt;front = q-&gt;rear = -1;
+    } else {
+        q-&gt;front = (q-&gt;front + 1) % SIZE;
+    }
+}
+
+int size(struct Queue* q) {
+    if (isEmpty(q)) return 0;
+    if (q-&gt;rear &gt;= q-&gt;front) return q-&gt;rear - q-&gt;front + 1;
+    return SIZE - q-&gt;front + q-&gt;rear + 1;
+}
+
+void josephus(struct Queue* q, int n) {
+    char temp[50];
+
+    while (size(q) &gt; 1) {
+        for (int i = 0; i &lt; n - 1; i++) {
+            deq(q, temp);
+            enq(q, temp);
+        }
+        deq(q, temp);
+        printf("%s has been killed.\n", temp);
+    }
+
+    deq(q, temp);
+    printf("%s survives!\n", temp);
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Binary Trees - Iterative Traversals
+          </h2>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Inorder Traversal (Left-Root-Right)
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+struct Stack {
+    struct Node** array;
+    int top;
+    int capacity;
+};
+
+struct Node* newNode(int data) {
+    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+    node-&gt;data = data;
+    node-&gt;left = node-&gt;right = NULL;
+    return node;
+}
+
+struct Stack* createStack(int capacity) {
+    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
+    stack-&gt;capacity = capacity;
+    stack-&gt;top = -1;
+    stack-&gt;array = (struct Node**)malloc(capacity * sizeof(struct Node*));
+    return stack;
+}
+
+int isEmpty(struct Stack* stack) {
+    return stack-&gt;top == -1;
+}
+
+void push(struct Stack* stack, struct Node* node) {
+    if(stack-&gt;top == stack-&gt;capacity - 1) {
+        printf("Stack Overflow\n");
+        return;
+    }
+    stack-&gt;array[++stack-&gt;top] = node;
+}
+
+struct Node* pop(struct Stack* stack) {
+    if(isEmpty(stack)) {
+        return NULL;
+    }
+    return stack-&gt;array[stack-&gt;top--];
+}
+
+void iterativeInorder(struct Node* root) {
+    struct Stack* stack = createStack(100);
+    struct Node* current = root;
+
+    while(!isEmpty(stack) || current != NULL) {
+        while(current != NULL) {
+            push(stack, current);
+            current = current-&gt;left;
+        }
+
+        current = pop(stack);
+        printf("%d ", current-&gt;data);
+
+        current = current-&gt;right;
+    }
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Preorder Traversal (Root-Left-Right)
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void iterativePreorder(struct Node* root) {
+    if (root == NULL) return;
+
+    struct Stack* stack = createStack(100);
+    push(stack, root);
+
+    while (!isEmpty(stack)) {
+        struct Node* current = pop(stack);
+        printf("%d ", current-&gt;data);
+
+        if (current-&gt;right) push(stack, current-&gt;right);
+        if (current-&gt;left) push(stack, current-&gt;left);
+    }
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Postorder Traversal (Left-Right-Root)
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void iterativePostorder(struct Node* root) {
+    if (root == NULL) return;
+
+    struct Stack* stack1 = createStack(100);
+    struct Stack* stack2 = createStack(100);
+
+    push(stack1, root);
+
+    while (!isEmpty(stack1)) {
+        struct Node* current = pop(stack1);
+        push(stack2, current);
+
+        if (current-&gt;left) push(stack1, current-&gt;left);
+        if (current-&gt;right) push(stack1, current-&gt;right);
+    }
+
+    while (!isEmpty(stack2)) {
+        struct Node* node = pop(stack2);
+        printf("%d ", node-&gt;data);
+    }
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Queue Comparison
+          </h2>
+
+          <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse border border-stone-300 dark:border-stone-700">
+              <thead>
+                <tr class="bg-stone-100 dark:bg-stone-800">
+                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">Feature</th>
+                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">Array Queue</th>
+                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">Linked List Queue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Memory</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Fixed (static SIZE)</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Dynamic (malloc)</td>
+                </tr>
+                <tr>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Overflow</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Can occur</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">No (until system memory ends)</td>
+                </tr>
+                <tr>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Speed</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">O(1) for enqueue/dequeue</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">O(1) always</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+        <!-- Mobile Back Button -->
+        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
+          <a
+            href="/notes"
+            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            /notes
+          </a>
+        </div>
+      </article>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  article {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  article h2 {
+    scroll-margin-top: 2rem;
+  }
+
+  article h3 {
+    scroll-margin-top: 2rem;
+  }
+
+  article code {
+    font-weight: 500;
+  }
+
+  article a.no-underline {
+    text-decoration: none;
+  }
+
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  code {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  table {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  th, td {
+    text-align: left;
+  }
+</style>

@@ -1,0 +1,704 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+---
+
+<Layout title="DSA Unit 4 - Tries & Hashing | Gagan P">
+  <main class="container mx-auto px-4 py-8 sm:py-12">
+    <div class="max-w-3xl mx-auto">
+      <article class="prose prose-stone dark:prose-invert max-w-none">
+        <!-- Header Section -->
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
+          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 mb-0">
+            DSA Unit 4
+          </h1>
+
+          <a
+            href="/notes"
+            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            /notes
+          </a>
+        </div>
+
+        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
+          Tries & Hashing
+        </p>
+
+        <!-- Main Content -->
+        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Graphs
+          </h2>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            What is a Graph?
+          </h3>
+
+          <p>
+            A Graph is a non-linear data structure consisting of nodes and edges. Think of it as a map:
+          </p>
+
+          <ul>
+            <li><strong>Vertices (V):</strong> The "places" (cities, routers, people)</li>
+            <li><strong>Edges (E):</strong> The "connections" (roads, cables, relationships)</li>
+          </ul>
+
+          <p>Mathematically, a graph is G = (V, E)</p>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Key Terminology
+          </h3>
+
+          <ul>
+            <li><strong>Undirected Graph:</strong> Connections go both ways (two-way street)</li>
+            <li><strong>Directed Graph (Digraph):</strong> Connections have direction (one-way street)</li>
+            <li><strong>Weighted Graph:</strong> Edges have a "cost" (distance, time, bandwidth)</li>
+            <li><strong>Degree:</strong> Number of edges connected to a vertex</li>
+          </ul>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Data Structure Definitions
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#define MAX 25
+
+struct node {
+    int data;
+};
+
+struct arc {
+    int adj;
+    int weight;
+};
+
+struct graph {
+    struct node nodes[MAX];
+    struct arc arcs[MAX][MAX];
+};
+
+struct graph g;</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Adjacency Matrix - Read Function
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void read_ad_matr(int graph[MAX][MAX], int n) {
+    int i, j;
+    printf("Enter the adjacency matrix:\n");
+    for (i = 0; i &lt; n; i++) {
+        for (j = 0; j &lt; n; j++) {
+            scanf("%d", &graph[i][j]);
+        }
+    }
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            DFS Traversal
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void dfs(int u, int visited[], int graph[MAX][MAX], int n) {
+    visited[u] = 1;
+
+    for (int v = 0; v &lt; n; v++) {
+        if (graph[u][v] && !visited[v]) {
+            dfs(v, visited, graph, n);
+        }
+    }
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            BFS Traversal
+          </h3>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void bfs(int s, int visited[], int n, int graph[MAX][MAX]) {
+    int f = 0, r = -1;
+    int q[MAX];
+    int v;
+
+    q[++r] = s;
+    visited[s] = 1;
+
+    while (f &lt;= r) {
+        s = q[f++];
+
+        for (v = 0; v &lt; n; v++) {
+            if (graph[s][v] == 1) {
+                if (visited[v] == 0) {
+                    visited[v] = 1;
+                    q[++r] = v;
+                }
+            }
+        }
+    }
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Check Connectivity
+          </h3>
+
+          <p>
+            This function checks for <strong>Strong Connectivity</strong> in directed graphs by testing if all nodes can be reached from every other node.
+          </p>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">int isConnected(int n, int graph[MAX][MAX]) {
+    int visited[MAX];
+    int i, u;
+
+    for (u = 0; u &lt; n; u++) {
+
+        for (i = 0; i &lt; n; i++) {
+            visited[i] = 0;
+        }
+
+        dfs(u, visited, graph, n);
+
+        for (i = 0; i &lt; n; i++) {
+            if (!visited[i]) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Adjacency List Operations
+          </h3>
+
+          <p>
+            The following functions use cursor-based implementation where next and point are integer indices.
+          </p>
+
+          <h4 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-6 mb-2">
+            Join Two Nodes (Add Edge)
+          </h4>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void join(int p, int q, int wt) {
+    int r, r2;
+
+    r = node[p].point;
+    r2 = -1;
+
+    while(r &gt;= 0 && node[r].point != q) {
+        r2 = r;
+        r = node[r].next;
+    }
+
+    if(r &gt;= 0) {
+        node[r].info = wt;
+        return;
+    }
+
+    r = getnode();
+    node[r].point = q;
+    node[r].next = -1;
+    node[r].info = wt;
+
+    if (r2 &lt; 0) {
+        node[p].point = r;
+    } else {
+        node[r2].next = r;
+    }
+}</code></pre>
+
+          <h4 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-6 mb-2">
+            Remove an Edge
+          </h4>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void remv(int p, int q) {
+    int r, r2;
+    r2 = -1;
+    r = node[p].point;
+
+    while(r &gt;= 0 && node[r].point != q) {
+        r2 = r;
+        r = node[r].next;
+    }
+
+    if(r &gt;= 0) {
+        if (r2 &lt; 0) {
+            node[p].point = node[r].next;
+        } else {
+            node[r2].next = node[r].next;
+        }
+        freenode(r);
+        return;
+    }
+}</code></pre>
+
+          <h4 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-6 mb-2">
+            Check Adjacency
+          </h4>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#define TRUE 1
+#define FALSE 0
+
+int adjacent(int p, int q) {
+    int r;
+    r = node[p].point;
+
+    while(r &gt;= 0) {
+        if(node[r].point == q) {
+            return(TRUE);
+        } else {
+            r = node[r].next;
+        }
+    }
+    return(FALSE);
+}</code></pre>
+
+          <h4 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-6 mb-2">
+            Find Node
+          </h4>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">int findnode(int graph, int x) {
+    int p;
+    p = graph;
+
+    while(p &gt;= 0) {
+        if (node[p].info == x) {
+            return(p);
+        } else {
+            p = node[p].next;
+        }
+    }
+    return(-1);
+}</code></pre>
+
+          <h4 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-6 mb-2">
+            Add Node
+          </h4>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">int addnode(int *graph, int x) {
+    int p;
+    p = getnode();
+    node[p].info = x;
+    node[p].point = -1;
+
+    node[p].next = *graph;
+    *graph = p;
+
+    return(p);
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            BFS and DFS Comparison
+          </h3>
+
+          <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse border border-stone-300 dark:border-stone-700">
+              <thead>
+                <tr class="bg-stone-100 dark:bg-stone-800">
+                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">Feature</th>
+                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">BFS</th>
+                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">DFS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Data Structure</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Queue (FIFO)</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Stack (LIFO) or Recursion</td>
+                </tr>
+                <tr>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Approach</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Level by Level</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Depth wise</td>
+                </tr>
+                <tr>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Applications</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Shortest path</td>
+                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Cycle detection, Topological sorting</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Trie Trees
+          </h2>
+
+          <p>
+            A Trie is a tree-like data structure used for efficient retrieval of strings. Each node represents a character, and paths from root to leaves form complete strings.
+          </p>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define ALPHABET_SIZE 26
+
+struct trienode {
+    struct trienode *child[ALPHABET_SIZE];
+    int endofword;
+};
+
+struct trienode *getnode() {
+    struct trienode *pNode = (struct trienode *)malloc(sizeof(struct trienode));
+    if (pNode) {
+        pNode-&gt;endofword = 0;
+        for (int i = 0; i &lt; ALPHABET_SIZE; i++) {
+            pNode-&gt;child[i] = NULL;
+        }
+    }
+    return pNode;
+}
+
+void insert(struct trienode *root, char *key) {
+    struct trienode *curr = root;
+    int index;
+
+    for (int i = 0; key[i] != '\0'; i++) {
+        index = key[i] - 'a';
+
+        if (!curr-&gt;child[index]) {
+            curr-&gt;child[index] = getnode();
+        }
+        curr = curr-&gt;child[index];
+    }
+    curr-&gt;endofword = 1;
+}
+
+int search(struct trienode *root, char *key) {
+    struct trienode *curr = root;
+    int index;
+
+    for (int i = 0; key[i] != '\0'; i++) {
+        index = key[i] - 'a';
+        if (!curr-&gt;child[index]) {
+            return 0;
+        }
+        curr = curr-&gt;child[index];
+    }
+    return (curr != NULL && curr-&gt;endofword);
+}
+
+int isEmpty(struct trienode* root) {
+    for (int i = 0; i &lt; ALPHABET_SIZE; i++)
+        if (root-&gt;child[i])
+            return 0;
+    return 1;
+}
+
+struct trienode* delete_node(struct trienode* root, char* key, int depth) {
+    if (!root)
+        return NULL;
+
+    if (depth == strlen(key)) {
+        if (root-&gt;endofword)
+            root-&gt;endofword = 0;
+
+        if (isEmpty(root)) {
+            free(root);
+            root = NULL;
+        }
+        return root;
+    }
+
+    int index = key[depth] - 'a';
+    root-&gt;child[index] = delete_node(root-&gt;child[index], key, depth + 1);
+
+    if (isEmpty(root) && root-&gt;endofword == 0) {
+        free(root);
+        root = NULL;
+    }
+
+    return root;
+}
+
+char word_buffer[50];
+int length = 0;
+
+void display(struct trienode *curr) {
+    if (!curr) return;
+
+    if (curr-&gt;endofword == 1) {
+        word_buffer[length] = '\0';
+        printf("%s\n", word_buffer);
+    }
+
+    for (int i = 0; i &lt; ALPHABET_SIZE; i++) {
+        if (curr-&gt;child[i] != NULL) {
+            word_buffer[length++] = i + 'a';
+            display(curr-&gt;child[i]);
+            length--;
+        }
+    }
+}</code></pre>
+
+          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+            Hashing
+          </h2>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Separate Chaining
+          </h3>
+
+          <p>
+            Separate chaining uses linked lists to handle collisions. Each array index points to a linked list of elements that hash to that index.
+          </p>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define SIZE 7
+
+typedef struct element {
+    int rNo;
+    char name[30];
+    struct element *next;
+} NODE;
+
+void initTable(NODE* ht[SIZE]) {
+    for (int i = 0; i &lt; SIZE; i++) {
+        ht[i] = NULL;
+    }
+}
+
+void insert(NODE* ht[SIZE], int rNo, char* name) {
+    int index = rNo % SIZE;
+
+    NODE* newNode = (NODE*)malloc(sizeof(NODE));
+    newNode-&gt;rNo = rNo;
+    strcpy(newNode-&gt;name, name);
+
+    newNode-&gt;next = ht[index];
+
+    ht[index] = newNode;
+
+    printf("Inserted (%d, %s) at index %d\n", rNo, name, index);
+}
+
+int delete(NODE* ht[SIZE], int rNo) {
+    int index = rNo % SIZE;
+    NODE *p = ht[index];
+    NODE *q = NULL;
+
+    while (p != NULL && p-&gt;rNo != rNo) {
+        q = p;
+        p = p-&gt;next;
+    }
+
+    if (p != NULL) {
+        if (q == NULL) {
+            ht[index] = p-&gt;next;
+        }
+        else {
+            q-&gt;next = p-&gt;next;
+        }
+        free(p);
+        return 1;
+    }
+    return 0;
+}
+
+int search(NODE* ht[SIZE], int rNo, char* foundName) {
+    int index = rNo % SIZE;
+    NODE *p = ht[index];
+
+    while (p != NULL) {
+        if (p-&gt;rNo == rNo) {
+            strcpy(foundName, p-&gt;name);
+            return 1;
+        }
+        p = p-&gt;next;
+    }
+    return 0;
+}
+
+void display(NODE* ht[SIZE]) {
+    printf("\n--- Hash Table Contents ---\n");
+    for (int i = 0; i &lt; SIZE; i++) {
+        printf("[%d]: ", i);
+        NODE *p = ht[i];
+        if (p == NULL) {
+            printf("NULL");
+        }
+        while (p != NULL) {
+            printf("%d (%s) -&gt; ", p-&gt;rNo, p-&gt;name);
+            p = p-&gt;next;
+        }
+        printf("\n");
+    }
+    printf("---------------------------\n");
+}</code></pre>
+
+          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+            Linear Probing
+          </h3>
+
+          <p>
+            Linear probing uses the formula: <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">h(key) = ((h(key) + i) % tablesize)</code>
+          </p>
+
+          <p>
+            When a collision occurs, we linearly search for the next available slot.
+          </p>
+
+          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define SIZE 7
+
+typedef struct {
+    int rNo;
+    char name[30];
+    int mark;
+} NODE;
+
+void initTable(NODE ht[], int *n) {
+    for (int i = 0; i &lt; SIZE; i++) {
+        ht[i].mark = -1;
+    }
+    *n = 0;
+}
+
+int insertRecord(NODE ht[], int rNo, char name[], int *n) {
+    if (SIZE == *n) {
+        printf("Hash Table is Full!\n");
+        return 0;
+    }
+
+    int index = rNo % SIZE;
+
+    while (ht[index].mark != -1) {
+        if(ht[index].rNo == rNo) {
+            printf("Duplicate key %d not allowed.\n", rNo);
+            return 0;
+        }
+        index = (index + 1) % SIZE;
+    }
+
+    ht[index].rNo = rNo;
+    strcpy(ht[index].name, name);
+    ht[index].mark = 1;
+    (*n)++;
+
+    printf("Inserted %d at index %d\n", rNo, index);
+    return 1;
+}
+
+int deleteRecord(NODE ht[], int rNo, int *n) {
+    if (*n == 0) return 0;
+
+    int index = rNo % SIZE;
+    int i = 0;
+
+    while (i &lt; SIZE && ht[index].mark != -1) {
+        if (ht[index].rNo == rNo) {
+            ht[index].mark = -1;
+            (*n)--;
+            return 1;
+        }
+        index = (index + 1) % SIZE;
+        i++;
+    }
+    return 0;
+}
+
+int searchRecord(NODE ht[], int rNo, int *n) {
+    if (*n == 0) return 0;
+
+    int index = rNo % SIZE;
+    int i = 0;
+
+    while (i &lt; SIZE && ht[index].mark != -1) {
+        if (ht[index].rNo == rNo) {
+            return 1;
+        }
+        index = (index + 1) % SIZE;
+        i++;
+    }
+    return 0;
+}
+
+void display(NODE ht[]) {
+    printf("\n--- Hash Table Status ---\n");
+    for (int i = 0; i &lt; SIZE; i++) {
+        if (ht[i].mark == 1)
+            printf("[%d]: %d (%s)\n", i, ht[i].rNo, ht[i].name);
+        else
+            printf("[%d]: -- Empty --\n", i);
+    }
+    printf("-------------------------\n");
+}</code></pre>
+
+        </div>
+
+        <!-- Mobile Back Button -->
+        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
+          <a
+            href="/notes"
+            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            /notes
+          </a>
+        </div>
+      </article>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  article {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  article h2 {
+    scroll-margin-top: 2rem;
+  }
+
+  article h3 {
+    scroll-margin-top: 2rem;
+  }
+
+  article h4 {
+    scroll-margin-top: 2rem;
+  }
+
+  article code {
+    font-weight: 500;
+  }
+
+  article a.no-underline {
+    text-decoration: none;
+  }
+
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  code {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  table {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  th, td {
+    text-align: left;
+  }
+</style>
