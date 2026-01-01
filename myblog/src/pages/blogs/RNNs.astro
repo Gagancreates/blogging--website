@@ -1,0 +1,567 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="RNNs Demystified: A Complete Guide to Recurrent Neural Networks | Gagan P">
+  <main class="container mx-auto px-4 py-8 sm:py-12">
+    <div class="max-w-3xl mx-auto">
+      <article class="prose prose-stone dark:prose-invert max-w-none">
+        <!-- Header Section -->
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
+          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 mb-0">
+            RNNs Demystified: A Complete Guide to Recurrent Neural Networks
+          </h1>
+
+          <a
+            href="/blogs"
+            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            /blogs
+          </a>
+        </div>
+
+        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
+          1 January, 2024
+        </p>
+
+        <!-- Main Content -->
+        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
+          <p>
+            From why we need memory in neural networks to the math of Backpropagation Through Time - a deep dive into RNNs with intuition, formulas, and implementation details.
+          </p>
+
+          <h2>Why RNNs? The Memory Problem</h2>
+
+          <p>
+            Regular neural networks - be it FCNNs, CNNs, etc. - all take an input, pass it through a hidden layer and produce an output. Here's the catch: these NNs are <strong>stateless</strong>. Using a web dev analogy, it's like HTTP operations - the input you pass 1 second later has no relation with the input you're passing right now.
+          </p>
+
+          <p>
+            To be concise, the NN does not have memory. It cannot refer to past inputs or events.
+          </p>
+
+          <p>
+            Now you may ask, why do we need memory in NNs in the first place? Let's take the classic example from NLP. Say you have the sentence:
+          </p>
+
+          <blockquote>
+            "My dog has blue eyes, it loves its new pet toy that I bought"
+          </blockquote>
+
+          <p>
+            In a classical approach, we'd embed all the words and pass them to an encoder-decoder model. When the NN encounters the word "it", here's the problem: <strong>the NN has no idea what "it" refers to</strong>. It cannot comprehend the sentence at all because there's no memory linking "dog" to "it".
+          </p>
+
+          <p>
+            This is where RNNs come in.
+          </p>
+
+          <h2>The RNN Solution: Adding Memory with Recurrent Cells</h2>
+
+          <p>
+            Instead of a regular NN with <code>input �' hidden layer �' output</code>, RNNs handle things differently.
+          </p>
+
+          <p>
+            RNNs have something known as <strong>Recurrent Cells</strong>. Each cell takes in <strong>2 inputs</strong>:
+          </p>
+
+          <ul>
+            <li set:html="`The current input ($x_t$)`"></li>
+            <li set:html="`The hidden state from the previous time step ($h_{t-1}$)`"></li>
+          </ul>
+
+          <p>
+            Based on these, it passes through a hidden layer and produces a new hidden state $h_t$ and an output $y_t$.
+          </p>
+
+          <p>
+            Now, what is a hidden state? This is the main reason RNNs have memory. Think of it as encoding all your previous knowledge, and when you encounter a new input, you use that previous knowledge to create a new encoding which gets passed to the next iteration.
+          </p>
+
+          <h3>The Math (Simplified)</h3>
+
+          <p>
+            The forward pass for a basic RNN cell:
+          </p>
+
+          <div class="my-6" set:html="`$$h_t = \\tanh(W_{hh} h_{t-1} + W_{xh} x_t + b_h)$$`"></div>
+
+          <div class="my-6" set:html="`$$y_t = W_{hy} h_t + b_y$$`"></div>
+
+          <p>Where:</p>
+
+          <ul>
+            <li set:html="`$h_t$ is the hidden state at time $t$ (the 'memory')`"></li>
+            <li set:html="`$x_t$ is the input at time $t$`"></li>
+            <li set:html="`$y_t$ is the prediction at time $t$`"></li>
+            <li set:html="`$W_{hh}, W_{xh}, W_{hy}$ are weight matrices`"></li>
+            <li set:html="`$b_h, b_y$ are bias vectors`"></li>
+          </ul>
+
+          <h2>Backpropagation Through Time (BPTT): The Complete Breakdown</h2>
+
+          <p>
+            BPTT is just regular backpropagation with a twist - instead of going backwards through <em>layers</em>, you go backwards through <em>time</em>. Let me show you exactly how it works.
+          </p>
+
+          <h3>The Setup: A Simple RNN</h3>
+
+          <p>
+            Let's trace through a 3-timestep example predicting the next character:
+          </p>
+
+          <pre><code>Input:  "c" �' "a" �' "t"
+Target: "a" �' "t" �' "!"</code></pre>
+
+          <p>Our RNN equations:</p>
+
+          <pre set:html="`<code class='language-python'>h_t = tanh(W_hh @ h_{t-1} + W_xh @ x_t + b_h)  # Hidden state
+y_t = W_hy @ h_t + b_y                          # Output</code>`"></pre>
+
+          <h3>Forward Pass: Building the Computation Graph</h3>
+
+          <p>
+            Here's what happens step-by-step (with hidden_size=3, input_size=4):
+          </p>
+
+          <pre set:html="`<code class='language-python'># Time 0: Initialize
+h_0 = [0, 0, 0]
+
+# Time 1:
+x_1 = embed(c) = [1, 0, 0, 0]
+h_1 = tanh(W_hh @ h_0 + W_xh @ x_1 + b_h)
+y_1 = W_hy @ h_1 + b_y
+L_1 = CrossEntropy(y_1, target=a)
+
+# Time 2:
+x_2 = embed(a) = [0, 1, 0, 0]
+h_2 = tanh(W_hh @ h_1 + W_xh @ x_2 + b_h)  # Uses h_1!
+y_2 = W_hy @ h_2 + b_y
+L_2 = CrossEntropy(y_2, target=t)
+
+# Time 3:
+x_3 = embed(t) = [0, 0, 1, 0]
+h_3 = tanh(W_hh @ h_2 + W_xh @ x_3 + b_h)  # Uses h_2!
+y_3 = W_hy @ h_3 + b_y
+L_3 = CrossEntropy(y_3, target=!)
+
+Total Loss: L = L_1 + L_2 + L_3</code>`"></pre>
+
+          <p set:html="`<strong>Key insight:</strong> The computation graph is a chain through time. $h_3$ depends on $h_2$, which depends on $h_1$, which depends on $h_0$.`"></p>
+
+          <h3>Unrolling the Network Visually</h3>
+
+          <pre><code>x₁ �"��"��' [tanh] �"��"��' h₁ �"��"��' [linear] �"��"��' y₁ �"��"��' L₁
+        �'                                      �"
+      W_xh,W_hh                               �"
+        �'                                      �"
+x₂ �"��"��' [tanh] �"��"��' h₂ �"��"��' [linear] �"��"��' y₂ �"��"��' L₂
+        �'                                      �"
+      (same weights!)                         �"
+        �'                                      �"
+x₃ �"��"��' [tanh] �"��"��' h₃ �"��"��' [linear] �"��"��' y₃ �"��"��' L₃
+                                               �"
+                                       L = L₁+L₂+L₃</code></pre>
+
+          <p set:html="`<strong>Notice:</strong> The same weights $W_{hh}, W_{xh}, W_{hy}$ are used at every timestep.`"></p>
+
+          <h3>Backward Pass: The Chain Rule Through Time</h3>
+
+          <p set:html="`Now we compute gradients for our weights. Let's focus on $W_{hh}$ (the recurrent weight).`"></p>
+
+          <h3>Why BPTT is Tricky</h3>
+
+          <p set:html="`$W_{hh}$ appears in the computation of $h_1$, $h_2$, AND $h_3$. So:`"></p>
+
+          <div class="my-6" set:html="`$$\\frac{\\partial L}{\\partial W_{hh}} = \\frac{\\partial L_1}{\\partial W_{hh}} + \\frac{\\partial L_2}{\\partial W_{hh}} + \\frac{\\partial L_3}{\\partial W_{hh}}$$`"></div>
+
+          <p>
+            Each term requires backpropagating through different time steps.
+          </p>
+
+          <h3>The Hidden Gradient Flow</h3>
+
+          <p set:html="`Here's the critical part: $h_2$ depends on $h_1$, and $h_3$ depends on $h_2$.`"></p>
+
+          <p set:html="`So when we change $W_{hh}$ at time 1, it affects:`"></p>
+
+          <ul>
+            <li set:html="`$L_1$ directly (through $h_1$)`"></li>
+            <li set:html="`$L_2$ indirectly ($h_1 \\to h_2 \\to L_2$)`"></li>
+            <li set:html="`$L_3$ indirectly ($h_1 \\to h_2 \\to h_3 \\to L_3$)`"></li>
+          </ul>
+
+          <p>
+            The complete gradient is:
+          </p>
+
+          <div class="my-6" set:html="`$$\\frac{\\partial L}{\\partial h_1} = \\frac{\\partial L_1}{\\partial h_1} + \\frac{\\partial L_2}{\\partial h_1} + \\frac{\\partial L_3}{\\partial h_1}$$`"></div>
+
+          <h3>The Recursive Gradient Formula</h3>
+
+          <p>
+            This is the heart of BPTT. The gradient at time $t$ has two sources:
+          </p>
+
+          <p>
+            <strong>1. Local Error (The Immediate Mistake)</strong>
+          </p>
+
+          <p>
+            At time step $t$, the hidden state produces an output. If that output is wrong, a loss is generated immediately. This gives us a local contribution:
+          </p>
+
+          <div class="my-6" set:html="`$$\\frac{\\partial L_t}{\\partial h_t}$$`"></div>
+
+          <p>
+            <strong>2. Future Error (The Butterfly Effect)</strong>
+          </p>
+
+          <p set:html="`The hidden state $h_t$ is also used to compute $h_{t+1}$. So if something goes wrong at $t+1$ (or later), $h_t$ is partly responsible. This term carries future error back into the present:`"></p>
+
+          <div class="my-6" set:html="`$$\\frac{\\partial L}{\\partial h_{t+1}} W_{hh}^T \\odot (1 - \\tanh^2(z_{t+1}))$$`"></div>
+
+          <p>
+            <strong>Putting it together:</strong>
+          </p>
+
+          <p set:html="`In an RNN, the hidden state $h_t$ is 'blamed' for errors in two independent paths. To find the total gradient $\\frac{\\partial L}{\\partial h_t}$, we sum up both sources of blame:`"></p>
+
+          <div class="my-6" set:html="`$$\\frac{\\partial L}{\\partial h_t} = \\frac{\\partial L_t}{\\partial h_t} + \\frac{\\partial L}{\\partial h_{t+1}} W_{hh}^T \\odot (1 - \\tanh^2(z_{t+1}))$$`"></div>
+
+          <h3>What Each Term Means</h3>
+
+          <div class="overflow-x-auto my-6">
+            <table>
+              <thead>
+                <tr>
+                  <th>Term</th>
+                  <th>Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td set:html="`$\\frac{\\partial L}{\\partial h_t}$`"></td>
+                  <td>Total error at time t</td>
+                </tr>
+                <tr>
+                  <td set:html="`$\\frac{\\partial L_t}{\\partial h_t}$`"></td>
+                  <td set:html="`Error from current output (Path A: $h_t \\to L_t$)`"></td>
+                </tr>
+                <tr>
+                  <td set:html="`$\\frac{\\partial L}{\\partial h_{t+1}}$`"></td>
+                  <td set:html="`Error from the future (Path B: $h_t \\to h_{t+1} \\to \\cdots \\to L$)`"></td>
+                </tr>
+                <tr>
+                  <td set:html="`$W_{hh}^T$`"></td>
+                  <td>Pulls error backward in time (reverse of forward pass)</td>
+                </tr>
+                <tr>
+                  <td set:html="`$1 - \\tanh^2(z_{t+1})$`"></td>
+                  <td>tanh "valve" - derivative of activation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>The tanh "Valve" Explained</h3>
+
+          <p>
+            The derivative of tanh acts like a valve that controls gradient flow:
+          </p>
+
+          <p>
+            <strong>Case 1: Neuron is Active (Valve Open)</strong>
+          </p>
+
+          <p>
+            When $z \approx 0$:
+          </p>
+
+          <div class="my-6">
+            $$\tanh(z) \approx 0 \Rightarrow 1 - \tanh^2(z) \approx 1$$
+          </div>
+
+          <p>
+            ✅ Gradient passes through unchanged
+          </p>
+
+          <p>
+            <strong>Case 2: Neuron is Saturated (Valve Closed)</strong>
+          </p>
+
+          <p>
+            When $z \gg 0$ or $z \ll 0$:
+          </p>
+
+          <div class="my-6">
+            $$\tanh(z) \approx \pm 1 \Rightarrow 1 - \tanh^2(z) \approx 0$$
+          </div>
+
+          <p>
+            ❌ Gradient is killed
+          </p>
+
+          <h2>The Vanishing Gradient Problem</h2>
+
+          <p>
+            Here's why vanilla RNNs struggle with long sequences. Each time step multiplies the gradient by a number less than 1 (the tanh derivative). After $T$ steps:
+          </p>
+
+          <div class="my-6" set:html="`$$\\text{gradient} \\propto (0.5)^T$$`"></div>
+
+          <p>
+            For $T = 50$, this is basically zero. This is why vanilla RNNs have short-term memory. They can only learn dependencies spanning ~10-20 timesteps.
+          </p>
+
+          <p>
+            The same problem happens in reverse with exploding gradients if the weight matrix has large eigenvalues.
+          </p>
+
+          <h2>The Solution: LSTM and GRU Cells</h2>
+
+          <p set:html="`Remember how we said RNNs have a simple memory (just $h_t$)? LSTMs and GRUs fix the vanishing gradient problem with gated memory.`"></p>
+
+          <h3>LSTM Intuition</h3>
+
+          <p>
+            Instead of one hidden state, LSTMs have:
+          </p>
+
+          <ul>
+            <li set:html="`<strong>Cell state</strong> ($c_t$): The long-term memory highway`"></li>
+            <li set:html="`<strong>Hidden state</strong> ($h_t$): The working memory`"></li>
+            <li><strong>Three gates:</strong> Forget, Input, Output gates that control information flow</li>
+          </ul>
+
+          <p>
+            The key innovation: the cell state updates with addition instead of multiplication:
+          </p>
+
+          <div class="my-6" set:html="`$$c_t = f_t \\odot c_{t-1} + i_t \\odot \\tilde{c}_t$$`"></div>
+
+          <p>
+            This creates a gradient path where errors can flow back without being multiplied by small numbers. The gradient becomes:
+          </p>
+
+          <div class="my-6" set:html="`$$\\frac{\\partial c_t}{\\partial c_{t-1}} = f_t$$`"></div>
+
+          <p set:html="`If the forget gate $f_t \\approx 1$, gradients flow back perfectly even across 100+ timesteps.`"></p>
+
+          <h3>GRU: The Simplified LSTM</h3>
+
+          <p>
+            GRUs combine the forget and input gates into a single "update gate", merging cell state and hidden state. They're computationally cheaper and often work just as well.
+          </p>
+
+          <h2>Applications: Where RNNs Shine</h2>
+
+          <p>
+            RNNs (and their LSTM/GRU variants) are the go-to architecture for:
+          </p>
+
+          <ul>
+            <li><strong>NLP:</strong> Language modeling, machine translation, sentiment analysis</li>
+            <li><strong>Time Series:</strong> Stock prediction, weather forecasting</li>
+            <li><strong>Speech:</strong> Speech recognition, phoneme classification</li>
+            <li><strong>Music:</strong> Generating melodies, chord progressions</li>
+            <li><strong>Video:</strong> Action recognition, frame prediction</li>
+          </ul>
+
+          <p>
+            Any problem where order matters and you need to remember context.
+          </p>
+
+          <h2>Conclusion: The Memory Revolution</h2>
+
+          <p>
+            RNNs solved a fundamental limitation of feedforward networks by introducing memory through recurrence. While vanilla RNNs suffer from vanishing gradients, their descendants - LSTMs and GRUs - have become the backbone of modern sequence modeling.
+          </p>
+
+          <p class="font-semibold mt-8">
+            Happy Learning!
+          </p>
+        </div>
+
+        <!-- Mobile Back Button -->
+        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
+          <a
+            href="/blogs"
+            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2 no-underline"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            /blogs
+          </a>
+        </div>
+      </article>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  article {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Headings */
+  article h2 {
+    font-family: 'Zt Formom', sans-serif;
+    font-size: 1.875rem;
+    color: rgb(28 25 23);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    scroll-margin-top: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    article h2 {
+      font-size: 2.25rem;
+    }
+  }
+
+  .dark article h2 {
+    color: rgb(250 250 249);
+  }
+
+  article h3 {
+    font-family: 'Zt Formom', sans-serif;
+    font-size: 1.5rem;
+    color: rgb(28 25 23);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    scroll-margin-top: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    article h3 {
+      font-size: 1.875rem;
+    }
+  }
+
+  .dark article h3 {
+    color: rgb(250 250 249);
+  }
+
+  /* Inline code */
+  article code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.875rem;
+    background-color: rgb(245 245 244);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+  }
+
+  .dark article code {
+    background-color: rgb(41 37 36);
+  }
+
+  /* Code blocks */
+  article pre {
+    background-color: rgb(245 245 244);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  .dark article pre {
+    background-color: rgb(41 37 36);
+  }
+
+  article pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  /* Tables */
+  article table {
+    min-width: 100%;
+    margin: 1.5rem 0;
+    border-collapse: collapse;
+  }
+
+  article th,
+  article td {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgb(231 229 228);
+  }
+
+  .dark article th,
+  .dark article td {
+    border-color: rgb(68 64 60);
+  }
+
+  article th {
+    text-align: left;
+    color: rgb(28 25 23);
+    font-weight: 600;
+  }
+
+  .dark article th {
+    color: rgb(250 250 249);
+  }
+
+  /* Blockquotes */
+  article blockquote {
+    border-left: 4px solid rgb(214 211 209);
+    padding-left: 1rem;
+    font-style: italic;
+    margin: 1.5rem 0;
+  }
+
+  .dark article blockquote {
+    border-left-color: rgb(87 83 78);
+  }
+
+  /* Lists */
+  article ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  article ul li {
+    margin: 0.5rem 0;
+  }
+
+  article ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  article ol li {
+    margin: 0.5rem 0;
+  }
+
+  /* Strong */
+  article strong {
+    font-weight: 600;
+  }
+
+  /* Links */
+  article a.no-underline {
+    text-decoration: none;
+  }
+</style>
+
+
+
