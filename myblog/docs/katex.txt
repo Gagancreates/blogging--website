@@ -1,4 +1,9 @@
-How to add LaTeX Equations in Astro blog posts
+
+● Perfect! The Explore agent found the root cause - 
+single quotes inside backtick-delimited set:html attributes are breaking the production build. 
+Let me fix all these issues:How to add LaTeX Equations in Astro blog posts
+
+
 Updated:
 22 Mar, 2025
 |
