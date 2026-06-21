@@ -2,9 +2,11 @@
 ---
 interface Props {
   title: string;
+  image?: string;
 }
 
-const { title } = Astro.props;
+const { title, image } = Astro.props;
+const ogImage = new URL(image ?? '/images/bhairav1.jpg', Astro.site).href;
 import Analytics from '@vercel/analytics/astro';
 ---
 
@@ -26,14 +28,14 @@ import Analytics from '@vercel/analytics/astro';
     <meta property="og:url" content="https://gaganp.com/" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content="Gagan - a Computer Science undergrad building machine learning systems and building cool stuff on the web. MLE during the day and dev by the night, I ship things frequently and I build things that makes me curious." />
-    <meta property="og:image" content="https://gaganp.com/images/bhairav1.jpg" />
+    <meta property="og:image" content={ogImage} />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://gaganp.com/" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content="Gagan - a Computer Science undergrad building machine learning systems and building cool stuff on the web. MLE during the day and dev by the night, I ship things frequently and I build things that makes me curious." />
-    <meta property="twitter:image" content="https://gaganp.com/images/bhairav1.jpg" />
+    <meta property="twitter:image" content={ogImage} />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
