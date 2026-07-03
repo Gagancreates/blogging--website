@@ -430,9 +430,22 @@ import Layout from '../layouts/Layout.astro';
     </span>
   </div>
   
-  <p class="font-space text-stone-600 dark:text-stone-400 text-base sm:text-lg leading-relaxed italic">
-    Coming soon...
-  </p>
+  <ul class="space-y-4 sm:space-y-5">
+    <li class="relative pl-5 sm:pl-6 before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-rose-400 dark:before:bg-rose-500 before:rounded-full hover:before:bg-rose-600 dark:hover:before:bg-rose-400 transition-colors">
+      <a
+        href="/research/aria.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-space text-base sm:text-lg font-medium text-stone-800 dark:text-stone-200 hover:text-stone-900 dark:hover:text-stone-100 transition-colors relative group inline-block"
+      >
+        ARIA: Adaptive Reasoning through Difficulty-Graded Trace Compression
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-rose-500 dark:bg-rose-400 group-hover:w-full transition-all duration-300"></span>
+      </a>
+      <p class="font-space text-stone-600 dark:text-stone-400 text-sm sm:text-base mt-1 leading-relaxed">
+        A reasoning model that learns to allocate thinking tokens by problem difficulty — 2.3&times; fewer tokens with a slight accuracy gain on GSM8K and MATH-500.
+      </p>
+    </li>
+  </ul>
 </section>
 
 <!-- Notes Section -->
