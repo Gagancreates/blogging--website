@@ -54,34 +54,32 @@ const nav = [
     </script>
   </head>
   <body class="bg-white dark:bg-[#0b0b0b] text-neutral-900 dark:text-neutral-200 antialiased min-h-screen">
-    <div class="mx-auto max-w-4xl px-6 pt-12 sm:pt-24 pb-24 flex flex-col sm:flex-row gap-10 sm:gap-20">
-      <aside class="sm:w-28 shrink-0 sm:order-2">
-        <nav class="flex flex-row flex-wrap gap-x-6 gap-y-2 sm:flex-col sm:gap-y-3 sm:sticky sm:top-24 text-[15px]">
-          {nav.map((item) => (
-            <a
-              href={item.href}
-              class:list={[
-                'nav-item relative w-fit transition-colors duration-150',
-                active === item.label
-                  ? 'nav-active text-neutral-900 dark:text-neutral-100'
-                  : 'text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200',
-              ]}
-            >
-              {item.label}
-            </a>
-          ))}
-          <button
-            id="theme-toggle"
-            aria-label="Toggle theme"
-            class="mt-1 sm:mt-6 w-fit text-neutral-400 dark:text-neutral-600 hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors duration-150 text-[13px]"
+    <div class="mx-auto max-w-xl px-6 pt-10 sm:pt-16 pb-24">
+      <nav class="flex flex-row flex-wrap items-baseline gap-x-5 gap-y-2 text-[15px] mb-12 sm:mb-16">
+        {nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'nav-item relative w-fit transition-colors duration-150',
+              active === item.label
+                ? 'nav-active text-neutral-900 dark:text-neutral-100'
+                : 'text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200',
+            ]}
           >
-            <span class="dark:hidden">dark</span>
-            <span class="hidden dark:inline">light</span>
-          </button>
-        </nav>
-      </aside>
+            {item.label}
+          </a>
+        ))}
+        <button
+          id="theme-toggle"
+          aria-label="Toggle theme"
+          class="ml-auto text-neutral-400 dark:text-neutral-600 hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors duration-150 text-[13px]"
+        >
+          <span class="dark:hidden">dark</span>
+          <span class="hidden dark:inline">light</span>
+        </button>
+      </nav>
 
-      <main class="w-full max-w-xl min-w-0 sm:order-1">
+      <main class="w-full min-w-0">
         <slot />
       </main>
     </div>
@@ -112,17 +110,15 @@ const nav = [
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 
-  /* Active nav marker — thin bar to the left, desktop only */
-  @media (min-width: 640px) {
-    .nav-active::before {
-      content: '';
-      position: absolute;
-      left: -0.75rem;
-      top: 0.2em;
-      bottom: 0.2em;
-      width: 1px;
-      background: currentColor;
-    }
+  /* Active nav marker — thin underline */
+  .nav-active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.3em;
+    height: 1px;
+    background: currentColor;
   }
 
   /* Prose link style — dotted underline like the inspo */
