@@ -1,39 +1,18 @@
 ---
-import Layout from '../../../../layouts/Layout.astro';
+import PostLayout from '../../../../layouts/PostLayout.astro';
 ---
 
-<Layout title="DSA Unit 1 - Linked Lists & Stacks | Gagan P">
-  <main class="container mx-auto px-4 py-8 sm:py-12">
-    <div class="max-w-3xl mx-auto">
-      <article class="prose prose-stone dark:prose-invert max-w-none">
-        <!-- Header Section -->
-        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
-          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 mb-0">
-            DSA Unit 1
-          </h1>
+<PostLayout title="DSA Unit 1 - Linked Lists & Stacks | Gagan P" heading={`DSA Unit 1`} date={`Linked Lists & Stacks`} active="Notes">
 
-          <a
-            href="/notes"
-            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2 no-underline"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            /notes
-          </a>
-        </div>
-
-        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
-          Linked Lists & Stacks
-        </p>
+  <Fragment>
 
         <!-- Main Content -->
-        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+        <div>
+          <h2>
             Singly Linked List - Full Code
           </h2>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 struct Node {
@@ -241,11 +220,11 @@ int main() {
     return 0;
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Doubly Linked List
           </h2>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 struct Node {
@@ -393,11 +372,11 @@ void update(struct Node* head, int oldVal, int newVal) {
     }
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Circular Linked List (Singly)
           </h2>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 struct Node {
@@ -547,7 +526,7 @@ void update(struct Node* head, int oldVal, int newVal) {
     } while (temp != head);
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Circular Doubly Linked List
           </h2>
 
@@ -555,7 +534,7 @@ void update(struct Node* head, int oldVal, int newVal) {
             A circular doubly linked list combines features of both circular and doubly linked lists. Each node has pointers to both next and previous nodes, and the last node points back to the head.
           </p>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 typedef struct Node {
@@ -741,15 +720,15 @@ void update(Node* head, int oldVal, int newVal) {
     } while (cur != head);
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Stacks (Array & Linked List)
           </h2>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Array-Based Stack Operations
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include&lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include&lt;stdio.h&gt;
 #include&lt;stdlib.h&gt;
 
 // Function to push an element onto the stack
@@ -833,11 +812,11 @@ int main() {
     return 0;
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Linked List Implementation
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include&lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include&lt;stdio.h&gt;
 #include&lt;stdlib.h&gt;
 
 struct node {
@@ -885,15 +864,15 @@ void display_ll() {
     printf("NULL\n");
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Stack Applications
           </h2>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Reverse a Stack Using Recursion
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #define MAX 100
 
 int stack[MAX];
@@ -938,15 +917,15 @@ void reverseStack() {
     insertAtBottom(temp);
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Infix to Postfix Conversion
           </h3>
 
           <p>
-            Precedence (Higher to lower): <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">()</code> → <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">^</code> → <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">* / %</code> → <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">+ -</code>
+            Precedence (Higher to lower): <code>()</code> → <code>^</code> → <code>* / %</code> → <code>+ -</code>
           </p>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;ctype.h&gt;
 #include &lt;string.h&gt;
@@ -1005,11 +984,11 @@ void infixToPostfix(char* infix) {
     printf("Postfix: %s\n", postfix);
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Postfix Evaluation
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;ctype.h&gt;
 
@@ -1046,11 +1025,11 @@ int evaluatePostfix(char* expr) {
     return pop();
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Parenthesis Matching
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 #define MAX 100
@@ -1089,61 +1068,5 @@ int isBalanced(char* expr) {
         </div>
 
         <!-- Mobile Back Button -->
-        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
-          <a
-            href="/notes"
-            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2 no-underline"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            /notes
-          </a>
-        </div>
-      </article>
-    </div>
-  </main>
-</Layout>
-
-<style>
-  article {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  article h2 {
-    scroll-margin-top: 2rem;
-  }
-
-  article h3 {
-    scroll-margin-top: 2rem;
-  }
-
-  article code {
-    font-weight: 500;
-  }
-
-  article a.no-underline {
-    text-decoration: none;
-  }
-
-  pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  code {
-    font-size: 0.875rem;
-    line-height: 1.5;
-  }
-</style>
+  </Fragment>
+</PostLayout>

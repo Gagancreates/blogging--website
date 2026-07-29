@@ -1,35 +1,14 @@
 ---
-import Layout from '../../../../layouts/Layout.astro';
+import PostLayout from '../../../../layouts/PostLayout.astro';
 ---
 
-<Layout title="DSA Unit 2 - Queues & Trees | Gagan P">
-  <main class="container mx-auto px-4 py-8 sm:py-12">
-    <div class="max-w-3xl mx-auto">
-      <article class="prose prose-stone dark:prose-invert max-w-none">
-        <!-- Header Section -->
-        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
-          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 mb-0">
-            DSA Unit 2
-          </h1>
+<PostLayout title="DSA Unit 2 - Queues & Trees | Gagan P" heading={`DSA Unit 2`} date={`Queues & Binary Trees`} active="Notes">
 
-          <a
-            href="/notes"
-            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2 no-underline"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            /notes
-          </a>
-        </div>
-
-        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
-          Queues & Binary Trees
-        </p>
+  <Fragment>
 
         <!-- Main Content -->
-        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+        <div>
+          <h2>
             What is a Queue?
           </h2>
 
@@ -41,7 +20,7 @@ import Layout from '../../../../layouts/Layout.astro';
             The element inserted <strong>first</strong> is the one removed <strong>first</strong>. Think of it like people standing in line at a ticket counter.
           </p>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Queue Terminology
           </h3>
 
@@ -55,7 +34,7 @@ import Layout from '../../../../layouts/Layout.astro';
             <li><strong>isFull (for array):</strong> Check if queue cannot insert more elements</li>
           </ul>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Types of Queues
           </h3>
 
@@ -66,7 +45,7 @@ import Layout from '../../../../layouts/Layout.astro';
             <li><strong>Priority Queue:</strong> Each element has priority</li>
           </ul>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Queue Implementation Using Array
           </h2>
 
@@ -74,7 +53,7 @@ import Layout from '../../../../layouts/Layout.astro';
             Here, we use a fixed-size array. After several enqueues and dequeues, even if space is available in the beginning of the array, it can't be reused (Solution: <strong>Circular Queue</strong>).
           </p>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #define SIZE 5
 
@@ -138,7 +117,7 @@ void display(struct Queue* q) {
     printf("\n");
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Queue Implementation Using Linked List
           </h2>
 
@@ -146,7 +125,7 @@ void display(struct Queue* q) {
             Here, we dynamically allocate nodes. No fixed size like array.
           </p>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 struct Node {
@@ -217,7 +196,7 @@ void display(struct Queue* q) {
     printf("\n");
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Circular Queue
           </h2>
 
@@ -225,11 +204,11 @@ void display(struct Queue* q) {
             In a Simple Queue (array), once rear reaches the end, no more insertions, even if space is freed at front. Circular Queue connects last position back to the first using modulo arithmetic. Used in CPU scheduling and memory buffers.
           </p>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Array Implementation
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 #define SIZE 5
@@ -294,11 +273,11 @@ void display(struct queue* q) {
     printf("\n");
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Linked List Implementation
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include&lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include&lt;stdio.h&gt;
 #include&lt;stdlib.h&gt;
 
 struct Node{
@@ -365,7 +344,7 @@ void display(struct cqu* q){
     printf("\n");
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Double Ended Queue (Deque)
           </h2>
 
@@ -373,11 +352,11 @@ void display(struct cqu* q){
             Deque allows insertions and deletions at both front and rear. Used in palindrome checking and sliding window problems.
           </p>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Circular Deque Using Array
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #define SIZE 5
 
@@ -462,11 +441,11 @@ int deleteRear(struct Deque* dq) {
     return val;
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Deque Using Linked List
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 struct Node {
@@ -531,7 +510,7 @@ int deleteRear() {
     return val;
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Priority Queue
           </h2>
 
@@ -539,11 +518,11 @@ int deleteRear() {
             Each element has a priority. Deletion always removes the highest/lowest priority element, not FIFO order. Used in OS scheduling, Dijkstra's shortest path, and Huffman coding.
           </p>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Ordered Insert - Descending Priority Queue
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #define SIZE 10
 
@@ -615,7 +594,7 @@ void display() {
     printf("\n");
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Josephus Problem
           </h2>
 
@@ -623,11 +602,11 @@ void display() {
             The Josephus problem is a theoretical problem where people stand in a circle and every nth person is eliminated until only one survives.
           </p>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Using Circular Linked List
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">struct Node* insert(struct Node* head, char name[]) {
+          <pre><code is:raw class="language-c">struct Node* insert(struct Node* head, char name[]) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     strcpy(newNode-&gt;name, name);
 
@@ -667,11 +646,11 @@ void josephus(struct Node** head, int n) {
     *head = p;
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Using Circular Queue
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;string.h&gt;
 #define SIZE 50
@@ -739,15 +718,15 @@ void josephus(struct Queue* q, int n) {
     printf("%s survives!\n", temp);
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Binary Trees - Iterative Traversals
           </h2>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Inorder Traversal (Left-Root-Right)
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 struct Node {
@@ -813,11 +792,11 @@ void iterativeInorder(struct Node* root) {
     }
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Preorder Traversal (Root-Left-Right)
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void iterativePreorder(struct Node* root) {
+          <pre><code is:raw class="language-c">void iterativePreorder(struct Node* root) {
     if (root == NULL) return;
 
     struct Stack* stack = createStack(100);
@@ -832,11 +811,11 @@ void iterativeInorder(struct Node* root) {
     }
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Postorder Traversal (Left-Right-Root)
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void iterativePostorder(struct Node* root) {
+          <pre><code is:raw class="language-c">void iterativePostorder(struct Node* root) {
     if (root == NULL) return;
 
     struct Stack* stack1 = createStack(100);
@@ -858,34 +837,34 @@ void iterativeInorder(struct Node* root) {
     }
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Queue Comparison
           </h2>
 
           <div class="overflow-x-auto">
-            <table class="min-w-full border-collapse border border-stone-300 dark:border-stone-700">
+            <table>
               <thead>
-                <tr class="bg-stone-100 dark:bg-stone-800">
-                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">Feature</th>
-                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">Array Queue</th>
-                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">Linked List Queue</th>
+                <tr>
+                  <th>Feature</th>
+                  <th>Array Queue</th>
+                  <th>Linked List Queue</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Memory</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Fixed (static SIZE)</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Dynamic (malloc)</td>
+                  <td>Memory</td>
+                  <td>Fixed (static SIZE)</td>
+                  <td>Dynamic (malloc)</td>
                 </tr>
                 <tr>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Overflow</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Can occur</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">No (until system memory ends)</td>
+                  <td>Overflow</td>
+                  <td>Can occur</td>
+                  <td>No (until system memory ends)</td>
                 </tr>
                 <tr>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Speed</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">O(1) for enqueue/dequeue</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">O(1) always</td>
+                  <td>Speed</td>
+                  <td>O(1) for enqueue/dequeue</td>
+                  <td>O(1) always</td>
                 </tr>
               </tbody>
             </table>
@@ -894,70 +873,5 @@ void iterativeInorder(struct Node* root) {
         </div>
 
         <!-- Mobile Back Button -->
-        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
-          <a
-            href="/notes"
-            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2 no-underline"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            /notes
-          </a>
-        </div>
-      </article>
-    </div>
-  </main>
-</Layout>
-
-<style>
-  article {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  article h2 {
-    scroll-margin-top: 2rem;
-  }
-
-  article h3 {
-    scroll-margin-top: 2rem;
-  }
-
-  article code {
-    font-weight: 500;
-  }
-
-  article a.no-underline {
-    text-decoration: none;
-  }
-
-  pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  code {
-    font-size: 0.875rem;
-    line-height: 1.5;
-  }
-
-  table {
-    width: 100%;
-    margin: 1rem 0;
-  }
-
-  th, td {
-    text-align: left;
-  }
-</style>
+  </Fragment>
+</PostLayout>

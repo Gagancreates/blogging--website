@@ -1,34 +1,14 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import PostLayout from '../../layouts/PostLayout.astro';
 ---
 
-<Layout title="Education needs a change | Gagan P">
-  <main class="container mx-auto px-4 py-8 sm:py-12">
-    <div class="max-w-3xl mx-auto">
-      <article class="prose prose-stone dark:prose-invert max-w-none">
-        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
-          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100">
-            Why I'm Building zTutor
-          </h1>
-          
-          <a 
-            href="/blogs" 
-            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            /blogs
-          </a>
-        </div>
-        
-        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
-          03 December, 2025
-        </p>
+<PostLayout title="Education needs a change | Gagan P" heading={`Why I'm Building zTutor`} date={`03 December, 2025`} active="Writing">
 
-        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
+  <Fragment>
+
+        <div>
           <p>
-            I am currently building <a href="https://ztutor.app" target="_blank" rel="noopener noreferrer" class="font-semibold text-stone-900 dark:text-stone-100 hover:underline">zTutor</a>, which is an AI native educational video generator app that creates custom video lessons and tutorials for students and for anyone who is curious to learn.
+            I am currently building <a href="https://ztutor.app" target="_blank" rel="noopener noreferrer">zTutor</a>, which is an AI native educational video generator app that creates custom video lessons and tutorials for students and for anyone who is curious to learn.
           </p>
 
           <p>
@@ -55,36 +35,5 @@ import Layout from '../../layouts/Layout.astro';
             Thank you.
           </p>
         </div>
-
-        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
-          <a 
-            href="/blogs" 
-            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            Back to all blogs
-          </a>
-        </div>
-      </article>
-    </div>
-  </main>
-</Layout>
-
-<style>
-  article {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>
+  </Fragment>
+</PostLayout>

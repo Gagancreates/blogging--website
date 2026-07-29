@@ -1,39 +1,18 @@
 ---
-import Layout from '../../../../layouts/Layout.astro';
+import PostLayout from '../../../../layouts/PostLayout.astro';
 ---
 
-<Layout title="DSA Unit 4 - Tries & Hashing | Gagan P">
-  <main class="container mx-auto px-4 py-8 sm:py-12">
-    <div class="max-w-3xl mx-auto">
-      <article class="prose prose-stone dark:prose-invert max-w-none">
-        <!-- Header Section -->
-        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
-          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 mb-0">
-            DSA Unit 4
-          </h1>
+<PostLayout title="DSA Unit 4 - Tries & Hashing | Gagan P" heading={`DSA Unit 4`} date={`Tries & Hashing`} active="Notes">
 
-          <a
-            href="/notes"
-            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2 no-underline"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            /notes
-          </a>
-        </div>
-
-        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
-          Tries & Hashing
-        </p>
+  <Fragment>
 
         <!-- Main Content -->
-        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+        <div>
+          <h2>
             Graphs
           </h2>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             What is a Graph?
           </h3>
 
@@ -48,7 +27,7 @@ import Layout from '../../../../layouts/Layout.astro';
 
           <p>Mathematically, a graph is G = (V, E)</p>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Key Terminology
           </h3>
 
@@ -59,11 +38,11 @@ import Layout from '../../../../layouts/Layout.astro';
             <li><strong>Degree:</strong> Number of edges connected to a vertex</li>
           </ul>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Data Structure Definitions
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#define MAX 25
+          <pre><code is:raw class="language-c">#define MAX 25
 
 struct node {
     int data;
@@ -81,11 +60,11 @@ struct graph {
 
 struct graph g;</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Adjacency Matrix - Read Function
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void read_ad_matr(int graph[MAX][MAX], int n) {
+          <pre><code is:raw class="language-c">void read_ad_matr(int graph[MAX][MAX], int n) {
     int i, j;
     printf("Enter the adjacency matrix:\n");
     for (i = 0; i &lt; n; i++) {
@@ -95,11 +74,11 @@ struct graph g;</code></pre>
     }
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             DFS Traversal
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void dfs(int u, int visited[], int graph[MAX][MAX], int n) {
+          <pre><code is:raw class="language-c">void dfs(int u, int visited[], int graph[MAX][MAX], int n) {
     visited[u] = 1;
 
     for (int v = 0; v &lt; n; v++) {
@@ -109,11 +88,11 @@ struct graph g;</code></pre>
     }
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             BFS Traversal
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void bfs(int s, int visited[], int n, int graph[MAX][MAX]) {
+          <pre><code is:raw class="language-c">void bfs(int s, int visited[], int n, int graph[MAX][MAX]) {
     int f = 0, r = -1;
     int q[MAX];
     int v;
@@ -135,7 +114,7 @@ struct graph g;</code></pre>
     }
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Check Connectivity
           </h3>
 
@@ -143,7 +122,7 @@ struct graph g;</code></pre>
             This function checks for <strong>Strong Connectivity</strong> in directed graphs by testing if all nodes can be reached from every other node.
           </p>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">int isConnected(int n, int graph[MAX][MAX]) {
+          <pre><code is:raw class="language-c">int isConnected(int n, int graph[MAX][MAX]) {
     int visited[MAX];
     int i, u;
 
@@ -164,7 +143,7 @@ struct graph g;</code></pre>
     return 1;
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Adjacency List Operations
           </h3>
 
@@ -172,11 +151,11 @@ struct graph g;</code></pre>
             The following functions use cursor-based implementation where next and point are integer indices.
           </p>
 
-          <h4 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-6 mb-2">
+          <h4>
             Join Two Nodes (Add Edge)
           </h4>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void join(int p, int q, int wt) {
+          <pre><code is:raw class="language-c">void join(int p, int q, int wt) {
     int r, r2;
 
     r = node[p].point;
@@ -204,11 +183,11 @@ struct graph g;</code></pre>
     }
 }</code></pre>
 
-          <h4 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-6 mb-2">
+          <h4>
             Remove an Edge
           </h4>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void remv(int p, int q) {
+          <pre><code is:raw class="language-c">void remv(int p, int q) {
     int r, r2;
     r2 = -1;
     r = node[p].point;
@@ -229,11 +208,11 @@ struct graph g;</code></pre>
     }
 }</code></pre>
 
-          <h4 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-6 mb-2">
+          <h4>
             Check Adjacency
           </h4>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#define TRUE 1
+          <pre><code is:raw class="language-c">#define TRUE 1
 #define FALSE 0
 
 int adjacent(int p, int q) {
@@ -250,11 +229,11 @@ int adjacent(int p, int q) {
     return(FALSE);
 }</code></pre>
 
-          <h4 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-6 mb-2">
+          <h4>
             Find Node
           </h4>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">int findnode(int graph, int x) {
+          <pre><code is:raw class="language-c">int findnode(int graph, int x) {
     int p;
     p = graph;
 
@@ -268,11 +247,11 @@ int adjacent(int p, int q) {
     return(-1);
 }</code></pre>
 
-          <h4 class="font-zt text-xl sm:text-2xl text-stone-900 dark:text-stone-100 mt-6 mb-2">
+          <h4>
             Add Node
           </h4>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">int addnode(int *graph, int x) {
+          <pre><code is:raw class="language-c">int addnode(int *graph, int x) {
     int p;
     p = getnode();
     node[p].info = x;
@@ -284,40 +263,40 @@ int adjacent(int p, int q) {
     return(p);
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             BFS and DFS Comparison
           </h3>
 
           <div class="overflow-x-auto">
-            <table class="min-w-full border-collapse border border-stone-300 dark:border-stone-700">
+            <table>
               <thead>
-                <tr class="bg-stone-100 dark:bg-stone-800">
-                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">Feature</th>
-                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">BFS</th>
-                  <th class="border border-stone-300 dark:border-stone-700 px-4 py-2">DFS</th>
+                <tr>
+                  <th>Feature</th>
+                  <th>BFS</th>
+                  <th>DFS</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Data Structure</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Queue (FIFO)</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Stack (LIFO) or Recursion</td>
+                  <td>Data Structure</td>
+                  <td>Queue (FIFO)</td>
+                  <td>Stack (LIFO) or Recursion</td>
                 </tr>
                 <tr>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Approach</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Level by Level</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Depth wise</td>
+                  <td>Approach</td>
+                  <td>Level by Level</td>
+                  <td>Depth wise</td>
                 </tr>
                 <tr>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Applications</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Shortest path</td>
-                  <td class="border border-stone-300 dark:border-stone-700 px-4 py-2">Cycle detection, Topological sorting</td>
+                  <td>Applications</td>
+                  <td>Shortest path</td>
+                  <td>Cycle detection, Topological sorting</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Trie Trees
           </h2>
 
@@ -325,7 +304,7 @@ int adjacent(int p, int q) {
             A Trie is a tree-like data structure used for efficient retrieval of strings. Each node represents a character, and paths from root to leaves form complete strings.
           </p>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;string.h&gt;
 
@@ -429,11 +408,11 @@ void display(struct trienode *curr) {
     }
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Hashing
           </h2>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Separate Chaining
           </h3>
 
@@ -441,7 +420,7 @@ void display(struct trienode *curr) {
             Separate chaining uses linked lists to handle collisions. Each array index points to a linked list of elements that hash to that index.
           </p>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;string.h&gt;
 
@@ -527,19 +506,19 @@ void display(NODE* ht[SIZE]) {
     printf("---------------------------\n");
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Linear Probing
           </h3>
 
           <p>
-            Linear probing uses the formula: <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">h(key) = ((h(key) + i) % tablesize)</code>
+            Linear probing uses the formula: <code>h(key) = ((h(key) + i) % tablesize)</code>
           </p>
 
           <p>
             When a collision occurs, we linearly search for the next available slot.
           </p>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;string.h&gt;
 
@@ -631,74 +610,5 @@ void display(NODE ht[]) {
         </div>
 
         <!-- Mobile Back Button -->
-        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
-          <a
-            href="/notes"
-            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2 no-underline"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            /notes
-          </a>
-        </div>
-      </article>
-    </div>
-  </main>
-</Layout>
-
-<style>
-  article {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  article h2 {
-    scroll-margin-top: 2rem;
-  }
-
-  article h3 {
-    scroll-margin-top: 2rem;
-  }
-
-  article h4 {
-    scroll-margin-top: 2rem;
-  }
-
-  article code {
-    font-weight: 500;
-  }
-
-  article a.no-underline {
-    text-decoration: none;
-  }
-
-  pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  code {
-    font-size: 0.875rem;
-    line-height: 1.5;
-  }
-
-  table {
-    width: 100%;
-    margin: 1rem 0;
-  }
-
-  th, td {
-    text-align: left;
-  }
-</style>
+  </Fragment>
+</PostLayout>

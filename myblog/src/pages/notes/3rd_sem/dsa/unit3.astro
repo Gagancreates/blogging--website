@@ -1,43 +1,22 @@
 ---
-import Layout from '../../../../layouts/Layout.astro';
+import PostLayout from '../../../../layouts/PostLayout.astro';
 ---
 
-<Layout title="DSA Unit 3 - Graphs and Trees | Gagan P">
-  <main class="container mx-auto px-4 py-8 sm:py-12">
-    <div class="max-w-3xl mx-auto">
-      <article class="prose prose-stone dark:prose-invert max-w-none">
-        <!-- Header Section -->
-        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
-          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 mb-0">
-            DSA Unit 3
-          </h1>
+<PostLayout title="DSA Unit 3 - Graphs and Trees | Gagan P" heading={`DSA Unit 3`} date={`Graphs and Trees`} active="Notes">
 
-          <a
-            href="/notes"
-            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2 no-underline"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            /notes
-          </a>
-        </div>
-
-        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-8">
-         Graphs and Trees
-        </p>
+  <Fragment>
 
         <!-- Main Content -->
-        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+        <div>
+          <h2>
             Binary Search Tree (BST)
           </h2>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Using Linked List (Malloc)
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">struct Node* createNode(int value) {
+          <pre><code is:raw class="language-c">struct Node* createNode(int value) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode-&gt;data = value;
     newNode-&gt;left = NULL;
@@ -98,15 +77,15 @@ struct Node* deleteNode(struct Node* root, int value) {
     return root;
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             BST Using Array
           </h3>
 
           <p>
-            In Zero-Based Indexing (Root at 0): For parent node at <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">i</code>, left child at <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">2i + 1</code> and right child at <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">2i + 2</code>. Parent of node at <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">i</code> is <code class="font-mono text-sm bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded">[(i-1)/2]</code>.
+            In Zero-Based Indexing (Root at 0): For parent node at <code>i</code>, left child at <code>2i + 1</code> and right child at <code>2i + 2</code>. Parent of node at <code>i</code> is <code>[(i-1)/2]</code>.
           </p>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 #define MAX_SIZE 20
@@ -147,7 +126,7 @@ void inorder(int index) {
     inorder(2 * index + 2);
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Binary Expression Trees
           </h2>
 
@@ -155,7 +134,7 @@ void inorder(int index) {
             Binary expression trees represent mathematical expressions where operands are leaves and operators are internal nodes. We can construct them from postfix expressions.
           </p>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;string.h&gt;
 
@@ -225,15 +204,15 @@ void inorder(struct Node* root) {
     }
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Threaded Binary Trees
           </h2>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Full Threaded Binary Tree (Inorder)
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 struct Node {
@@ -281,11 +260,11 @@ void inorderTraversal(struct Node* root) {
     printf("\n");
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Right Threaded Binary Tree (Inorder)
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">struct Node {
+          <pre><code is:raw class="language-c">struct Node {
     int data;
     struct Node *left;
     struct Node *right;
@@ -329,7 +308,7 @@ void inorderTraversal(struct Node* root) {
     printf("\n");
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Heaps
           </h2>
 
@@ -345,11 +324,11 @@ void inorderTraversal(struct Node* root) {
             <li>First n/2 elements are parents, last n/2 are children</li>
           </ul>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Max Heap - Bottom-Up Heapification
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 void heapBottomUp(int H[], int n) {
@@ -401,11 +380,11 @@ int main() {
     return 0;
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Max Heap - Top-Down Approach + Heap Sort
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #define MAX 50
 
 int main() {
@@ -481,11 +460,11 @@ int main() {
     return 0;
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Min Heap - Bottom-Up
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">void heapBottomUpMin(int H[], int n) {
+          <pre><code is:raw class="language-c">void heapBottomUpMin(int H[], int n) {
 
     for (int i = n / 2; i &gt;= 1; i--) {
 
@@ -513,11 +492,11 @@ int main() {
     }
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Min Heap - Top-Down
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">// HEAPIFY: BUILD MIN HEAP (Top-Down / Sift-Up)
+          <pre><code is:raw class="language-c">// HEAPIFY: BUILD MIN HEAP (Top-Down / Sift-Up)
 for (i = 1; i &lt; n; i++) {
     elt = a[i];
     c = i;
@@ -557,15 +536,15 @@ for (i = n - 1; i &gt; 0; i--) {
     a[p] = elt;
 }</code></pre>
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Priority Queues Using Heaps
           </h2>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Descending Priority Queue (Max Heap)
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">#include &lt;stdio.h&gt;
+          <pre><code is:raw class="language-c">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #define MAX 50
 
@@ -639,11 +618,11 @@ int dequeue(PQ *pt, int *ele) {
     return 1;
 }</code></pre>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Ascending Priority Queue (Min Heap)
           </h3>
 
-          <pre class="bg-stone-100 dark:bg-stone-800 p-4 rounded-lg overflow-x-auto"><code is:raw class="language-c">int enqueue_min(PQ *pt, int e) {
+          <pre><code is:raw class="language-c">int enqueue_min(PQ *pt, int e) {
     int p, c;
     if (pt-&gt;n &gt;= MAX) return 0;
 
@@ -698,61 +677,5 @@ int dequeue_min(PQ *pt, int *ele) {
         </div>
 
         <!-- Mobile Back Button -->
-        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
-          <a
-            href="/notes"
-            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2 no-underline"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            /notes
-          </a>
-        </div>
-      </article>
-    </div>
-  </main>
-</Layout>
-
-<style>
-  article {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  article h2 {
-    scroll-margin-top: 2rem;
-  }
-
-  article h3 {
-    scroll-margin-top: 2rem;
-  }
-
-  article code {
-    font-weight: 500;
-  }
-
-  article a.no-underline {
-    text-decoration: none;
-  }
-
-  pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  code {
-    font-size: 0.875rem;
-    line-height: 1.5;
-  }
-</style>
+  </Fragment>
+</PostLayout>
