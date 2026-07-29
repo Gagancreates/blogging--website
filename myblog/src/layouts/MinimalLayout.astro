@@ -99,6 +99,20 @@ const nav = [
         const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
       });
+
+      // Flash the contact line when navigating to #contact
+      function flashContact() {
+        const el = document.getElementById('contact');
+        if (!el) return;
+        el.classList.remove('contact-flash');
+        void el.offsetWidth;
+        el.classList.add('contact-flash');
+        el.addEventListener('animationend', () => el.classList.remove('contact-flash'), { once: true });
+      }
+      if (location.hash === '#contact') flashContact();
+      document.querySelectorAll('a[href$="#contact"]').forEach((a) =>
+        a.addEventListener('click', flashContact)
+      );
     </script>
   </body>
 </html>
@@ -157,5 +171,24 @@ const nav = [
   }
   .dark ::selection {
     background: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Contact line flash on #contact navigation */
+  .contact-flash {
+    animation: contact-flash 2s ease;
+    border-radius: 4px;
+  }
+  @keyframes contact-flash {
+    0% { background: transparent; }
+    15%, 60% { background: rgba(253, 224, 71, 0.35); }
+    100% { background: transparent; }
+  }
+  .dark .contact-flash {
+    animation-name: contact-flash-dark;
+  }
+  @keyframes contact-flash-dark {
+    0% { background: transparent; }
+    15%, 60% { background: rgba(253, 224, 71, 0.14); }
+    100% { background: transparent; }
   }
 </style>
