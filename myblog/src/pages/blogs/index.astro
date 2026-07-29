@@ -1,223 +1,112 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MinimalLayout from '../../layouts/MinimalLayout.astro';
 
-
-
-const categories = [
+const sections = [
   {
     title: 'Machine Learning',
-    description: 'Deep dives into ML concepts, implementations, and applications',
-    url: '/blogs/ml',
     blogs: [
       {
         title: 'Introduction to RNNs',
-        excerpt: 'From why we need memory in neural networks to the math of Backpropagation Through Time - a deep dive into RNNs',
+        excerpt: 'From why we need memory in neural networks to the math of Backpropagation Through Time.',
         date: '2026-01-01',
-        externalLink: '/blogs/RNNs'
+        href: '/blogs/RNNs',
       },
       {
-        title: 'K- Nearest Neighbors( ML 101 )',
-        excerpt: 'In this blog we are gonna learn about KNN and implement them using iris dataset',
+        title: 'K-Nearest Neighbors (ML 101)',
+        excerpt: 'Learn about KNN and implement it on the iris dataset.',
         date: '2025-07-10',
-        externalLink: 'https://sheer-castanet-7f7.notion.site/K-Nearest-Neighbors-ML-101-25371143c5dc80ccb7d8c01cab98e00f'
+        href: 'https://sheer-castanet-7f7.notion.site/K-Nearest-Neighbors-ML-101-25371143c5dc80ccb7d8c01cab98e00f',
       },
       {
         title: 'Build a neural network for MNIST from scratch',
-        excerpt: 'In this blog we are gonna build a neural network to classify handwritten digits from the MNIST dataset using only numpy',
+        excerpt: 'Classify handwritten digits from the MNIST dataset using only numpy.',
         date: '2025-06-10',
-        externalLink: 'https://sheer-castanet-7f7.notion.site/build-a-neural-network-for-mnist-from-scratch-23271143c5dc80158874fb6af1b34670'
+        href: 'https://sheer-castanet-7f7.notion.site/build-a-neural-network-for-mnist-from-scratch-23271143c5dc80158874fb6af1b34670',
       },
       {
-        title: 'Build your first Neural Network from scratch',
-        excerpt: 'Implement a neural network from scratch, without using any libraries such as PyTorch, TensorFlow, etc.',
+        title: 'Build your first neural network from scratch',
+        excerpt: 'Implement a neural network without PyTorch, TensorFlow, or any other library.',
         date: '2025-05-14',
-        externalLink: 'https://sheer-castanet-7f7.notion.site/build-your-first-neural-network-from-scratch-22b71143c5dc80fd8681fbaae5eac94d'
+        href: 'https://sheer-castanet-7f7.notion.site/build-your-first-neural-network-from-scratch-22b71143c5dc80fd8681fbaae5eac94d',
       },
       {
         title: 'Introduction to Neural Networks',
-        excerpt: 'This is an introductory blog to neural networks where I have tried to explain how a Neural Network works and how it was developed.',
+        excerpt: 'How a neural network works and how it was developed.',
         date: '2025-04-14',
-        externalLink: 'https://sheer-castanet-7f7.notion.site/Introduction-to-Neural-Networks-1de71143c5dc80de9669dc93448c36d4?pvs=4'
+        href: 'https://sheer-castanet-7f7.notion.site/Introduction-to-Neural-Networks-1de71143c5dc80de9669dc93448c36d4?pvs=4',
       },
-      
       {
         title: 'Solving the Problem of Overfitting: Regularisation',
-        excerpt: 'Understanding the problem of Overfitting, best methods for resolving and learning about Regularisation and its types',
+        excerpt: 'Understanding overfitting and the types of regularisation that fix it.',
         date: '2025-03-22',
-        externalLink: 'https://sheer-castanet-7f7.notion.site/Solving-the-Problem-of-Overfitting-Regularisation-1c471143c5dc80bcb241c5101a4dfdd4?pvs=4'
+        href: 'https://sheer-castanet-7f7.notion.site/Solving-the-Problem-of-Overfitting-Regularisation-1c471143c5dc80bcb241c5101a4dfdd4?pvs=4',
       },
       {
         title: 'Gradient Descent: From Zero to Hero',
-        excerpt: 'Understanding Gradient Descent from Basics along with Mathematical Formulas and Visualisation',
+        excerpt: 'Gradient descent from the basics, with the math and visualisations.',
         date: '2024-02-16',
-        externalLink: 'https://sheer-castanet-7f7.notion.site/Gradient-Descent-Zero-to-Hero-1ba71143c5dc806486ebdc0f936c7c93'
+        href: 'https://sheer-castanet-7f7.notion.site/Gradient-Descent-Zero-to-Hero-1ba71143c5dc806486ebdc0f936c7c93',
       },
-      {
-        title: 'Natural Language Processing with Transformers',
-        excerpt: 'Exploring state-of-the-art NLP techniques and model architectures',
-        date: '2024-03-12',
-        externalLink: 'https://example.com/nlp-transformers'
-      },
-      {
-        title: 'More blogs incoming....',
-        date: '2025-02-27',
-      }
-    ]
+    ],
   },
   {
     title: 'Writings',
-    description: 'Things which I feel needs to be written down',
-    url: '/blogs/build',
     blogs: [
       {
-        title: 'I Built a Startup at 18. Here\'s the Full Story.',
-        excerpt: 'Documenting six months of building zTutor — the inspiration, the pivots, the near-misses, and why I decided to stop.',
+        title: "I Built a Startup at 18. Here's the Full Story.",
+        excerpt: 'Six months of building zTutor — the inspiration, the pivots, the near-misses, and why I decided to stop.',
         date: '2026-06-21',
-        externalLink: '/blogs/i-built-a-startup-at-18'
+        href: '/blogs/i-built-a-startup-at-18',
       },
       {
         title: 'How I Use Claude Code',
-        excerpt: 'My three-phase workflow for using AI coding assistants without creating a mess',
+        excerpt: 'My three-phase workflow for using AI coding assistants without creating a mess.',
         date: '2025-12-06',
-        externalLink: '/blogs/how-i-use-claude-code'
+        href: '/blogs/how-i-use-claude-code',
       },
       {
         title: 'Education needs a change',
-        excerpt: 'Why I\'m building zTutor and the current scenario of modern education',
+        excerpt: "Why I'm building zTutor and the current scenario of modern education.",
         date: '2025-12-03',
-        externalLink: '/blogs/education-needs-change'
+        href: '/blogs/education-needs-change',
       },
-      {
-        title: 'More blogs incoming....',
-        date: '2025-02-27',
-      }
-    ]
-  }
+    ],
+  },
 ];
 
-// Function to format date
-function formatDate(dateString) {
-  const date = new Date(dateString);
-  const options = { day: '2-digit', month: 'long', year: 'numeric' };
-  return date.toLocaleDateString('en-US', options);
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 }
 ---
 
-<Layout title="Blogs | Gagan P">
-  <main class="container mx-auto px-4 py-8 sm:py-12">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="font-zt text-5xl sm:text-6xl mb-8 sm:mb-12 text-center text-stone-900 dark:text-stone-100">Blogs</h1>
-
-      <div class="mb-16">
-        <h2 class="font-zt text-3xl sm:text-4xl mb-8 text-stone-900 dark:text-stone-100">
-         
-            {categories[0].title}
-         
-        </h2>
-        
-        <section class="group p-4 sm:p-6 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500">
-          <p class="font-space text-stone-600 dark:text-stone-400 mb-6 hidden sm:block">{categories[0].description}</p>
-          
-          <div class="space-y-4">
-            {categories[0].blogs.map(blog => (
-              <div class="border-l-4 border-stone-300 dark:border-stone-700 pl-4 rounded-r">
-                <h3 class="font-space text-base sm:text-xl font-medium text-stone-900 dark:text-stone-100">
-                  <a 
-                    href={blog.externalLink} 
-                    target={blog.externalLink?.startsWith('http') ? '_blank' : '_self'}
-                    rel={blog.externalLink?.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    class="hover:text-stone-700 dark:hover:text-stone-300 hover:underline transition-colors"
-                  >
-                    {blog.title}
-                  </a>
-                </h3>
-                <p class="font-space text-stone-600 dark:text-stone-400 text-sm mb-1 hidden sm:block">{blog.excerpt}</p>
-                <p class="text-stone-500 dark:text-stone-500 text-xs">{formatDate(blog.date)}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-
+<MinimalLayout title="Writing | Gagan P" active="Writing">
+  <div class="space-y-12">
+    {sections.map((section) => (
       <div>
-        <h2 class="font-zt text-3xl sm:text-4xl mb-8 text-stone-900 dark:text-stone-100">
-          
-            {categories[1].title}
-          
-        </h2>
-        
-        <section class="group p-4 sm:p-6 rounded-2xl border border-stone-200/60 dark:border-stone-700/40 bg-gradient-to-br from-white/80 to-stone-50/60 dark:from-stone-900/60 dark:to-stone-800/40 shadow-sm hover:shadow-lg hover:border-stone-300/70 dark:hover:border-stone-600/50 transition-all duration-500">
-          <p class="font-space text-stone-600 dark:text-stone-400 mb-6 hidden sm:block">{categories[1].description}</p>
-          
-          <div class="space-y-4">
-            {categories[1].blogs.map(blog => (
-              <div class="border-l-4 border-stone-300 dark:border-stone-700 pl-4 rounded-r">
-                <h3 class="font-space font-medium text-base sm:text-xl text-stone-900 dark:text-stone-100">
-                  <a 
-                    href={blog.externalLink} 
-                    target={blog.externalLink?.startsWith('http') ? '_blank' : '_self'}
-                    rel={blog.externalLink?.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    class="hover:text-stone-700 dark:hover:text-stone-300 hover:underline transition-colors"
-                  >
-                    {blog.title}
-                  </a>
-                </h3>
-                <p class="font-space text-stone-600 dark:text-stone-400 text-sm mb-1 hidden sm:block">{blog.excerpt}</p>
-                <p class="text-stone-500 dark:text-stone-500 text-xs">{formatDate(blog.date)}</p>
+        <p class="mb-6 text-neutral-400 dark:text-neutral-600 text-[13px] uppercase tracking-wide">{section.title}</p>
+        <div class="space-y-7">
+          {section.blogs.map((blog) => (
+            <div>
+              <div class="flex items-baseline justify-between gap-4">
+                <a
+                  href={blog.href}
+                  target={blog.href.startsWith('http') ? '_blank' : undefined}
+                  rel={blog.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  class="link text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100"
+                >
+                  {blog.title}
+                </a>
+                <span class="text-[13px] text-neutral-400 dark:text-neutral-600 whitespace-nowrap">
+                  {formatDate(blog.date)}
+                </span>
               </div>
-            ))}
-          </div>
-        </section>
+              <p class="mt-1 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
+                {blog.excerpt}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </main>
-</Layout>
-
-<style>
-  /* Fade-in animation for articles */
-  article {
-    animation: fadeIn 0.5s ease-out forwards;
-    opacity: 0;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Stagger the animations */
-  article:nth-child(1) { animation-delay: 0.1s; }
-  article:nth-child(2) { animation-delay: 0.2s; }
-  article:nth-child(3) { animation-delay: 0.3s; }
-  article:nth-child(4) { animation-delay: 0.4s; }
-  article:nth-child(5) { animation-delay: 0.5s; }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(180, 180, 185, 0.3);
-    border-radius: 4px;
-  }
-
-  .dark ::-webkit-scrollbar-thumb {
-    background: rgba(180, 180, 185, 0.2);
-  }
-
-  /* Smooth transitions */
-  * {
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-  }
-</style>
+    ))}
+  </div>
+</MinimalLayout>
