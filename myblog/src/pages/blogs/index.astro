@@ -92,7 +92,7 @@ function formatDate(dateString: string) {
                   href={blog.href}
                   target={blog.href.startsWith('http') ? '_blank' : undefined}
                   rel={blog.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  class="link text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100"
+                  class="link text-sm sm:text-base text-neutral-900 dark:text-neutral-100"
                 >
                   {blog.title}
                 </a>
@@ -100,7 +100,7 @@ function formatDate(dateString: string) {
                   {formatDate(blog.date)}
                 </span>
               </div>
-              <p class="mt-1 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
+              <p class="mt-1 text-sm sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
                 {blog.excerpt}
               </p>
             </div>

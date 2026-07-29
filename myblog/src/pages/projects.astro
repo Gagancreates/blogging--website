@@ -83,18 +83,18 @@ const sideProjects = [
 <MinimalLayout title="Projects | Gagan P" active="Projects">
   <div class="space-y-12 sm:space-y-14">
     {projects.map((item) => (
-      <a href={item.href} target="_blank" rel="noopener noreferrer" class="group flex flex-col sm:flex-row gap-4 sm:gap-7 items-start">
+      <a href={item.href} target="_blank" rel="noopener noreferrer" class="group flex flex-row gap-4 sm:gap-7 items-start">
         <img
           src={item.image}
           alt={`${item.title} preview`}
-          class="w-full sm:w-40 shrink-0 aspect-[16/10] object-cover rounded-lg bg-neutral-100 dark:bg-neutral-900 shadow-[0_4px_16px_rgba(0,0,0,0.14)] dark:shadow-[0_4px_16px_rgba(255,255,255,0.09)]"
+          class="w-28 sm:w-40 shrink-0 aspect-[16/10] object-cover rounded-lg bg-neutral-100 dark:bg-neutral-900 shadow-[0_4px_16px_rgba(0,0,0,0.14)] dark:shadow-[0_4px_16px_rgba(255,255,255,0.09)]"
           loading="lazy"
         />
         <div class="pt-0.5">
-          <h2 class="text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100">
+          <h2 class="text-sm sm:text-base text-neutral-900 dark:text-neutral-100">
             {item.title}
           </h2>
-          <p class="mt-1.5 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
+          <p class="mt-1.5 text-sm sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
             {item.description}
           </p>
         </div>
@@ -104,18 +104,18 @@ const sideProjects = [
     <div class="pt-2 space-y-12 sm:space-y-14">
       <p class="text-neutral-400 dark:text-neutral-600 text-[13px] uppercase tracking-wide">Side projects</p>
       {sideProjects.map((item) => (
-        <a href={item.href} target="_blank" rel="noopener noreferrer" class="group flex flex-col sm:flex-row gap-4 sm:gap-7 items-start">
+        <a href={item.href} target="_blank" rel="noopener noreferrer" class="group flex flex-row gap-4 sm:gap-7 items-start">
           <img
             src={item.image}
             alt={`${item.title} preview`}
-            class="w-full sm:w-40 shrink-0 aspect-[16/10] object-cover rounded-lg bg-neutral-100 dark:bg-neutral-900 shadow-[0_4px_16px_rgba(0,0,0,0.14)] dark:shadow-[0_4px_16px_rgba(255,255,255,0.09)]"
+            class="w-28 sm:w-40 shrink-0 aspect-[16/10] object-cover rounded-lg bg-neutral-100 dark:bg-neutral-900 shadow-[0_4px_16px_rgba(0,0,0,0.14)] dark:shadow-[0_4px_16px_rgba(255,255,255,0.09)]"
             loading="lazy"
           />
           <div class="pt-0.5">
-            <h2 class="text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100">
+            <h2 class="text-sm sm:text-base text-neutral-900 dark:text-neutral-100">
               {item.title}
             </h2>
-            <p class="mt-1.5 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
+            <p class="mt-1.5 text-sm sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
               {item.description}
             </p>
           </div>
