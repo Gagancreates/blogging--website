@@ -14,7 +14,7 @@ const experience = [
     role: 'Founder',
     org: 'zTutor',
     date: 'June 2025 — April 2026',
-    description: 'AI-powered educational video platform from 0→1. 2000+ videos generated, backed by 3F Venture Capital.',
+    description: 'AI-powered educational video platform from 0→1. 2000+ videos generated, backed by <a href="https://www.3f.vc/" target="_blank" rel="noopener noreferrer" class="link">3F Venture Capital</a>.',
     href: 'https://ztutor.app',
     logo: '/images/ztutor-logo.png',
   },
@@ -62,9 +62,7 @@ const experience = [
             </span>
           </div>
           {item.description && (
-            <p class="mt-1.5 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
-              {item.description}
-            </p>
+            <p class="mt-1.5 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500" set:html={item.description} />
           )}
         </div>
       </div>
