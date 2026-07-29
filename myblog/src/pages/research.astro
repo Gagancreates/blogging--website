@@ -1,0 +1,30 @@
+---
+import MinimalLayout from '../layouts/MinimalLayout.astro';
+
+const papers = [
+  {
+    title: 'ARIA: Adaptive Reasoning through Difficulty-Graded Trace Compression',
+    description: 'A reasoning model that learns to allocate thinking tokens by problem difficulty — 2.3× fewer tokens with a slight accuracy gain on GSM8K and MATH-500.',
+    href: '/research/aria.pdf',
+    year: '2026',
+  },
+];
+---
+
+<MinimalLayout title="Research | Gagan P" active="Research">
+  <div class="space-y-10">
+    {papers.map((paper) => (
+      <div>
+        <a href={paper.href} target="_blank" rel="noopener noreferrer" class="link text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100">
+          {paper.title}
+        </a>
+        <p class="mt-2 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
+          {paper.description}
+        </p>
+        <p class="mt-2 text-[13px] text-neutral-400 dark:text-neutral-600">
+          {paper.year} · <a href={paper.href} target="_blank" rel="noopener noreferrer" class="link">PDF</a>
+        </p>
+      </div>
+    ))}
+  </div>
+</MinimalLayout>

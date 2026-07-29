@@ -1,0 +1,113 @@
+---
+import MinimalLayout from '../layouts/MinimalLayout.astro';
+
+const projects = [
+  {
+    title: 'Eunice CLI',
+    description: 'A local-first second brain for researchers. Ingest papers, master concepts, build knowledge graphs — all from your terminal.',
+    href: 'https://github.com/Gagancreates/Eunice-CLI',
+    image: '/images/eunice-cli.png',
+  },
+  {
+    title: 'FeynmanAI',
+    description: "Real-time AI voice tutor that draws diagrams on a live canvas while it talks. Built at Anthropic's Build India Hackathon.",
+    href: 'https://github.com/Gagancreates/FeynmanAI',
+    image: '/images/feynman.png',
+  },
+  {
+    title: 'zTutor',
+    description: 'Your personal AI video tutor — generate professional educational videos with just a prompt.',
+    href: 'https://ztutor.app/',
+    image: '/images/ztutor.png',
+  },
+  {
+    title: 'NotesAI',
+    description: 'Turns long, messy PDFs into clean, aesthetic notes with a core RAG engine.',
+    href: 'https://notes-ai-bay.vercel.app/',
+    image: '/images/notesai1.png',
+  },
+  {
+    title: 'arXiv-gram',
+    description: 'Instagram for research papers — scroll, bookmark, filter, and search arXiv in one place.',
+    href: 'https://arxiv-gram.vercel.app/',
+    image: '/images/arxiv.png',
+  },
+  {
+    title: 'Bhagavad-Gita-GPT',
+    description: 'A chatbot that responds like Lord Krishna, offering wisdom and Bhagavad Gita verses.',
+    href: 'https://bhagavad-gita-gpt-xi.vercel.app/',
+    image: '/images/bgitagpt.png',
+  },
+  {
+    title: 'YouTube to MindMap',
+    description: 'Summarizes videos into downloadable, interactive mind maps — built ~3 months before NotebookLM shipped the same feature.',
+    href: 'https://github.com/Gagancreates/youtube-mindmap-generator',
+    image: '/images/ytmindmap.png',
+  },
+];
+
+const sideProjects = [
+  {
+    title: 'MediaForge',
+    description: 'Browser-based media converter and compressor — all processing client-side, no uploads.',
+    href: 'https://github.com/Gagancreates/MediaForge',
+  },
+  {
+    title: 'Daily Dose of Knowledge',
+    description: 'Micro-learning platform delivering daily articles and quizzes based on your interests.',
+    href: 'https://dailydoseofknowledge.vercel.app/',
+  },
+  {
+    title: 'Mailstone',
+    description: 'Daily tone-aware motivation emails written in the voice of a visionary you pick.',
+    href: 'https://github.com/Gagancreates/mailstone',
+  },
+  {
+    title: 'Resume Generator',
+    description: 'Turns your inputs into a clean, professional resume exported as a PDF.',
+    href: 'https://github.com/Gagancreates/resume-generator',
+  },
+  {
+    title: 'This website',
+    description: 'The one you are on right now.',
+    href: 'https://gaganp.com/',
+  },
+];
+---
+
+<MinimalLayout title="Projects | Gagan P" active="Projects">
+  <div class="space-y-12 sm:space-y-14">
+    {projects.map((item) => (
+      <a href={item.href} target="_blank" rel="noopener noreferrer" class="group flex flex-col sm:flex-row gap-4 sm:gap-7 items-start">
+        <img
+          src={item.image}
+          alt={`${item.title} preview`}
+          class="w-full sm:w-40 shrink-0 aspect-[16/10] object-cover rounded-[3px] bg-neutral-100 dark:bg-neutral-900"
+          loading="lazy"
+        />
+        <div class="pt-0.5">
+          <h2 class="text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100">
+            {item.title}
+          </h2>
+          <p class="mt-1.5 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
+            {item.description}
+          </p>
+        </div>
+      </a>
+    ))}
+
+    <div class="pt-2">
+      <p class="mb-6 text-neutral-400 dark:text-neutral-600 text-[13px] uppercase tracking-wide">Side projects</p>
+      <ul class="space-y-5">
+        {sideProjects.map((item) => (
+          <li>
+            <a href={item.href} target="_blank" rel="noopener noreferrer" class="link text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100">{item.title}</a>
+            <p class="mt-1 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
+              {item.description}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</MinimalLayout>

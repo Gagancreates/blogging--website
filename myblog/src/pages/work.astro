@@ -1,81 +1,73 @@
 ---
 import MinimalLayout from '../layouts/MinimalLayout.astro';
 
-const work = [
+const experience = [
   {
-    title: 'Rowboat Labs',
-    description: 'AI engineer at Rowboat (YC S24).',
+    role: 'AI Engineer',
+    org: 'Rowboat Labs (YC S24)',
+    date: 'Present',
+    description: null,
     href: 'https://rowboatlabs.com',
-    image: '/images/rowboat_labs_logo.jpg',
+    logo: '/images/rowboat_labs_logo.jpg',
   },
   {
-    title: 'zTutor',
-    description: 'Your personal AI video tutor. 2000+ videos generated, backed by 3F Venture Capital.',
+    role: 'Founder',
+    org: 'zTutor',
+    date: 'June 2025 — April 2026',
+    description: 'AI-powered educational video platform from 0→1. 2000+ videos generated, backed by 3F Venture Capital.',
     href: 'https://ztutor.app',
-    image: '/images/ztutor.png',
+    logo: '/images/ztutor-logo.png',
   },
   {
-    title: 'ARIA',
-    description: 'Adaptive reasoning through difficulty-graded trace compression — 2.3× fewer thinking tokens on GSM8K and MATH-500.',
-    href: '/research/aria.pdf',
-    image: null,
+    role: 'Subject Matter Expert',
+    org: 'PESU I/O',
+    date: 'September 2025 — December 2025',
+    description: 'Taught a course on foundations of neural networks and deep learning to ~50 students.',
+    href: 'https://pesu.io',
+    logo: '/images/pesuio.png',
   },
   {
-    title: 'Eunice CLI',
-    description: 'A local-first second brain for researchers. Papers, concepts, and knowledge graphs from your terminal.',
-    href: 'https://github.com/Gagancreates',
-    image: '/images/eunice-cli.png',
-  },
-  {
-    title: 'FeynmanAI',
-    description: "Real-time AI voice tutor that draws diagrams on a live canvas while it talks. Built at Anthropic's Build India Hackathon.",
-    href: 'https://github.com/Gagancreates',
-    image: '/images/feynman.png',
-  },
-  {
-    title: 'NotesAI',
-    description: 'Turns long, messy PDFs into clean, aesthetic notes with a core RAG engine.',
-    href: 'https://github.com/Gagancreates',
-    image: '/images/notesai1.png',
-  },
-  {
-    title: 'arXiv-gram',
-    description: 'Instagram for research papers — scroll, bookmark, filter, and search arXiv in one place.',
-    href: 'https://github.com/Gagancreates',
-    image: '/images/arxiv.png',
+    role: 'Summer Intern',
+    org: 'Center for Robotics, Automation and Intelligent Systems',
+    date: 'June 2025 — August 2025',
+    description: 'Implemented RL algorithms for robotic control and autonomous navigation.',
+    href: null,
+    logo: '/images/crais.jpeg',
   },
 ];
 ---
 
 <MinimalLayout title="Work | Gagan P" active="Work">
-  <div class="space-y-12 sm:space-y-14">
-    {work.map((item) => (
-      <a href={item.href} target={item.href.startsWith('http') || item.href.endsWith('.pdf') ? '_blank' : undefined} rel="noopener noreferrer" class="group flex flex-col sm:flex-row gap-4 sm:gap-7 items-start">
-        {item.image ? (
-          <img
-            src={item.image}
-            alt={`${item.title} preview`}
-            class="w-full sm:w-40 shrink-0 aspect-[16/10] object-cover rounded-[3px] bg-neutral-100 dark:bg-neutral-900"
-            loading="lazy"
-          />
-        ) : (
-          <div class="w-full sm:w-40 shrink-0 aspect-[16/10] rounded-[3px] bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center text-neutral-400 dark:text-neutral-600 text-sm">
-            paper
+  <div class="space-y-10 sm:space-y-12">
+    {experience.map((item) => (
+      <div class="flex gap-4 sm:gap-5 items-start">
+        <img
+          src={item.logo}
+          alt={`${item.org} logo`}
+          class="w-10 h-10 shrink-0 rounded-[3px] object-cover bg-neutral-100 dark:bg-neutral-900 mt-0.5"
+          loading="lazy"
+        />
+        <div class="min-w-0">
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 sm:gap-4">
+            <h2 class="text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100">
+              {item.role} ·
+              {item.href ? (
+                <a href={item.href} target="_blank" rel="noopener noreferrer" class="link">{item.org}</a>
+              ) : (
+                <span>{item.org}</span>
+              )}
+            </h2>
+            <span class="text-[13px] text-neutral-400 dark:text-neutral-600 whitespace-nowrap">
+              {item.date}
+            </span>
           </div>
-        )}
-        <div class="pt-0.5">
-          <h2 class="text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100">
-            {item.title}
-          </h2>
-          <p class="mt-1.5 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
-            {item.description}
-          </p>
+          {item.description && (
+            <p class="mt-1.5 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
+              {item.description}
+            </p>
+          )}
         </div>
-      </a>
+      </div>
     ))}
-
-    <p class="text-[15px] sm:text-base text-neutral-500 dark:text-neutral-500">
-      More on the <a href="/project" class="link">full projects page</a>.
-    </p>
   </div>
 </MinimalLayout>
