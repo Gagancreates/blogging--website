@@ -55,7 +55,7 @@ const nav = [
   </head>
   <body class="bg-white dark:bg-[#0b0b0b] text-neutral-900 dark:text-neutral-200 antialiased min-h-screen">
     <div class="mx-auto max-w-4xl px-6 pt-12 sm:pt-24 pb-24 flex flex-col sm:flex-row gap-10 sm:gap-20">
-      <aside class="sm:w-28 shrink-0">
+      <aside class="sm:w-28 shrink-0 sm:order-2">
         <nav class="flex flex-row flex-wrap gap-x-6 gap-y-2 sm:flex-col sm:gap-y-3 sm:sticky sm:top-24 text-[15px]">
           {nav.map((item) => (
             <a
@@ -81,7 +81,7 @@ const nav = [
         </nav>
       </aside>
 
-      <main class="w-full max-w-xl min-w-0">
+      <main class="w-full max-w-xl min-w-0 sm:order-1">
         <slot />
       </main>
     </div>
