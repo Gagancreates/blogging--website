@@ -51,26 +51,31 @@ const sideProjects = [
     title: 'MediaForge',
     description: 'Browser-based media converter and compressor — all processing client-side, no uploads.',
     href: 'https://github.com/Gagancreates/MediaForge',
+    image: '/images/mediaforge.png',
   },
   {
     title: 'Daily Dose of Knowledge',
     description: 'Micro-learning platform delivering daily articles and quizzes based on your interests.',
     href: 'https://dailydoseofknowledge.vercel.app/',
+    image: '/images/ddok.png',
   },
   {
     title: 'Mailstone',
     description: 'Daily tone-aware motivation emails written in the voice of a visionary you pick.',
     href: 'https://github.com/Gagancreates/mailstone',
+    image: '/images/mailstone.png',
   },
   {
     title: 'Resume Generator',
     description: 'Turns your inputs into a clean, professional resume exported as a PDF.',
     href: 'https://github.com/Gagancreates/resume-generator',
+    image: '/images/resume.png',
   },
   {
     title: 'This website',
     description: 'The one you are on right now.',
     href: 'https://gaganp.com/',
+    image: '/images/blog.png',
   },
 ];
 ---
@@ -96,18 +101,26 @@ const sideProjects = [
       </a>
     ))}
 
-    <div class="pt-2">
-      <p class="mb-6 text-neutral-400 dark:text-neutral-600 text-[13px] uppercase tracking-wide">Side projects</p>
-      <ul class="space-y-5">
-        {sideProjects.map((item) => (
-          <li>
-            <a href={item.href} target="_blank" rel="noopener noreferrer" class="link text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100">{item.title}</a>
-            <p class="mt-1 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
+    <div class="pt-2 space-y-12 sm:space-y-14">
+      <p class="text-neutral-400 dark:text-neutral-600 text-[13px] uppercase tracking-wide">Side projects</p>
+      {sideProjects.map((item) => (
+        <a href={item.href} target="_blank" rel="noopener noreferrer" class="group flex flex-col sm:flex-row gap-4 sm:gap-7 items-start">
+          <img
+            src={item.image}
+            alt={`${item.title} preview`}
+            class="w-full sm:w-40 shrink-0 aspect-[16/10] object-cover rounded-[3px] bg-neutral-100 dark:bg-neutral-900"
+            loading="lazy"
+          />
+          <div class="pt-0.5">
+            <h2 class="text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100">
+              {item.title}
+            </h2>
+            <p class="mt-1.5 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
               {item.description}
             </p>
-          </li>
-        ))}
-      </ul>
+          </div>
+        </a>
+      ))}
     </div>
   </div>
 </MinimalLayout>
