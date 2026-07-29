@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import PostLayout from '../../layouts/PostLayout.astro';
 
 const frontmatter = {
   title: "Recurrent Neural Networks (RNNs) - Intuition, Math, and BPTT",
@@ -39,60 +39,20 @@ const latex = {
 };
 ---
 
-<Layout title={`${frontmatter.title} | Gagan P`}>
-  <!-- KaTeX Stylesheet for LaTeX rendering -->
-  <link
-    slot="head"
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-    integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
-    crossorigin="anonymous"
-  />
+<PostLayout title={`${frontmatter.title} | Gagan P`} heading={frontmatter.title} date={formattedDate} active="Writing" math={true}>
 
-  <main class="container mx-auto px-4 py-8 sm:py-12">
-    <div class="max-w-3xl mx-auto">
-      <article class="prose prose-stone dark:prose-invert max-w-none">
-        <!-- Header Section -->
-        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
-          <h1 class="font-zt text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 mb-0">
-            {frontmatter.title}
-          </h1>
-
-          <a
-            href="/blogs"
-            class="hidden sm:inline-flex font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors items-center gap-2 mt-2 no-underline"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            /blogs
-          </a>
-        </div>
-
-        <p class="font-space text-stone-500 dark:text-stone-400 text-sm mb-2">
-          {formattedDate}
-        </p>
-
-        <div class="flex flex-wrap gap-2 mb-8">
-          {frontmatter.tags.map((tag) => (
-            <span class="font-space text-xs bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 px-3 py-1 rounded-full">
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <!-- Main Content -->
-        <div class="font-space text-stone-700 dark:text-stone-300 leading-relaxed space-y-6">
-          <p class="text-lg text-stone-600 dark:text-stone-400">
+  <Fragment>
+        <div>
+          <p>
             So this is going to be a <strong>comprehensive blog on Recurrent Neural Networks (RNNs)</strong> - so far we have learnt about FCNNs, CNNs, etc. But they all have something missing, something which the human brain specialises in. Can you guess it?
           </p>
-          <p class="text-lg text-stone-600 dark:text-stone-400">
+          <p>
             Ok let me spill it, it's memory!
           </p>
 
-          <hr class="border-stone-200 dark:border-stone-700 my-8" />
+          <hr />
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Why RNNs?
           </h2>
 
@@ -100,7 +60,7 @@ const latex = {
             So before we move onto the concept of RNNs, let's discuss why it came into discussion in the first place. Regular neural networks, be it <strong>FCNNs, CNNs</strong>, etc. all work the same way:
           </p>
 
-          <blockquote class="border-l-4 border-stone-300 dark:border-stone-600 pl-4 italic my-6">
+          <blockquote>
             input → hidden layers → output
           </blockquote>
 
@@ -120,21 +80,21 @@ const latex = {
             To be concise: <strong>vanilla neural networks do not have memory</strong>. It cannot refer to what the past input was and it cannot relate the present input with the past inputs, this limits the Neural Network from identifying trends, patterns, etc. And if you just look back, RNNs are one of the most fundamental concepts which lead to the current day technology in AI by unlocking the capability of NN's to have memory. 
           </p>
 
-          <hr class="border-stone-200 dark:border-stone-700 my-8" />
+          <hr />
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             So Why Do We Need Memory?
           </h2>
 
           <p>Let's take a classic NLP example:</p>
 
-          <blockquote class="border-l-4 border-stone-300 dark:border-stone-600 pl-4 italic my-6">
+          <blockquote>
             "My dog has blue eyes, it loves its new pet toy that I bought."
           </blockquote>
 
           <p>When the model encounters the word <strong>"it"</strong>, what does it refer to?</p>
 
-          <ul class="list-disc pl-6 space-y-2">
+          <ul>
             <li>the dog?</li>
             <li>the eyes?</li>
             <li>the toy?</li>
@@ -148,9 +108,9 @@ const latex = {
             This is exactly the class of problems where <strong>context matters</strong>. Language, time series, speech, sensor data, sequences in general have a certain pattern/trend and we need memory to predict the next term in the sequence( The sequence could be language, audio, etc.)
           </p>
 
-          <hr class="border-stone-200 dark:border-stone-700 my-8" />
+          <hr />
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             RNNs for the Rescue 
           </h2>
 
@@ -162,26 +122,26 @@ const latex = {
             An RNN is made up of <strong>recurrent cells</strong>. At every time step <span set:html={latex.t} />, the cell takes <strong>two inputs</strong>:
           </p>
 
-          <ol class="list-decimal pl-6 space-y-2">
+          <ol>
             <li>the current input <span set:html={latex.xt} /></li>
             <li>the previous hidden state <span set:html={latex.ht_minus_1} /></li>
           </ol>
 
           <p>It then produces:</p>
-          <ul class="list-disc pl-6 space-y-2">
+          <ul>
             <li>a new hidden state <span set:html={latex.ht} /></li>
             <li>optionally an output <span set:html={latex.yt} /></li>
           </ul>
           <p>Now this is where RNNs are different from regular NN's, instead of the output from one hidden layer passing through the next hidden layer, here in RNNs the hidden state produced in the first time step passes through the same Recurrent Cell in the next time step. Notice that the weights are shared here for all the time steps. We see something similar in CNNs where the kernel values are shared, and we know why sharing weights are such a huge improvement, both in learning the features and reducing the number of computations </p>
 
-          <img src="/images/rnn.png" alt="RNN Architecture Diagram" class="w-full rounded-lg my-6" />
-          <p class="text-xs text-stone-500 dark:text-stone-400 text-center -mt-4 mb-6">
-            Image credit: <a href="https://authurwhywait.github.io/blog/2021/12/02/introduction_to_dl02/" target="_blank" rel="noopener noreferrer" class="underline hover:text-stone-700 dark:hover:text-stone-300">authurwhywait.github.io</a>
+          <img src="/images/rnn.png" alt="RNN Architecture Diagram" />
+          <p class="text-[13px] text-neutral-400 dark:text-neutral-600 text-center -mt-2 mb-6">
+            Image credit: <a href="https://authurwhywait.github.io/blog/2021/12/02/introduction_to_dl02/" target="_blank" rel="noopener noreferrer">authurwhywait.github.io</a>
           </p>
 
-          <hr class="border-stone-200 dark:border-stone-700 my-8" />
+          <hr />
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Now What Is the Hidden State?
           </h2>
 
@@ -189,12 +149,12 @@ const latex = {
 
           <p>Think of it as:</p>
 
-          <blockquote class="border-l-4 border-stone-300 dark:border-stone-600 pl-4 italic my-6">
+          <blockquote>
             "everything the network has understood so far compressed in a vector numerically"
           </blockquote>
 
           <p>Let's say you(RNN) are a student studying history, now here is how an RNN works: </p>
-          <ul class="list-disc pl-6 space-y-2">
+          <ul>
             <li>You initialise an empty Hidden state vector</li>
             <li>You take in the first embedding of the word from your textbook as the input at time step 0, now you encode this information into the hidden state</li>
             <li>Now you take in the next word at time step 1, now you use the knowledge you learnt from the previous word to process the input and then write the new encoded knowledge to the hidden state</li>
@@ -202,28 +162,28 @@ const latex = {
             <li>At any time step you can make a prediction y, from the current hidden state</li>
           </ul>
 
-          <hr class="border-stone-200 dark:border-stone-700 my-8" />
+          <hr />
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             The Core RNN Equations
           </h2>
 
           <p><strong>Hidden state update:</strong></p>
 
-          <div class="my-6 p-4 bg-stone-50 dark:bg-stone-800/50 rounded-lg overflow-x-auto" set:html={latex.hiddenStateUpdate} />
+          <div set:html={latex.hiddenStateUpdate} />
 
           <p><strong>Output:</strong></p>
 
-          <div class="my-6 p-4 bg-stone-50 dark:bg-stone-800/50 rounded-lg overflow-x-auto" set:html={latex.output} />
+          <div set:html={latex.output} />
 
           <p>Where:</p>
-          <ul class="list-disc pl-6 space-y-2">
+          <ul>
             <li><strong><span set:html={latex.Whh} /></strong> → recurrent (memory) weights</li>
             <li><strong><span set:html={latex.Wxh} /></strong> → input weights</li>
             <li><strong><span set:html={latex.Why} /></strong> → output weights</li>
           </ul>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             A Key Property: Weight Sharing
           </h3>
 
@@ -231,9 +191,9 @@ const latex = {
 
           <p>This is what allows RNNs to generalize across sequences of different lengths.</p>
 
-          <hr class="border-stone-200 dark:border-stone-700 my-8" />
+          <hr />
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Backpropagation Through Time (BPTT)
           </h2>
 
@@ -241,7 +201,7 @@ const latex = {
 
           <p>Instead of going backward through layers, we go backward through <strong>time</strong>.</p>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             The Big Picture
           </h3>
 
@@ -251,17 +211,17 @@ const latex = {
 
           <p>Each hidden state depends on the previous one. So when we compute gradients, the error must flow backward across time steps.</p>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             The Core Gradient Equation
           </h3>
 
           <p>The heart of BPTT is this( It's a wonderful derivation, hope you work it out on paper ):</p>
 
-          <div class="my-6 p-4 bg-stone-50 dark:bg-stone-800/50 rounded-lg overflow-x-auto" set:html={latex.coreGradient} />
+          <div set:html={latex.coreGradient} />
 
           <p>This single equation explains everything.</p>
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             Intuition: Two Sources of Blame
           </h3>
 
@@ -271,7 +231,7 @@ const latex = {
 
           <p>If the prediction at time t is wrong:</p>
 
-          <div class="my-6 p-4 bg-stone-50 dark:bg-stone-800/50 rounded-lg overflow-x-auto" set:html={latex.localError} />
+          <div set:html={latex.localError} />
 
           <p>This is the immediate mistake.</p>
 
@@ -281,30 +241,30 @@ const latex = {
 
           <p>That error flows back through:</p>
 
-          <div class="my-6 p-4 bg-stone-50 dark:bg-stone-800/50 rounded-lg overflow-x-auto" set:html={latex.futureError} />
+          <div set:html={latex.futureError} />
 
-          <h3 class="font-zt text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 mt-8 mb-3">
+          <h3>
             The tanh "Valve"
           </h3>
 
           <p>The derivative of tanh is:</p>
 
-          <div class="my-6 p-4 bg-stone-50 dark:bg-stone-800/50 rounded-lg overflow-x-auto" set:html={latex.tanhDerivative} />
+          <div set:html={latex.tanhDerivative} />
 
           <p>This acts like a valve:</p>
-          <ul class="list-disc pl-6 space-y-2">
+          <ul>
             <li>if neuron is active → gradient flows</li>
             <li>if neuron is saturated → gradient dies</li>
           </ul>
 
-          <img src="/images/rnn_bptt.png" alt="Backpropagation Through Time Visualization" class="w-full rounded-lg my-6" />
-          <p class="text-xs text-stone-500 dark:text-stone-400 text-center -mt-4 mb-6">
-            Image credit: <a href="https://authurwhywait.github.io/blog/2021/12/02/introduction_to_dl02/" target="_blank" rel="noopener noreferrer" class="underline hover:text-stone-700 dark:hover:text-stone-300">authurwhywait.github.io</a>
+          <img src="/images/rnn_bptt.png" alt="Backpropagation Through Time Visualization" />
+          <p class="text-[13px] text-neutral-400 dark:text-neutral-600 text-center -mt-2 mb-6">
+            Image credit: <a href="https://authurwhywait.github.io/blog/2021/12/02/introduction_to_dl02/" target="_blank" rel="noopener noreferrer">authurwhywait.github.io</a>
           </p>
 
-          <hr class="border-stone-200 dark:border-stone-700 my-8" />
+          <hr />
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Why Gradients Vanish in RNNs
           </h2>
 
@@ -312,22 +272,22 @@ const latex = {
 
           <p>After <span set:html={latex.T} /> steps( if we take 0.5 as the average value ):</p>
 
-          <div class="my-6 p-4 bg-stone-50 dark:bg-stone-800/50 rounded-lg overflow-x-auto" set:html={latex.vanishingGradient} />
+          <div set:html={latex.vanishingGradient} />
 
           <p>For large <span set:html={latex.T} />, this becomes almost zero.</p>
           
-          <div class="my-6 p-4 bg-stone-50 dark:bg-stone-800/50 rounded-lg overflow-x-auto" set:html={latex.coreGradient} />
+          <div set:html={latex.coreGradient} />
           <p>If we just look back to the loss equation, after many timesteps, the gradient simply does not flow from the future because the tanh derivative part becomes very close to 0 and the weights stop updating, or in other words the network stops learning </p>
 
           <p>That's why: <strong>Vanilla RNNs only remember short-term dependencies</strong></p>
 
-          <hr class="border-stone-200 dark:border-stone-700 my-8" />
+          <hr />
 
-          <h2 class="font-zt text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mt-10 mb-4">
+          <h2>
             Let's discuss the Limitations of Vanilla RNNs
           </h2>
 
-          <ul class="list-disc pl-6 space-y-2">
+          <ul>
             <li>Vanishing gradients</li>
             <li>Poor long-term memory</li>
             <li>Training becomes unstable for long sequences</li>
@@ -337,103 +297,5 @@ const latex = {
           <p>I hope this blog gave you a baseline intuition on RNNs</p>
           <p>Signing off, Gagan</p>
         </div>
-
-        <!-- Mobile Back Button -->
-        <div class="mt-12 pt-8 border-t border-stone-200 dark:border-stone-700 sm:hidden">
-          <a
-            href="/blogs"
-            class="font-space text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors inline-flex items-center gap-2 no-underline"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            /blogs
-          </a>
-        </div>
-      </article>
-    </div>
-  </main>
-
-  <!-- KaTeX auto-render for any $...$ or $$...$$ syntax -->
-  <script
-    defer
-    src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
-    integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
-    crossorigin="anonymous">
-  </script>
-  <script
-    defer
-    src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
-    crossorigin="anonymous">
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      if (typeof renderMathInElement !== "undefined") {
-        renderMathInElement(document.body, {
-          delimiters: [
-            {left: "$$", right: "$$", display: true},
-            {left: "$", right: "$", display: false}
-          ]
-        });
-      }
-    });
-  </script>
-</Layout>
-
-<style>
-  article {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Ensure proper spacing for headings */
-  article h2 {
-    scroll-margin-top: 2rem;
-  }
-
-  article h3 {
-    scroll-margin-top: 2rem;
-  }
-
-  /* Style for inline code */
-  article code {
-    font-weight: 500;
-    font-family: 'Monaco', 'Consolas', monospace;
-    font-size: 0.9em;
-    background: rgba(0, 0, 0, 0.05);
-    padding: 0.2em 0.4em;
-    border-radius: 4px;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    article code {
-      background: rgba(255, 255, 255, 0.1);
-    }
-  }
-
-  /* Remove underline from navigation links */
-  article a.no-underline {
-    text-decoration: none;
-  }
-
-  /* KaTeX styling adjustments */
-  :global(.katex) {
-    font-size: 1.1em;
-  }
-  
-  :global(.katex-display) {
-    margin: 0;
-    padding: 0;
-  }
-</style>
+  </Fragment>
+</PostLayout>
