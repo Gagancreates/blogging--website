@@ -1,0 +1,81 @@
+---
+import MinimalLayout from '../layouts/MinimalLayout.astro';
+
+const work = [
+  {
+    title: 'Rowboat Labs',
+    description: 'AI engineer at Rowboat (YC S24).',
+    href: 'https://rowboatlabs.com',
+    image: '/images/rowboat_labs_logo.jpg',
+  },
+  {
+    title: 'zTutor',
+    description: 'Your personal AI video tutor. 2000+ videos generated, backed by 3F Venture Capital.',
+    href: 'https://ztutor.app',
+    image: '/images/ztutor.png',
+  },
+  {
+    title: 'ARIA',
+    description: 'Adaptive reasoning through difficulty-graded trace compression — 2.3× fewer thinking tokens on GSM8K and MATH-500.',
+    href: '/research/aria.pdf',
+    image: null,
+  },
+  {
+    title: 'Eunice CLI',
+    description: 'A local-first second brain for researchers. Papers, concepts, and knowledge graphs from your terminal.',
+    href: 'https://github.com/Gagancreates',
+    image: '/images/eunice-cli.png',
+  },
+  {
+    title: 'FeynmanAI',
+    description: "Real-time AI voice tutor that draws diagrams on a live canvas while it talks. Built at Anthropic's Build India Hackathon.",
+    href: 'https://github.com/Gagancreates',
+    image: '/images/feynman.png',
+  },
+  {
+    title: 'NotesAI',
+    description: 'Turns long, messy PDFs into clean, aesthetic notes with a core RAG engine.',
+    href: 'https://github.com/Gagancreates',
+    image: '/images/notesai1.png',
+  },
+  {
+    title: 'arXiv-gram',
+    description: 'Instagram for research papers — scroll, bookmark, filter, and search arXiv in one place.',
+    href: 'https://github.com/Gagancreates',
+    image: '/images/arxiv.png',
+  },
+];
+---
+
+<MinimalLayout title="Work | Gagan P" active="Work">
+  <div class="space-y-12 sm:space-y-14">
+    {work.map((item) => (
+      <a href={item.href} target={item.href.startsWith('http') || item.href.endsWith('.pdf') ? '_blank' : undefined} rel="noopener noreferrer" class="group flex flex-col sm:flex-row gap-4 sm:gap-7 items-start">
+        {item.image ? (
+          <img
+            src={item.image}
+            alt={`${item.title} preview`}
+            class="w-full sm:w-40 shrink-0 aspect-[16/10] object-cover rounded-[3px] bg-neutral-100 dark:bg-neutral-900"
+            loading="lazy"
+          />
+        ) : (
+          <div class="w-full sm:w-40 shrink-0 aspect-[16/10] rounded-[3px] bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center text-neutral-400 dark:text-neutral-600 text-sm">
+            paper
+          </div>
+        )}
+        <div class="pt-0.5">
+          <h2 class="text-[15px] sm:text-base text-neutral-900 dark:text-neutral-100">
+            {item.title}
+          </h2>
+          <p class="mt-1.5 text-[15px] sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500">
+            {item.description}
+          </p>
+        </div>
+      </a>
+    ))}
+
+    <p class="text-[15px] sm:text-base text-neutral-500 dark:text-neutral-500">
+      More on the <a href="/project" class="link">full projects page</a>.
+    </p>
+  </div>
+</MinimalLayout>

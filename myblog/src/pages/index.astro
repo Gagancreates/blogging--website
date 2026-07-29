@@ -1,487 +1,56 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import MinimalLayout from '../layouts/MinimalLayout.astro';
 ---
 
-<Layout title="Gagan P | MLE, Building zTutor">
-  <main class="container mx-auto px-4 py-8 sm:py-12">
-    <div class="max-w-4xl mx-auto">
-      <!-- Hero Section -->
-      <div class="mb-16 sm:mb-24">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
-          <div class="relative flex-grow">
-            <div class="flex items-start gap-2 mb-4">
-              <h1 class="font-zt text-[2.5rem] sm:text-6xl font-black tracking-tight leading-[1.4] relative text-black dark:text-white py-2">
-                Hey, I'm Gagan
-              </h1>
-              <div class="flex-shrink-0 sm:hidden">
-                <div class="relative w-24 h-24 rounded-full overflow-hidden border-4 border-stone-300/30 dark:border-stone-600/30 shadow-[0_0_20px_rgba(0,0,0,0.3)] dark:shadow-[0_0_20px_rgba(192,192,192,0.4)] -mt-3 ml-1">
-                    <img 
-                      src="/images/bhairav.jpg" 
-                      alt="Gagan's profile picture" 
-                      class="w-full h-full object-cover"
-                    />
-                </div>
-              </div>
-            </div>
-            <p class="font-space text-stone-600 dark:text-stone-400 text-base sm:text-lg leading-relaxed max-w-2xl -mt-1 sm:mt-0">
-              tldr: 19 y/o sophomore majoring in CS. I build cool stuff and make machines learn. 
-              I write about machine learning, tech, and topics that grab my curiosity. 
-              <!-- <span class="text-stone-800 dark:text-stone-200 font-medium">Building things and sharing it out along the way :)</span>-->
-              <span class="text-stone-800 dark:text-stone-200 font-medium">Building Your Personal AI Tutor -</span>
-              <a href="https://ztutor.app" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 font-medium hover:underline">zTutor!</a>
-              <span class="text-stone-600 dark:text-stone-400"> · Bootstrapping </span>
-              <a href="https://eunice-labs.vercel.app" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 font-medium hover:underline">Eunice Labs</a>
-              <span class="text-stone-800 dark:text-stone-200 font-medium"> — an open-source AI research lab.</span>
-            </p>
-            <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mt-8 sm:mt-10">
-              <div class="flex gap-3 sm:gap-4">
-                <a 
-                  href="/blogs" 
-                  class="inline-flex items-center justify-center font-space text-sm px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-stone-800 to-stone-900 dark:from-stone-200 dark:to-stone-100 text-white dark:text-stone-900 rounded-lg hover:from-stone-900 hover:to-black dark:hover:from-stone-100 dark:hover:to-white transition-all duration-300 shadow-sm hover:shadow-md relative overflow-hidden group"
-                >
-                  <span class="relative z-10">Read My Blogs</span>
-                  <span class="absolute inset-0 bg-gradient-to-r from-stone-900 to-black dark:from-stone-100 dark:to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                </a>
-                <a 
-                  href="/project" 
-                  class="font-space text-sm px-4 sm:px-5 py-2 sm:py-2.5 border-2 border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-300 rounded-lg hover:bg-stone-50 dark:hover:bg-stone-800/20 hover:border-stone-400 dark:hover:border-stone-500 transition-all duration-300 relative overflow-hidden group"
-                >
-                  <span class="relative z-10">View Projects</span>
-                  <span class="absolute inset-0 bg-stone-50 dark:bg-stone-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                </a>
-              </div>
-              <div class="flex gap-4">
-                <a 
-                  href="https://github.com/Gagancreates" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 transition-colors relative group"
-                  aria-label="GitHub"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                  </svg>
-                  <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a 
-                  href="" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 transition-colors relative group"
-                  aria-label="Twitter"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                  </svg>
-                  <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a 
-                  href="https://www.linkedin.com/in/gaganp56/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 transition-colors relative group"
-                  aria-label="LinkedIn"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                  </svg>
-                  <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="flex-shrink-0 mx-auto sm:mx-0 -mt-4 sm:-mt-8 hidden sm:block">
-            <div class="relative w-24 h-24 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-stone-300/30 dark:border-stone-600/30 shadow-[0_0_20px_rgba(0,0,0,0.3)] dark:shadow-[0_0_20px_rgba(192,192,192,0.4)]">
-  <img 
-    src="/images/bhairav.jpg" 
-    alt="Gagan's profile picture" 
-    class="w-full h-full object-cover"
-  />
-</div>
-          </div>
-        </div>
-      </div>
+<MinimalLayout title="Gagan P" active="About">
+  <div class="space-y-7 text-[15px] sm:text-base leading-[1.8] text-neutral-800 dark:text-neutral-300">
+    <p class="text-neutral-900 dark:text-neutral-100">Hi, I'm Gagan.</p>
 
-      <!-- Content Sections -->
-      <div class="space-y-12 sm:space-y-24 w-full">
-        <!-- Experience Section -->
-        <section class="group relative p-6 sm:p-8 rounded-2xl 
-          bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
-          shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
-          border border-rose-300
-          backdrop-blur-sm
-          dark:from-stone-900/60 dark:to-stone-800/40 
-          dark:border-stone-500/60
-          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500 mt-4 sm:mt-12">
-          <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
-          <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
-          <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 mb-4 sm:mb-8">
-            <div class="flex items-center gap-2 sm:gap-3">
-              <h2 class="font-zt text-2xl sm:text-3xl relative group">
-                <span class="relative z-10 text-stone-900 dark:text-stone-100">Experience</span>
-                <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              </h2>
-            </div>
-          </div>
-          <div class="space-y-6 sm:space-y-8">
-          <!-- Experience Card 1: Rowboat Labs -->
-          <div class="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
-            <div class="flex flex-row sm:flex-col items-center gap-3 sm:gap-0">
-              <div class="flex-shrink-0 w-10 h-10 sm:w-14 sm:h-14 rounded-lg overflow-hidden border border-stone-200/50 dark:border-stone-700/50">
-                <img
-                  src="/images/rowboat_labs_logo.jpg"
-                  alt="Rowboat Labs Logo"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div class="sm:hidden flex-1">
-                <h3 class="font-space text-base font-medium text-stone-900 dark:text-stone-100">
-                  AI Engineer
-                </h3>
-                <span class="font-mono text-xs text-stone-500 dark:text-stone-400">
-                  Present
-                </span>
-              </div>
-            </div>
-            <div class="flex-grow">
-              <div class="hidden sm:flex flex-row items-center justify-between gap-2 mb-1">
-                <h3 class="font-space text-lg sm:text-xl font-medium text-stone-900 dark:text-stone-100">
-                  AI Engineer
-                </h3>
-                <span class="font-mono text-sm text-stone-500 dark:text-stone-400 whitespace-nowrap">
-                  Present
-                </span>
-              </div>
-              <p class="font-space text-sm sm:text-base text-stone-700 dark:text-stone-300 font-medium mt-1 sm:mt-0">
-                Rowboat Labs (YC S24)
-              </p>
-            </div>
-          </div>
+    <p>
+      I'm an AI engineer at <a href="https://rowboatlabs.com" target="_blank" rel="noopener noreferrer" class="link">Rowboat Labs</a> (YC S24),
+      and I'm bootstrapping <a href="https://eunice-labs.vercel.app" target="_blank" rel="noopener noreferrer" class="link">Eunice Labs</a> —
+      an open-source AI research lab.
+    </p>
 
-          <!-- Experience Card 2: zTutor -->
-          <div class="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
-            <div class="flex flex-row sm:flex-col items-center gap-3 sm:gap-0">
-              <div class="flex-shrink-0 w-10 h-10 sm:w-14 sm:h-14 rounded-lg overflow-hidden border border-stone-200/50 dark:border-stone-700/50">
-                <img
-                  src="/images/ztutor-logo.png"
-                  alt="zTutor Logo"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div class="sm:hidden flex-1">
-                <h3 class="font-space text-base font-medium text-stone-900 dark:text-stone-100">
-                  Founder
-                </h3>
-                <span class="font-mono text-xs text-stone-500 dark:text-stone-400">
-                  June 2025 - April 2026
-                </span>
-              </div>
-            </div>
-            <div class="flex-grow">
-              <div class="hidden sm:flex flex-row items-center justify-between gap-2 mb-1">
-                <h3 class="font-space text-lg sm:text-xl font-medium text-stone-900 dark:text-stone-100">
-                  Founder
-                </h3>
-                <span class="font-mono text-sm text-stone-500 dark:text-stone-400 whitespace-nowrap">
-                  June 2025 - April 2026
-                </span>
-              </div>
-              <p class="font-space text-sm sm:text-base text-stone-700 dark:text-stone-300 font-medium mt-1 sm:mt-0">
-                zTutor: Your Personal AI Video Tutor
-              </p>
-              <p class="font-space text-sm text-stone-600 dark:text-stone-400 mt-1 sm:mt-2">
-                AI-powered educational video platform from 0→1. 2000+ videos generated, backed by 3F Venture Capital.
-              </p>
-            </div>
-          </div>
+    <p>
+      I'm a 19-year-old CS sophomore. I build things that make machines learn, and I write about
+      <a href="/blogs" class="link">machine learning</a> and whatever grabs my curiosity.
+    </p>
 
-          <!-- Experience Card 3: PESU I/O -->
-          <div class="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
-            <div class="flex flex-row sm:flex-col items-center gap-3 sm:gap-0">
-              <div class="flex-shrink-0 w-10 h-10 sm:w-14 sm:h-14 rounded-lg overflow-hidden border border-stone-200/50 dark:border-stone-700/50">
-                <img
-                  src="/images/pesuio.png"
-                  alt="PESUIO Logo"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div class="sm:hidden flex-1">
-                <h3 class="font-space text-base font-medium text-stone-900 dark:text-stone-100">
-                  Subject Matter Expert
-                </h3>
-                <span class="font-mono text-xs text-stone-500 dark:text-stone-400">
-                  September 2025 - December 2025
-                </span>
-              </div>
-            </div>
-            <div class="flex-grow">
-              <div class="hidden sm:flex flex-row items-center justify-between gap-2 mb-1">
-                <h3 class="font-space text-lg sm:text-xl font-medium text-stone-900 dark:text-stone-100">
-                  Subject Matter Expert
-                </h3>
-                <span class="font-mono text-sm text-stone-500 dark:text-stone-400 whitespace-nowrap">
-                  September 2025 - December 2025
-                </span>
-              </div>
-              <p class="font-space text-sm sm:text-base text-stone-700 dark:text-stone-300 font-medium mt-1 sm:mt-0">
-                PESU I/O: A Peer-to-Peer Learning Platform
-              </p>
-              <p class="font-space text-sm text-stone-600 dark:text-stone-400 mt-1 sm:mt-2">
-                Taught a course on "Foundations of Neural Networks and Deep Learning" to ~50 students
-              </p>
-            </div>
-          </div>
-
-          <!-- Experience Card 4: CRAIS -->
-          <div class="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
-            <div class="flex flex-row sm:flex-col items-center gap-3 sm:gap-0">
-              <div class="flex-shrink-0 w-10 h-10 sm:w-14 sm:h-14 rounded-lg overflow-hidden border border-stone-200/50 dark:border-stone-700/50">
-                <img 
-                  src="/images/crais.jpeg" 
-                  alt="CRAIS Logo" 
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div class="sm:hidden flex-1">
-                <h3 class="font-space text-base font-medium text-stone-900 dark:text-stone-100">
-                  Summer Intern
-                </h3>
-                <span class="font-mono text-xs text-stone-500 dark:text-stone-400">
-                  June 2025 - August 2025
-                </span>
-              </div>
-            </div>
-            <div class="flex-grow">
-              <div class="hidden sm:flex flex-row items-center justify-between gap-2 mb-1">
-                <h3 class="font-space text-lg sm:text-xl font-medium text-stone-900 dark:text-stone-100">
-                  Summer Intern
-                </h3>
-                <span class="font-mono text-sm text-stone-500 dark:text-stone-400 whitespace-nowrap">
-                  June 2025 - August 2025
-                </span>
-              </div>
-              <p class="font-space text-sm sm:text-base text-stone-700 dark:text-stone-300 font-medium mt-1 sm:mt-0">
-                Center for Robotics, Automation and Intelligent Systems
-              </p>
-              <p class="font-space text-sm text-stone-600 dark:text-stone-400 mt-1 sm:mt-2">
-                Implemented RL algorithms for robotic control and autonomous navigation.
-              </p>
-            </div>
-          </div>
-        </div>
-        </section>
-
-
-        <!-- Projects Section -->
-        <section class="group relative p-6 sm:p-8 rounded-2xl 
-          bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
-          shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
-          border border-rose-300
-          backdrop-blur-sm
-          dark:from-stone-900/60 dark:to-stone-800/40 
-          dark:border-stone-500/60
-          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500">
-          <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
-          <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
-          <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
-          <div class="flex items-center justify-between mb-6 sm:mb-8">
-            <div class="flex items-center gap-3">
-              <h2 class="font-zt text-2xl sm:text-3xl relative group">
-                <span class="relative z-10 text-stone-900 dark:text-stone-100">Projects</span>
-                <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              </h2>
-            </div>
-            <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
-              Featured Work
-            </span>
-          </div>
-          <ul class="space-y-4 sm:space-y-5">
-            <li class="relative pl-5 sm:pl-6 before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-stone-400 dark:before:bg-stone-500 before:rounded-full hover:before:bg-stone-600 dark:hover:before:bg-stone-400 transition-colors">
-              <a 
-                href="/project#main" 
-                class="font-space text-base sm:text-lg text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors relative group"
-              >
-                Main projects
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-600 dark:bg-stone-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
-            </li>
-            <li class="relative pl-5 sm:pl-6 before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-stone-400 dark:before:bg-stone-500 before:rounded-full hover:before:bg-stone-600 dark:hover:before:bg-stone-400 transition-colors">
-              <a 
-                href="/project#side" 
-                class="font-space text-base sm:text-lg text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors relative group"
-              >
-                Side projects
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-600 dark:bg-stone-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
-            </li>
-          </ul>
-        </section>
-        <!-- Blogs Section -->
-        <section class="group relative p-6 sm:p-8 rounded-2xl 
-          bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
-          shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
-          border border-rose-300
-          backdrop-blur-sm
-          dark:from-stone-900/60 dark:to-stone-800/40 
-          dark:border-stone-500/60
-          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500">
-          <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
-          <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
-          <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
-          <div class="flex items-center justify-between mb-6 sm:mb-8">
-            <div class="flex items-center gap-3">
-              <h2 class="font-zt text-2xl sm:text-3xl relative group">
-                <span class="relative z-10 text-stone-900 dark:text-stone-100">Blogs</span>
-                <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              </h2>
-            </div>
-            <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
-              Latest Insights
-            </span>
-          </div>
-          <ul class="space-y-4 sm:space-y-5">
-            <li class="relative pl-5 sm:pl-6 before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-stone-400 dark:before:bg-stone-500 before:rounded-full hover:before:bg-stone-600 dark:hover:before:bg-stone-400 transition-colors">
-              <a 
-                href="/blogs" 
-                class="font-space text-base sm:text-lg text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors relative group"
-              >
-                Machine learning
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-600 dark:bg-stone-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
-            </li>
-            <li class="relative pl-5 sm:pl-6 before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-stone-400 dark:before:bg-stone-500 before:rounded-full hover:before:bg-stone-600 dark:hover:before:bg-stone-400 transition-colors">
-              <a 
-                href="/blogs" 
-                class="font-space text-base sm:text-lg text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors relative group"
-              >
-                Writings
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-600 dark:bg-stone-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
-            </li>
-          </ul>
-        </section>
-
-        <!-- Ongoings Section -->
-        <section class="group relative p-6 sm:p-8 rounded-2xl 
-          bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
-          shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
-          border border-rose-300
-          backdrop-blur-sm
-          dark:from-stone-900/60 dark:to-stone-800/40 
-          dark:border-stone-500/60
-          hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500">
-          <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
-          <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
-          <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
-          <div class="flex items-center justify-between mb-6 sm:mb-8">
-            <div class="flex items-center gap-3">
-              <h2 class="font-zt text-2xl sm:text-3xl relative group">
-                <span class="relative z-10 text-stone-900 dark:text-stone-100">Ongoings</span>
-                <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              </h2>
-              <span class="font-mono  hidden sm:inline text-xs sm:text-sm px-3 py-1 bg-stone-100/80 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 rounded-full border border-stone-200/50 dark:border-stone-700/50">
-                2 updates
-              </span>
-            </div>
-            <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
-              Current Focus
-            </span>
-          </div>
-          <div class="space-y-4 sm:space-y-5">
-{/*            <p class="font-space text-stone-600 dark:text-stone-400 text-base sm:text-lg leading-relaxed">
-               mastering machine learning, completed supervised learning from <span class="text-stone-800 dark:text-stone-200 font-medium">deeplearning.ai</span>,  currently exploring neural networks.
-            </p>
-*/}
-           <p class="font-space text-stone-600 dark:text-stone-400 text-base sm:text-lg leading-relaxed">
-  joined <a href="https://rowboatlabs.com" target="_blank" rel="noopener noreferrer" class="text-stone-800 dark:text-stone-200 hover:text-stone-900 dark:hover:text-stone-100 transition-colors relative group font-medium">Rowboat Labs (YC S24)<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-600 dark:bg-stone-400 group-hover:w-full transition-all duration-300"></span></a> as an AI Engineer.
-</p>
-            <p class="font-space text-stone-600 dark:text-stone-400 text-base sm:text-lg leading-relaxed">
-              check out my recent blog on neural networks at the <a href="/blogs" class="text-stone-800 dark:text-stone-200 hover:text-stone-900 dark:hover:text-stone-100 transition-colors relative group font-medium">
-                blog page
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-600 dark:bg-stone-400 group-hover:w-full transition-all duration-300"></span>
-              </a>!
-            </p>
-          </div>
-        </section>
-
-                   <!-- Research Section -->
-<section id="research" class="group relative p-6 sm:p-8 rounded-2xl 
-  bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
-  shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
-  border border-rose-300
-  backdrop-blur-sm
-  dark:from-stone-900/60 dark:to-stone-800/40 
-  dark:border-stone-500/60
-  hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500">
-  <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
-  <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
-  <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
-  
-  <div class="flex items-center justify-between mb-6 sm:mb-8">
-    <div class="flex items-center gap-3">
-      <h2 class="font-zt text-2xl sm:text-3xl relative group">
-        <span class="relative z-10 text-stone-900 dark:text-stone-100">Research</span>
-        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-      </h2>
+    <div>
+      <p class="mb-3">Some things I've done:</p>
+      <ul class="space-y-2.5 list-disc pl-5 marker:text-neutral-400 dark:marker:text-neutral-600">
+        <li>
+          Founded <a href="https://ztutor.app" target="_blank" rel="noopener noreferrer" class="link">zTutor</a>,
+          a personal AI video tutor. 2000+ videos generated, backed by 3F Venture Capital.
+        </li>
+        <li>
+          Wrote <a href="/research/aria.pdf" target="_blank" rel="noopener noreferrer" class="link">ARIA</a>,
+          a reasoning model that allocates thinking tokens by problem difficulty — 2.3&times; fewer tokens on GSM8K and MATH-500.
+        </li>
+        <li>
+          Taught a course on neural networks and deep learning to ~50 students at
+          <a href="https://pesu.io" target="_blank" rel="noopener noreferrer" class="link">PESU I/O</a>.
+        </li>
+        <li>
+          Implemented RL algorithms for robotic control and autonomous navigation at CRAIS.
+        </li>
+        <li>
+          Built <a href="https://github.com/Gagancreates" target="_blank" rel="noopener noreferrer" class="link">a dozen other things</a> —
+          an AI voice tutor that draws while it talks, a second brain for researchers, an Instagram for arXiv papers.
+        </li>
+      </ul>
     </div>
-    <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
-      Academic Work
-    </span>
+
+    <p>
+      I learn by building — shipping things, being wrong, and trying again.
+      Most of what I know about ML came from implementing papers and breaking things in public.
+    </p>
+
+    <p id="contact" class="pt-2">
+      You can find me on <a href="https://github.com/Gagancreates" target="_blank" rel="noopener noreferrer" class="link">GitHub</a>
+      and <a href="https://www.linkedin.com/in/gaganp56/" target="_blank" rel="noopener noreferrer" class="link">LinkedIn</a>,
+      or say hi at <a href="mailto:gagan.p@rowboatlabs.com" class="link">gagan.p@rowboatlabs.com</a>.
+    </p>
   </div>
-  
-  <ul class="space-y-4 sm:space-y-5">
-    <li class="relative pl-5 sm:pl-6 before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-rose-400 dark:before:bg-rose-500 before:rounded-full hover:before:bg-rose-600 dark:hover:before:bg-rose-400 transition-colors">
-      <a
-        href="/research/aria.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="font-space text-base sm:text-lg font-medium text-stone-800 dark:text-stone-200 hover:text-stone-900 dark:hover:text-stone-100 transition-colors relative group inline-block"
-      >
-        ARIA: Adaptive Reasoning through Difficulty-Graded Trace Compression
-        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-rose-500 dark:bg-rose-400 group-hover:w-full transition-all duration-300"></span>
-      </a>
-      <p class="font-space text-stone-600 dark:text-stone-400 text-sm sm:text-base mt-1 leading-relaxed">
-        A reasoning model that learns to allocate thinking tokens by problem difficulty — 2.3&times; fewer tokens with a slight accuracy gain on GSM8K and MATH-500.
-      </p>
-    </li>
-  </ul>
-</section>
-
-<!-- Notes Section -->
-<section class="group relative p-6 sm:p-8 rounded-2xl
-  bg-gradient-to-br from-rose-50/80 via-white to-rose-100/60
-  shadow-[0_15px_35px_-5px_rgb(0,0,0,0.1)]
-  border border-rose-300
-  backdrop-blur-sm
-  dark:from-stone-900/60 dark:to-stone-800/40
-  dark:border-stone-500/60
-  hover:shadow-lg hover:border-rose-400 dark:hover:border-stone-500/75 transition-all duration-500">
-  <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-stone-100/20 to-transparent rounded-full blur-lg dark:from-stone-800/15" />
-  <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-tr from-rose-100/15 to-transparent rounded-full blur-lg dark:from-rose-900/10" />
-  <div class="absolute inset-0 bg-gradient-to-br from-stone-50/20 to-transparent dark:from-stone-900/15 rounded-2xl" />
-
-  <div class="flex items-center justify-between mb-6 sm:mb-8">
-    <div class="flex items-center gap-3">
-      <h2 class="font-zt text-2xl sm:text-3xl relative group">
-        <span class="relative z-10 text-stone-900 dark:text-stone-100">Notes</span>
-        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/40 to-transparent dark:from-rose-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-      </h2>
-    </div>
-    <span class="font-space text-xs sm:text-sm text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors">
-      Quick References
-    </span>
-  </div>
-
-  <ul class="space-y-4 sm:space-y-5">
-    <li class="relative pl-5 sm:pl-6 before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-stone-400 dark:before:bg-stone-500 before:rounded-full hover:before:bg-stone-600 dark:hover:before:bg-stone-400 transition-colors">
-      <a
-        href="/notes"
-        class="font-space text-base sm:text-lg text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors relative group"
-      >
-        3rd Semester
-        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-stone-600 dark:bg-stone-400 group-hover:w-full transition-all duration-300"></span>
-      </a>
-    </li>
-  </ul>
-</section>
+</MinimalLayout>
