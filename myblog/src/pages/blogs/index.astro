@@ -48,6 +48,7 @@ const sections = [
         href: 'https://sheer-castanet-7f7.notion.site/Gradient-Descent-Zero-to-Hero-1ba71143c5dc806486ebdc0f936c7c93',
       },
     ],
+    footer: 'I write most of my deep learning posts over at <a href="https://eunicelabs.com/blog" target="_blank" rel="noopener noreferrer" class="link">the Eunice Labs blog</a> these days.',
   },
   {
     title: 'Writings',
@@ -106,6 +107,9 @@ function formatDate(dateString: string) {
             </div>
           ))}
         </div>
+        {section.footer && (
+          <p class="mt-7 text-sm sm:text-base leading-[1.7] text-neutral-500 dark:text-neutral-500" set:html={section.footer} />
+        )}
       </div>
     ))}
   </div>
