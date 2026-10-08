@@ -1,0 +1,71 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+---
+
+<PostLayout title="Building Bucephalus | Gagan P" heading={`Building Bucephalus: Granola for the Real World`} date={`8 October, 2026`} active="Writing">
+
+  <Fragment>
+        <div>
+          <p>
+            Every online meeting I'm in has a notetaker. Granola, Otter, whatever. I can always go back and see what was said and what we agreed on. But the conversations that actually matter to me often happen offline: in a room, at a café, in class. Those just disappear.
+          </p>
+
+          <p>
+            So I built <a href="https://github.com/Gagancreates/bucephalus" target="_blank" rel="noopener noreferrer" class="link">Bucephalus</a>, an iPhone app for exactly that. Press record, put the phone on the table, lock it, and talk. When you stop, it transcribes the conversation on the phone, works out who said what, and writes a clean summary with key points, decisions and action items.
+          </p>
+
+          <img src="/images/bucephalus.png" alt="Bucephalus screens: meetings list, recording, transcript with speakers, and the lock screen Live Activity" />
+
+          <h2>What it does</h2>
+
+          <ul>
+            <li><strong>Records with the screen off.</strong> Pause, resume and stop from the lock screen or the Dynamic Island, or start it with the Action Button.</li>
+            <li><strong>Transcribes on the phone.</strong> Audio never leaves the device.</li>
+            <li><strong>Knows who spoke.</strong> Speaker labels you can rename ("Speaker 1" becomes "Arjun"), and the summary uses them.</li>
+            <li><strong>Summarises with your own key.</strong> OpenAI or Anthropic; only the transcript text is sent.</li>
+            <li><strong>Notes per meeting</strong>, with Markdown that formats as you type.</li>
+          </ul>
+
+          <h2>The classroom test</h2>
+
+          <p>
+            The first version used Apple's built-in speech model. It was fine with the phone right next to me. Then I tried it in class, sitting about 10 metres from my teacher in a silent room, and it caught a dozen words in five minutes. The same lecture through Wispr Flow on my Mac came out solid, so the audio wasn't the problem.
+          </p>
+
+          <p>
+            So I pulled the class recordings off the phone and ran them through a few models on my Mac:
+          </p>
+
+          <ul>
+            <li><strong>Apple SpeechAnalyzer:</strong> about 13 words. Unusable.</li>
+            <li><strong>Apple + boosted audio:</strong> about 130 words, mostly garbled.</li>
+            <li><strong>Whisper large-v3 turbo:</strong> coherent, but it skipped chunks and got stuck repeating one sentence.</li>
+            <li><strong>NVIDIA Parakeet v2:</strong> the actual lecture, formulas and all.</li>
+          </ul>
+
+          <p>
+            Parakeet runs on the iPhone's Neural Engine through <a href="https://github.com/FluidInference/FluidAudio" target="_blank" rel="noopener noreferrer" class="link">FluidAudio</a>, which I was already using for speaker labels. One afternoon later the app was on Parakeet, and the class recordings came out great.
+          </p>
+
+          <p>
+            <strong>Lesson: don't guess which model is better. Record the real situation and compare.</strong>
+          </p>
+
+          <h2>How it's built</h2>
+
+          <p>
+            Native SwiftUI on iOS 26. SwiftData for storage, with versioned schemas and a daily backup so an update can never eat your meetings. Parakeet for transcription, FluidAudio's offline diarizer for speaker labels, ActivityKit for the lock screen, and App Intents for the Action Button and Siri. I built it pair-programming with Claude Code.
+          </p>
+
+          <h2>Try it</h2>
+
+          <p>
+            It's open source under MIT. It isn't on the App Store yet, so you build it with Xcode. Everything is in the <a href="https://github.com/Gagancreates/bucephalus" target="_blank" rel="noopener noreferrer" class="link">README</a>. Next up: asking questions across all your meetings, and sending action items to Reminders.
+          </p>
+
+          <p class="font-semibold">
+            If you try it in your own classes or meetings, I'd love to hear how it does.
+          </p>
+        </div>
+  </Fragment>
+</PostLayout>
