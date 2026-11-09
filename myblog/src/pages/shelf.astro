@@ -1,8 +1,9 @@
 ---
 import type { ImageMetadata } from 'astro';
-import { Image, getImage } from 'astro:assets';
+import { Image, getImage, inferRemoteSize } from 'astro:assets';
 import MinimalLayout from '../layouts/MinimalLayout.astro';
-import { inspiration, photographs, reading, watching, type ShelfImage, type ShelfItem } from '../data/shelf';
+import { arena, inspiration, photographs, reading, watching, type ShelfImage, type ShelfItem } from '../data/shelf';
+import { channelImages } from '../lib/arena';
 
 const files = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/shelf/**/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG}',
@@ -14,14 +15,61 @@ function asset(path: string): ImageMetadata {
   return file.default;
 }
 
+// One shape for local files and Are.na images, so the markup doesn't care where
+// an image came from.
+interface Picture {
+  src: ImageMetadata | string;
+  width: number;
+  height: number;
+  alt: string;
+  caption?: string;
+  credit?: string;
+}
+async function fromLocal(list: ShelfImage[]): Promise<Picture[]> {
+  return list.map((item) => {
+    const meta = asset(item.src);
+    return { ...item, src: meta, width: meta.width, height: meta.height };
+  });
+}
+async function fromArena(slug: string): Promise<Picture[]> {
+  const blocks = await channelImages(slug);
+  return Promise.all(
+    blocks.map(async (b) => {
+      const { width, height } = await inferRemoteSize(b.url);
+      return {
+        src: b.url,
+        width,
+        height,
+        alt: b.description || 'Image from my Are.na',
+        caption: b.description || undefined,
+        credit: b.source,
+      };
+    })
+  );
+}
+async function shelfFromArena(slug: string): Promise<(ShelfItem & { image: ImageMetadata | string })[]> {
+  const blocks = await channelImages(slug);
+  return blocks.map((b) => ({
+    title: b.title.replace(/\.(jpe?g|png|webp|avif|gif)$/i, ''),
+    by: b.description.split('\n')[0] ?? '',
+    cover: '',
+    image: b.url,
+    href: b.source,
+  }));
+}
+
 // Pinterest-style layout: each image goes into whichever column is currently
 // shortest, so the grid reads left-to-right in list order with uneven heights.
-async function prepare(list: ShelfImage[]) {
+async function prepare(list: Picture[]) {
   return Promise.all(
     list.map(async (item, index) => {
-      const meta = asset(item.src);
-      const full = await getImage({ src: meta, width: Math.min(meta.width, 1800) });
-      return { ...item, index, meta, full: full.src, ratio: meta.height / meta.width };
+      const width = Math.min(item.width, 1800);
+      const full = await getImage({
+        src: item.src,
+        width,
+        ...(typeof item.src === 'string' ? { height: Math.round((item.height / item.width) * width) } : {}),
+      });
+      return { ...item, index, full: full.src, ratio: item.height / item.width };
     })
   );
 }
@@ -38,16 +86,19 @@ function masonry(items: Prepared[], count: number) {
 }
 
 const galleries = {
-  inspiration: await prepare(inspiration),
-  photographs: await prepare(photographs),
+  inspiration: await prepare(arena.inspiration ? await fromArena(arena.inspiration) : await fromLocal(inspiration)),
+  photographs: await prepare(arena.photographs ? await fromArena(arena.photographs) : await fromLocal(photographs)),
 };
-const shelves: Record<'reading' | 'watching', ShelfItem[]> = { reading, watching };
+const shelves = {
+  reading: arena.reading ? await shelfFromArena(arena.reading) : reading.map((i) => ({ ...i, image: asset(i.cover) })),
+  watching: arena.watching ? await shelfFromArena(arena.watching) : watching.map((i) => ({ ...i, image: asset(i.cover) })),
+};
 
 const tabs = [
-  { id: 'inspiration', label: 'Inspiration', count: inspiration.length },
-  { id: 'photographs', label: 'Photographs', count: photographs.length },
-  { id: 'reading', label: 'Reading', count: reading.length },
-  { id: 'watching', label: 'Watching', count: watching.length },
+  { id: 'inspiration', label: 'Inspiration', count: galleries.inspiration.length },
+  { id: 'photographs', label: 'Photographs', count: galleries.photographs.length },
+  { id: 'reading', label: 'Reading', count: shelves.reading.length },
+  { id: 'watching', label: 'Watching', count: shelves.watching.length },
 ] as const;
 ---
 
@@ -86,7 +137,7 @@ const tabs = [
                     <button
                       type="button"
                       class="shelf-photo block w-full overflow-hidden rounded-[4px] bg-neutral-100 dark:bg-neutral-900"
-                      style={`aspect-ratio: ${item.meta.width} / ${item.meta.height}`}
+                      style={`aspect-ratio: ${item.width} / ${item.height}`}
                       data-index={item.index}
                       data-full={item.full}
                       data-caption={item.caption ?? ''}
@@ -94,7 +145,9 @@ const tabs = [
                       aria-label={`Open ${item.alt}`}
                     >
                       <Image
-                        src={item.meta}
+                        src={item.src}
+                        width={item.width}
+                        height={item.height}
                         alt={item.alt}
                         widths={[360, 720]}
                         sizes="(min-width: 640px) 216px, 50vw"
@@ -129,7 +182,8 @@ const tabs = [
                 >
                   <div class="aspect-[2/3] overflow-hidden rounded-[3px] bg-neutral-100 dark:bg-neutral-900 shadow-[0_2px_8px_rgba(0,0,0,0.12)] dark:shadow-[0_2px_8px_rgba(255,255,255,0.06)]">
                     <Image
-                      src={asset(item.cover)}
+                      src={item.image}
+                      {...(typeof item.image === 'string' ? { width: 400, height: 600 } : {})}
                       alt={`${item.title} cover`}
                       widths={[200, 400]}
                       sizes="(min-width: 640px) 150px, 30vw"

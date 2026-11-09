@@ -9,6 +9,10 @@ export default defineConfig({
   output: 'hybrid',
   adapter: netlify(),
   site: 'https://gaganp.com',
+  image: {
+    // Are.na image hosting, for the Shelf page
+    remotePatterns: [{ protocol: 'https', hostname: 'd2w9rnfcy7mm78.cloudfront.net' }],
+  },
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],

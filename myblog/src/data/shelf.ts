@@ -9,6 +9,18 @@
 // PLACEHOLDERS: every entry below is sample content for previewing the layout.
 // Replace them with your own before merging.
 
+// Are.na channel slugs (the last part of the channel URL, e.g. are.na/gagan-p/<slug>).
+// When a slug is set, that tab pulls from Are.na and the local list below is ignored.
+// Channels must be public or closed, not private.
+// Reading / Watching from Are.na: save the cover image, set the block title to the
+// book or film name, and the description to the author or director.
+export const arena = {
+  inspiration: '',
+  photographs: '',
+  reading: '',
+  watching: '',
+};
+
 export interface ShelfImage {
   src: string;
   alt: string;

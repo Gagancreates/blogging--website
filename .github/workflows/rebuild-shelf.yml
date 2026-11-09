@@ -1,0 +1,23 @@
+# Rebuilds the site every night so new Are.na saves show up on /shelf.
+# Needs a Netlify build hook URL saved as the repo secret NETLIFY_BUILD_HOOK
+# (Netlify > Site configuration > Build & deploy > Build hooks).
+name: Nightly rebuild for Shelf
+
+on:
+  schedule:
+    - cron: '30 21 * * *' # 03:00 IST
+  workflow_dispatch: # lets you trigger it by hand from the Actions tab
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify build
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "NETLIFY_BUILD_HOOK secret is not set; skipping."
+            exit 0
+          fi
+          curl -fsS -X POST -d '{}' "$HOOK"
