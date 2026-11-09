@@ -4,6 +4,7 @@
 // line below. `src` / `cover` are paths relative to src/assets/shelf/.
 // Images are resized and compressed at build time, so originals of any size are fine.
 // Newest first — the page shows items in the order listed here.
+// Reading / Watching = what you've read and watched recently.
 //
 // PLACEHOLDERS: every entry below is sample content for previewing the layout.
 // Replace them with your own before merging.
