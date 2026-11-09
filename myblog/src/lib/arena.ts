@@ -1,6 +1,6 @@
-// Pulls Shelf content from public Are.na channels at build time.
-// A failed fetch fails the build on purpose: Vercel then keeps the last good
-// deploy live instead of publishing an empty page.
+// Pulls Shelf content from public Are.na channels when Vercel refreshes /shelf.
+// A failed fetch throws on purpose: Vercel then keeps serving the last good
+// cached page instead of an empty one.
 
 const API = 'https://api.are.na/v2';
 const PER_PAGE = 100;
