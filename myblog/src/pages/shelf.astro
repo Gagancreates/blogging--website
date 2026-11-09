@@ -99,7 +99,9 @@ const tabs = [
   { id: 'photographs', label: 'Photographs', count: galleries.photographs.length },
   { id: 'reading', label: 'Reading', count: shelves.reading.length },
   { id: 'watching', label: 'Watching', count: shelves.watching.length },
-] as const;
+].filter((tab) => tab.count > 0); // a tab only appears once it has something in it
+const visible = (id: string) => tabs.some((tab) => tab.id === id);
+const firstTab = tabs[0]?.id;
 ---
 
 <MinimalLayout title="Shelf | Gagan P" active="Shelf">
@@ -122,10 +124,10 @@ const tabs = [
     ))}
   </div>
 
-  {(['inspiration', 'photographs'] as const).map((id, p) => {
+  {(['inspiration', 'photographs'] as const).filter(visible).map((id) => {
     const items = galleries[id];
     return (
-      <section role="tabpanel" id={`panel-${id}`} aria-labelledby={`tab-${id}`} data-panel={id} hidden={p !== 0} class="shelf-panel">
+      <section role="tabpanel" id={`panel-${id}`} aria-labelledby={`tab-${id}`} data-panel={id} hidden={id !== firstTab} class="shelf-panel">
         {items.length === 0 ? (
           <p class="text-sm text-neutral-400">Nothing here yet.</p>
         ) : (
@@ -165,10 +167,10 @@ const tabs = [
     );
   })}
 
-  {(['reading', 'watching'] as const).map((id) => {
+  {(['reading', 'watching'] as const).filter(visible).map((id) => {
     const items = shelves[id];
     return (
-      <section role="tabpanel" id={`panel-${id}`} aria-labelledby={`tab-${id}`} data-panel={id} hidden class="shelf-panel">
+      <section role="tabpanel" id={`panel-${id}`} aria-labelledby={`tab-${id}`} data-panel={id} hidden={id !== firstTab} class="shelf-panel">
         {items.length === 0 ? (
           <p class="text-sm text-neutral-400">Nothing here yet.</p>
         ) : (
