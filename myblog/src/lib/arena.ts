@@ -1,5 +1,5 @@
 // Pulls Shelf content from public Are.na channels at build time.
-// A failed fetch fails the build on purpose: Netlify then keeps the last good
+// A failed fetch fails the build on purpose: Vercel then keeps the last good
 // deploy live instead of publishing an empty page.
 
 const API = 'https://api.are.na/v2';

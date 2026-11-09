@@ -1,6 +1,6 @@
 # Rebuilds the site every night so new Are.na saves show up on /shelf.
-# Needs a Netlify build hook URL saved as the repo secret NETLIFY_BUILD_HOOK
-# (Netlify > Site configuration > Build & deploy > Build hooks).
+# Needs a Vercel deploy hook URL saved as the repo secret VERCEL_DEPLOY_HOOK
+# (Vercel > Project > Settings > Git > Deploy Hooks, branch: main).
 name: Nightly rebuild for Shelf
 
 on:
@@ -12,12 +12,12 @@ jobs:
   rebuild:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Netlify build
+      - name: Trigger Vercel deploy
         env:
-          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
         run: |
           if [ -z "$HOOK" ]; then
-            echo "NETLIFY_BUILD_HOOK secret is not set; skipping."
+            echo "VERCEL_DEPLOY_HOOK secret is not set; skipping."
             exit 0
           fi
-          curl -fsS -X POST -d '{}' "$HOOK"
+          curl -fsS -X POST "$HOOK"
