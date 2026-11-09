@@ -15,7 +15,7 @@
 // Reading / Watching from Are.na: save the cover image, set the block title to the
 // book or film name, and the description to the author or director.
 export const arena = {
-  inspiration: '',
+  inspiration: 'images-x-hqrhmezhg',
   photographs: '',
   reading: '',
   watching: '',

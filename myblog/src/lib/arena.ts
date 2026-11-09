@@ -23,6 +23,23 @@ interface Block {
   source?: { url?: string } | null;
 }
 
+// Descriptions saved from X/Pinterest often carry quoted tweet text and t.co
+// links. Keep only the lines written as plain text.
+function cleanText(raw: string): string {
+  const decoded = raw
+    .replace(/&gt;/g, '>')
+    .replace(/&lt;/g, '<')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, '&');
+  return decoded
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('>') && !/^https?:\/\/\S+$/.test(line))
+    .join(' ')
+    .trim();
+}
+
 /** Image blocks from a channel, newest first. */
 export async function channelImages(slug: string): Promise<ArenaImage[]> {
   const out: ArenaImage[] = [];
@@ -44,7 +61,7 @@ export async function channelImages(slug: string): Promise<ArenaImage[]> {
         id: b.id,
         url,
         title: b.title ?? '',
-        description: (b.description ?? '').trim(),
+        description: cleanText(b.description ?? ''),
         source: b.source?.url || undefined,
       });
     }
