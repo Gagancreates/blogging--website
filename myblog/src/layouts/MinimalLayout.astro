@@ -16,6 +16,7 @@ const nav = [
   { label: 'Writing', href: '/blogs' },
   { label: 'Research', href: '/research' },
   { label: 'Notes', href: '/notes' },
+  { label: 'Shelf', href: '/shelf' },
   { label: 'Contact', href: '/#contact' },
 ];
 ---
@@ -123,7 +124,7 @@ const nav = [
 
       // Mobile: swipe left/right to move between pages in nav order.
       // Inside a blog post, either direction returns to the Writing tab.
-      const swipePages = ['/', '/work', '/projects', '/blogs', '/research', '/notes'];
+      const swipePages = ['/', '/work', '/projects', '/blogs', '/research', '/notes', '/shelf'];
       const path = location.pathname.replace(/\/+$/, '') || '/';
       const pageIndex = swipePages.indexOf(path);
       const isBlogPost = path.startsWith('/blogs/');

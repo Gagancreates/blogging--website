@@ -1,0 +1,272 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image, getImage } from 'astro:assets';
+import MinimalLayout from '../layouts/MinimalLayout.astro';
+import { inspiration, photographs, reading, watching, type ShelfImage, type ShelfItem } from '../data/shelf';
+
+const files = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/shelf/**/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG}',
+  { eager: true }
+);
+function asset(path: string): ImageMetadata {
+  const file = files[`/src/assets/shelf/${path}`];
+  if (!file) throw new Error(`Shelf: no image at src/assets/shelf/${path}`);
+  return file.default;
+}
+
+// Pinterest-style layout: each image goes into whichever column is currently
+// shortest, so the grid reads left-to-right in list order with uneven heights.
+async function prepare(list: ShelfImage[]) {
+  return Promise.all(
+    list.map(async (item, index) => {
+      const meta = asset(item.src);
+      const full = await getImage({ src: meta, width: Math.min(meta.width, 1800) });
+      return { ...item, index, meta, full: full.src, ratio: meta.height / meta.width };
+    })
+  );
+}
+type Prepared = Awaited<ReturnType<typeof prepare>>[number];
+function masonry(items: Prepared[], count: number) {
+  const cols: Prepared[][] = Array.from({ length: count }, () => []);
+  const heights = new Array(count).fill(0);
+  for (const item of items) {
+    const i = heights.indexOf(Math.min(...heights));
+    cols[i].push(item);
+    heights[i] += item.ratio;
+  }
+  return cols;
+}
+
+const galleries = {
+  inspiration: await prepare(inspiration),
+  photographs: await prepare(photographs),
+};
+const shelves: Record<'reading' | 'watching', ShelfItem[]> = { reading, watching };
+
+const tabs = [
+  { id: 'inspiration', label: 'Inspiration', count: inspiration.length },
+  { id: 'photographs', label: 'Photographs', count: photographs.length },
+  { id: 'reading', label: 'Reading', count: reading.length },
+  { id: 'watching', label: 'Watching', count: watching.length },
+] as const;
+---
+
+<MinimalLayout title="Shelf | Gagan P" active="Shelf">
+  <p class="text-sm sm:text-base leading-[1.7] text-neutral-500">
+    Things that shape my taste: images I keep coming back to, photographs I've taken, and books and films worth your time.
+  </p>
+
+  <div role="tablist" aria-label="Shelf sections" class="shelf-tabs mt-8 sm:mt-10 mb-8 sm:mb-10 -mx-6 px-6 pb-1 flex gap-x-4 sm:gap-x-5 whitespace-nowrap overflow-x-auto text-sm sm:text-[15px]">
+    {tabs.map((tab, i) => (
+      <button
+        role="tab"
+        id={`tab-${tab.id}`}
+        aria-controls={`panel-${tab.id}`}
+        aria-selected={i === 0 ? 'true' : 'false'}
+        data-tab={tab.id}
+        class="shelf-tab relative shrink-0 text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors duration-150"
+      >
+        {tab.label}<span class="hidden sm:inline ml-1 text-[11px] tabular-nums text-neutral-300 dark:text-neutral-700">{tab.count}</span>
+      </button>
+    ))}
+  </div>
+
+  {(['inspiration', 'photographs'] as const).map((id, p) => {
+    const items = galleries[id];
+    return (
+      <section role="tabpanel" id={`panel-${id}`} aria-labelledby={`tab-${id}`} data-panel={id} hidden={p !== 0} class="shelf-panel">
+        {items.length === 0 ? (
+          <p class="text-sm text-neutral-400">Nothing here yet.</p>
+        ) : (
+          [2, 3].map((count) => (
+            <div class:list={['gap-3 sm:gap-4', count === 2 ? 'flex sm:hidden' : 'hidden sm:flex']}>
+              {masonry(items, count).map((col) => (
+                <div class="flex-1 min-w-0 flex flex-col gap-3 sm:gap-4">
+                  {col.map((item) => (
+                    <button
+                      type="button"
+                      class="shelf-photo block w-full overflow-hidden rounded-[4px] bg-neutral-100 dark:bg-neutral-900"
+                      style={`aspect-ratio: ${item.meta.width} / ${item.meta.height}`}
+                      data-index={item.index}
+                      data-full={item.full}
+                      data-caption={item.caption ?? ''}
+                      data-credit={item.credit ?? ''}
+                      aria-label={`Open ${item.alt}`}
+                    >
+                      <Image
+                        src={item.meta}
+                        alt={item.alt}
+                        widths={[360, 720]}
+                        sizes="(min-width: 640px) 216px, 50vw"
+                        loading="lazy"
+                        class="w-full h-full object-cover transition-opacity duration-200 hover:opacity-90"
+                      />
+                    </button>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ))
+        )}
+      </section>
+    );
+  })}
+
+  {(['reading', 'watching'] as const).map((id) => {
+    const items = shelves[id];
+    return (
+      <section role="tabpanel" id={`panel-${id}`} aria-labelledby={`tab-${id}`} data-panel={id} hidden class="shelf-panel">
+        {items.length === 0 ? (
+          <p class="text-sm text-neutral-400">Nothing here yet.</p>
+        ) : (
+          <div class="grid grid-cols-3 sm:grid-cols-4 gap-x-4 sm:gap-x-5 gap-y-7 sm:gap-y-9">
+            {items.map((item) => {
+              const Tag = item.href ? 'a' : 'div';
+              return (
+                <Tag
+                  class="group block min-w-0"
+                  {...(item.href ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  <div class="aspect-[2/3] overflow-hidden rounded-[3px] bg-neutral-100 dark:bg-neutral-900 shadow-[0_2px_8px_rgba(0,0,0,0.12)] dark:shadow-[0_2px_8px_rgba(255,255,255,0.06)]">
+                    <Image
+                      src={asset(item.cover)}
+                      alt={`${item.title} cover`}
+                      widths={[200, 400]}
+                      sizes="(min-width: 640px) 150px, 30vw"
+                      loading="lazy"
+                      class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <p class="mt-2.5 text-[12px] sm:text-[13px] leading-snug text-neutral-900 dark:text-neutral-100 line-clamp-2">
+                    {item.title}
+                  </p>
+                  <p class="mt-0.5 text-[11px] sm:text-[12px] leading-snug text-neutral-400 dark:text-neutral-500 truncate">
+                    {item.by}{item.year ? ` · ${item.year}` : ''}
+                  </p>
+                </Tag>
+              );
+            })}
+          </div>
+        )}
+      </section>
+    );
+  })}
+
+  <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-white/95 dark:bg-[#0b0b0b]/95 backdrop-blur-sm px-4 py-10 cursor-zoom-out" aria-modal="true" role="dialog" aria-label="Image viewer">
+    <figure class="flex flex-col items-center gap-3 max-w-full">
+      <img id="lightbox-img" alt="" class="max-h-[82vh] max-w-full object-contain rounded-[4px]" />
+      <figcaption class="flex gap-3 text-[13px] text-neutral-500">
+        <span id="lightbox-caption"></span>
+        <a id="lightbox-credit" class="link" target="_blank" rel="noopener noreferrer">Source</a>
+      </figcaption>
+    </figure>
+  </div>
+</MinimalLayout>
+
+<script>
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.shelf-tab'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('.shelf-panel'));
+
+  function show(id: string, updateHash = true) {
+    if (!tabs.some((t) => t.dataset.tab === id)) id = tabs[0].dataset.tab!;
+    tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === id)));
+    panels.forEach((p) => {
+      const active = p.dataset.panel === id;
+      p.hidden = !active;
+      if (active) {
+        p.classList.remove('shelf-fade');
+        void p.offsetWidth;
+        p.classList.add('shelf-fade');
+      }
+    });
+    if (updateHash) history.replaceState(null, '', `#${id}`);
+  }
+  tabs.forEach((t) => t.addEventListener('click', () => show(t.dataset.tab!)));
+  if (location.hash) show(location.hash.slice(1), false);
+
+  // Lightbox: click an image to open, click / Esc to close, arrow keys to move.
+  const box = document.getElementById('lightbox')!;
+  const img = document.getElementById('lightbox-img') as HTMLImageElement;
+  const caption = document.getElementById('lightbox-caption')!;
+  const credit = document.getElementById('lightbox-credit') as HTMLAnchorElement;
+  let current: HTMLButtonElement[] = [];
+  let pos = 0;
+
+  function visiblePhotos() {
+    const panel = panels.find((p) => !p.hidden);
+    if (!panel) return [];
+    // only the layout currently on screen (2 or 3 columns), in list order
+    return Array.from(panel.querySelectorAll<HTMLButtonElement>('.shelf-photo'))
+      .filter((b) => b.offsetParent !== null)
+      .sort((a, b) => Number(a.dataset.index) - Number(b.dataset.index));
+  }
+  function render() {
+    const b = current[pos];
+    img.src = b.dataset.full!;
+    img.alt = b.querySelector('img')?.alt ?? '';
+    caption.textContent = b.dataset.caption ?? '';
+    credit.hidden = !b.dataset.credit;
+    if (b.dataset.credit) credit.href = b.dataset.credit;
+  }
+  function open(b: HTMLButtonElement) {
+    current = visiblePhotos();
+    pos = Math.max(0, current.indexOf(b));
+    render();
+    box.classList.replace('hidden', 'flex');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    box.classList.replace('flex', 'hidden');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll<HTMLButtonElement>('.shelf-photo').forEach((b) =>
+    b.addEventListener('click', () => open(b))
+  );
+  box.addEventListener('click', (e) => {
+    if ((e.target as Element).closest('#lightbox-credit')) return;
+    close();
+  });
+  // keep swipes inside the viewer from switching pages
+  box.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+  box.addEventListener('touchend', (e) => e.stopPropagation(), { passive: true });
+  document.addEventListener('keydown', (e) => {
+    if (box.classList.contains('hidden')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight' && pos < current.length - 1) { pos++; render(); }
+    if (e.key === 'ArrowLeft' && pos > 0) { pos--; render(); }
+  });
+</script>
+
+<style>
+  :global(html) {
+    scrollbar-gutter: stable;
+  }
+  .shelf-tabs {
+    scrollbar-width: none;
+  }
+  .shelf-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .shelf-tab[aria-selected='true'] {
+    color: rgb(23 23 23);
+  }
+  :global(.dark) .shelf-tab[aria-selected='true'] {
+    color: rgb(245 245 245);
+  }
+  .shelf-tab[aria-selected='true']::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.3em;
+    height: 1px;
+    background: currentColor;
+  }
+  .shelf-fade {
+    animation: shelf-fade 0.35s ease both;
+  }
+  @keyframes shelf-fade {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: none; }
+  }
+</style>
