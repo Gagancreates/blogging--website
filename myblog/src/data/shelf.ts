@@ -13,7 +13,7 @@
 // book or film name, and the description to the author or director.
 export const arena = {
   inspiration: 'images-x-hqrhmezhg',
-  photographs: '',
+  photographs: 'pics-smrizb8l1di',
   reading: '',
   watching: 'watchpad',
 };
