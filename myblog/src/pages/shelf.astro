@@ -93,9 +93,17 @@ const galleries = {
   inspiration: await prepare(arena.inspiration ? await fromArena(arena.inspiration) : await fromLocal(inspiration)),
   photographs: await prepare(arena.photographs ? await fromArena(arena.photographs) : await fromLocal(photographs)),
 };
+// Are.na items first, then the local list; anything marked current goes to the front.
+async function shelf(slug: string, local: ShelfItem[]) {
+  const items = [
+    ...(slug ? await shelfFromArena(slug) : []),
+    ...local.map((i) => ({ ...i, image: asset(i.cover) as ImageMetadata | string })),
+  ];
+  return [...items.filter((i) => i.current), ...items.filter((i) => !i.current)];
+}
 const shelves = {
-  reading: arena.reading ? await shelfFromArena(arena.reading) : reading.map((i) => ({ ...i, image: asset(i.cover) })),
-  watching: arena.watching ? await shelfFromArena(arena.watching) : watching.map((i) => ({ ...i, image: asset(i.cover) })),
+  reading: await shelf(arena.reading, reading),
+  watching: await shelf(arena.watching, watching),
 };
 
 const tabs = [
@@ -173,13 +181,24 @@ const firstTab = tabs[0]?.id;
 
   {(['reading', 'watching'] as const).filter(visible).map((id) => {
     const items = shelves[id];
+    // Each tab splits into two headed lists; an empty list is left out.
+    const groups = (id === 'reading'
+      ? [
+          { label: 'Currently reading', items: items.filter((i) => i.current) },
+          { label: 'Reads', items: items.filter((i) => !i.current) },
+        ]
+      : [
+          { label: 'Recently watched', items: items.filter((i) => !i.recommended) },
+          { label: 'Recommended', items: items.filter((i) => i.recommended) },
+        ]
+    ).filter((g) => g.items.length > 0);
     return (
       <section role="tabpanel" id={`panel-${id}`} aria-labelledby={`tab-${id}`} data-panel={id} hidden={id !== firstTab} class="shelf-panel">
-        {items.length === 0 ? (
-          <p class="text-sm text-neutral-400">Nothing here yet.</p>
-        ) : (
+        {groups.map((group, g) => (
+          <div class:list={[g > 0 && 'mt-12 sm:mt-14']}>
+          <p class="-mt-2 sm:-mt-3 mb-5 sm:mb-6 text-[11px] sm:text-[12px] uppercase tracking-[0.08em] text-neutral-400 dark:text-neutral-500">{group.label}</p>
           <div class="grid grid-cols-3 sm:grid-cols-4 gap-x-4 sm:gap-x-5 gap-y-7 sm:gap-y-9">
-            {items.map((item) => {
+            {group.items.map((item) => {
               const Tag = item.href ? 'a' : 'div';
               return (
                 <Tag
@@ -207,7 +226,8 @@ const firstTab = tabs[0]?.id;
               );
             })}
           </div>
-        )}
+          </div>
+        ))}
       </section>
     );
   })}
